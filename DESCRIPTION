@@ -1,0 +1,54 @@
+Package: RARtrials
+Type: Package
+Title: Response-Adaptive Randomisation in Clinical Trials
+Version: 0.0.1
+Authors@R: c(person(given="Chuyao",
+                    family="Xu",
+                    role=c("aut","cre"),
+                    email="cxu870@aucklanduni.ac.nz"),
+            person(given="Thomas",
+                    family="Lumley",
+                    role=c("aut","ths"),
+                    email="t.lumley@auckland.ac.nz"),
+            person(given="Alain",
+                    family="Vandal",
+                    role=c("aut","ths"),
+                    email="alain.vandal@auckland.ac.nz"),
+            person(given="Sofia S.",
+                    family="Villar",
+                    role=c("cph"),
+                    email="sofia.villar@mrc-bsu.cam.ac.uk"),
+           person(given="Kyle J.",
+                    family="Wathen",
+                    role=c("cph"),
+                    email="kylewathen@gmail.com")        
+ )
+Date: 2024-05-01
+Maintainer: Chuyao Xu  <cxu870@aucklanduni.ac.nz>
+Description: This package contains some common response-adaptive randomisation methods in literatures,
+             including the randomized play-the-winner rule, doubly adaptive biased coin design with minimal variance strategy and
+             maximal power stategy targeting Neyman allocation and RSIHR allocation, bayesian response-adaptive randomization with 
+             a control group using Thall \& Wathen method and forward-looking gittins index rule.
+Encoding: UTF-8
+Collate: 'brar_select_au_binary.r' 'brar_select_au_known_var.r'  'brar_select_au_unknown_var.r' 
+        'convert_gamma_to_chisq.r'  'dabcd_max_power.r' 'dabcd_min_var.r' 'flgi_stop_bound_binary.r'
+         'flgi_stop_bound_flgi_known_var.r' 'flgi_stop_bound_flgi_unk_var.r'
+          'Gittins.r' 'pgreater.r' 'pgreater_unknown_var.r'
+          'pmax.r' 'sim_RPTW.r'  'sim_A_optimal_known_var.r' 'sim_A_optimal_unknown_var.r'
+          'sim_Aa_optimal_known_var.r' 'sim_Aa_optimal_unknown_var.r'
+          'sim_brar_binary.r'  'sim_brar_known_var.r'  'sim_brar_unknown_var.r'
+          'sim_dabcd_max_power.r' 'sim_dabcd_min_var.r' 'sim_flgi_binary.r' 
+          'sim_flgi_known_var.r' 'sim_flgi_unknown_var.r' 
+          'sim_RSIHR_optimal_known_var.r'  'sim_RSIHR_optimal_unknown_var.r' 
+          'update_par_nichisq.r' 'functions.r' 'RAR-package.r'
+Depends: R(> 4.0), stats, GI
+Imports: Rdpack(>= 0.7)
+RdMacros: Rdpack
+RoxygenNote: 7.3.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+License: MIT + file LICENSE
