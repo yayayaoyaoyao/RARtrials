@@ -184,7 +184,11 @@ sd=c(0.009,0.009,0.009), minstart=192,deltaa=c(0.00075,0.00075),
 tpp=0,deltaa1=c(0,0),V01=1/2,a01=0.3,m01=9/100,b01=0.00001,side='lower')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Kevin2007}{RARtrials}
+=======
+\insertRef{Kevin2007}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

@@ -47,8 +47,13 @@ pgreater_unknown_var(par1=par1,par2=par2, side='upper')
 pgreater_unknown_var(par1=par1,par2=par2, side='lower')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
 \insertRef{Kevin2007}{RARtrials}
+=======
+\insertRef{Wathen2017}{RAR}
+\insertRef{Kevin2007}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

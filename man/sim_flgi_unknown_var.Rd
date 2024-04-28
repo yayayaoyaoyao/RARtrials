@@ -124,7 +124,11 @@ stopbound=-2.0,mean=c(0.05,0.07,0.13),sd=c(0.346,0.346,0.346),
 side='lower')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Williamson2019}{RARtrials}
+=======
+\insertRef{Williamson2019}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

@@ -34,7 +34,11 @@ y2<-rnorm(90,0.09,0.009)
 update_par_nichisq(y2, par)
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Kevin2007}{RARtrials}
+=======
+\insertRef{Kevin2007}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

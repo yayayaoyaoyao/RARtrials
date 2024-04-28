@@ -194,7 +194,11 @@ sum(stopbound1a[,1]>0.88 | stopbound1a[,2]>0.88)/500 #0.05
 
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
+=======
+\insertRef{Wathen2017}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

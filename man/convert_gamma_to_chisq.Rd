@@ -24,7 +24,15 @@ normal-inverse-chi-squared distribution.
 convert_gamma_to_chisq(list(V=1/2,a=0.5,m=9.1/100,b=0.00002))
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Kevin2007}{RARtrials}
+=======
+{Wathen, J. K., & Thall, P. F. (2017). A simulation study of outcome adaptive
+randomization in multi-arm clinical trials. Clinical trials (London, England), 14(5), 432–440.
+https://doi.org/10.1177/1740774517692302}
+
+\insertRef{Kevin2007}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

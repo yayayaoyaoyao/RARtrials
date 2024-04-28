@@ -57,7 +57,11 @@ following an exponential distribution.}
 \item{K}{number of total arms in the trial.}
 
 \item{noRuns2}{number of simulations for simulated allocation probabilities within each block. Default value is
+<<<<<<< HEAD
 set to 100, which is recommended in \insertCite{Villar2015}{RARtrials}.}
+=======
+set to 100, which is recommended in \insertCite{Villar2015}{RAR}.}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 
 \item{Tsize}{maximal sample size for the trial.}
 
@@ -126,7 +130,11 @@ sum(stopbound2a[,1]<=-1.656 )/100 #0.05
 
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Williamson2019}{RARtrials}
+=======
+\insertRef{Williamson2019}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

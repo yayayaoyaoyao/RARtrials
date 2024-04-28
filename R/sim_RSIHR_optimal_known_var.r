@@ -2,7 +2,11 @@
 #' @description \code{sim_RSIHR_optimal_known_var} simulates a trial for continuous endpoints with known variances,
 #' and the allocation probabilities are fixed. 
 #' @details This function aims to minimize the criteria \eqn{\sum_{i=1}^{K}n_i\Psi_i}
+<<<<<<< HEAD
 #' with constraints \eqn{\frac{\sigma_1^2}{n_1}+\frac{\sigma_k^2}{n_k}\leq C}, where \eqn{k=2,...,K}
+=======
+#' with constraints \eqn{\frac{\si_1^2}{n_1}+\frac{\si_k^2}{n_k}\leq C}, where \eqn{k=2,...,K}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 #' for some fixed C. It is equivalent to generalized RSIHR allocation for continuous endpoints with known variances.
 #' With more than two arms the one-sided nominal level of each test is \code{alphaa} divided 
 #' by \code{arm*(arm-1)/2}; a Bonferroni correction.

@@ -44,6 +44,10 @@ Collate: 'brar_select_au_binary.r' 'brar_select_au_known_var.r'  'brar_select_au
 Depends: R(> 4.0), stats, GI
 Imports: Rdpack(>= 0.7)
 RdMacros: Rdpack
+<<<<<<< HEAD
+=======
+LazyData: true
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 RoxygenNote: 7.3.1
 Suggests: 
     knitr,

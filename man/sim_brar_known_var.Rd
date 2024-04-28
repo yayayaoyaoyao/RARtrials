@@ -168,7 +168,11 @@ sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(0.00048,0.00048),tpp=0,deltaa1=c(0,
 mean10=0.09,mean20=0.09,mean30=0.09,sd10=0.01,sd20=0.01,sd30=0.01,n10=1,n20=1,n30=1,side='lower')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
+=======
+\insertRef{Wathen2017}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

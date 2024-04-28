@@ -29,7 +29,11 @@ normal reward process can handle scenarios with up to 10000 participants in a tr
 Gittins indices for binary outcomes are generated from \code{\link[gittins]{bmab_gi_multiple_ab}} function with
 time horizon 100, 100, 100, 1000, 1000 for discount factor 0, 0.5, 0.7, 0.99 and 0.995 respectively.
 Gittins indices for continuous outcomes are obtained by linear extrapolation using Table 8.1 and Table 8.3
+<<<<<<< HEAD
 in \insertCite{Gittins2011}{RARtrials}.
+=======
+in \insertCite{Gittins2011}{RAR}.
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \examples{
 Gittins(Gittinstype='UNKV',df=0.5)
@@ -37,7 +41,11 @@ Gittins(Gittinstype='KV',df=0.7)
 Gittins(Gittinstype='Binary',df=0.5)
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Gittins2011}{RARtrials}
+=======
+\insertRef{Gittins2011}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

@@ -30,6 +30,10 @@ export(sim_flgi_known_var)
 export(sim_flgi_unknown_var)
 export(update_par_nichisq)
 import(GI)
+<<<<<<< HEAD
+=======
+import(gittins)
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 importFrom(Rdpack,reprompt)
 importFrom(stats,approx)
 importFrom(stats,dbeta)

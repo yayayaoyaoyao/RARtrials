@@ -91,7 +91,11 @@ rnorm(length( vStartTime ),30, 3)),enrollrate=0.9,N2=88,armn=2,
 mean=c(9.1/100,8.47/100),sd=c(0.009,0.009),alphaa=0.025,armlabel = c(1,2),side='lower')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Oleksandr2013}{RARtrials}
+=======
+\insertRef{Oleksandr2013}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

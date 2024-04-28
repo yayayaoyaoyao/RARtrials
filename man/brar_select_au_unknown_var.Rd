@@ -212,7 +212,11 @@ sum(stopbound1a[,1]>0.9694 | stopbound1a[,2]>0.9694)/1000 #0.05
 #choice of deltaa could be consistent for comparisons of each arm to the control.
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
+=======
+\insertRef{Wathen2017}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

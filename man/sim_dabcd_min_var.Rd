@@ -58,7 +58,11 @@ for the control and the treatment group, respectively.}
 
 \item{type}{allocation type, with choices from 'RSIHR' and 'Neyman'.}
 
+<<<<<<< HEAD
 \item{gamma}{tuning parameter in Hu & Zhang's formula (\insertCite{Hu2004}{RARtrials}). When dabcd=0, this parameter does not need
+=======
+\item{gamma}{tuning parameter in Hu & Zhang's formula (\insertCite{Hu2004}{RAR}). When dabcd=0, this parameter does not need
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 to be specified. Default value is set to 2.}
 
 \item{alphaa}{the overall type I error to be controlled for the one-sided test. Default value is set to 0.025.}
@@ -78,7 +82,11 @@ strategy for binary outcomes, targeting generalized Neyman allocation and genera
 with 2-5 arms.
 }
 \details{
+<<<<<<< HEAD
 The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
+=======
+The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RAR}.
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 With more than two arms the one-sided nominal level of each
 test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 }
@@ -93,7 +101,11 @@ armlabel=c(1,2,3),h=c(0.2,0.3,0.3),type='RSIHR',
 side='lower')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Hu2004}{RARtrials}
+=======
+\insertRef{Hu2004}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

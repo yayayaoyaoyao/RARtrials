@@ -85,7 +85,11 @@ sim_RPTW(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime )
 enrollrate=0.9,na0=1,nb0=1,na1=1,nb1=1,h=c(0.1,0.3),alphaa=0.025,N2=168,side='upper')
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Wei1978}{RARtrials}
+=======
+\insertRef{Wei1978}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley & Alain Vandal

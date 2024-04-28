@@ -64,7 +64,11 @@ and the second column represents the prior of the number of failures.}
 \item{K}{number of total arms in the trial.}
 
 \item{noRuns2}{number of simulations for simulated allocation probabilities within each block. Default value is
+<<<<<<< HEAD
 set to 100, which is recommended in \insertCite{Villar2015}{RARtrials}.}
+=======
+set to 100, which is recommended in \insertCite{Villar2015}{RAR}.}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 
 \item{Tsize}{maximal sample size for the trial.}
 
@@ -104,9 +108,30 @@ controlled forward-looking Gittins index algorithm under both no delay and delay
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_binary}.
 }
 \examples{
+<<<<<<< HEAD
 #forward-looking Gittins index with delayed responses follow a normal distribution
 #with a mean of 30 days and a standard deviation of 3 days
 sim_flgi_binary(Gittinstype='Binary',df=0.5,Pats=10,nMax=50000,TimeToOutcome=expression(
+=======
+#prior: beta(1,1); discount factor: 0; time horizon used: 100.
+#the number of states GI are calculated for: 168*2+2, the generated states form an upper
+#triangular matrix, and a constant of +2 is added due to the calculation.
+Gittins<-bmab_gi_multiple_ab(1,1,gamma=0,N=100,num_actions=168*2+2,tol=1e-3)
+#forward-looking Gittins index with delayed responses follow a normal distribution
+#with a mean of 30 days and a standard deviation of 3 days
+sim_flgi_binary(gittins=Gittins,Pats=10,nMax=50000,TimeToOutcome=expression(
+rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
+K=2,Tsize=168,ptrue=c(0.1,0.3),block=2,rule='FLGI PM',ztype='unpooled',
+stopbound=1.885,side='upper')
+
+#prior: beta(1,1); discount factor: 0.5; time horizon used: 100.
+#the number of states GI are calculated for: 256*2+2.
+Gittins<-bmab_gi_multiple_ab(1,1,gamma=0.5,N=100,num_actions=256*2+2,
+tol=1e-3)
+#forward-looking Gittins index with delayed responses follow a normal distribution
+#with a mean of 30 days and a standard deviation of 3 days
+sim_flgi_binary(gittins=Gittins,Pats=10,nMax=50000,TimeToOutcome=expression(
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
 K=2,Tsize=256,ptrue=c(0.2,0.4),block=2,rule='FLGI PM',ztype='unpooled',
 stopbound=-1.5,side='lower')
@@ -120,7 +145,11 @@ rule='FLGI PM',ztype='unpooled',stopbound=1.6,side='upper')
 
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Villar2015}{RARtrials}
+=======
+\insertRef{Villar2015}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal, Villar Sofia S.

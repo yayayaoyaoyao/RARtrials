@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 RARtrials: Response Adaptive Randomization in Clinical Trials
 ============================================================
+=======
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 
 **RARtrials** package is designed for simulating most popular response-adaptive randomization methods in the literature with comparisons of each treatment group to a control group under no delay and delayed scenarios in trials. All the designs are based on one-sided tests with a choice from values of 'upper' and 'lower'. The general assumption is that binary outcomes follow Binomial distributions, while continuous outcomes follow normal distributions. Additionally, the number of patients accrued in the population follows a Poisson distribution and users can specify the enrollment rate of patients enrolled in the trial. 
 

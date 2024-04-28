@@ -131,7 +131,11 @@ sum(stopbound2a[,1]<=-2.0 | stopbound2a[,2]<=-2.0 )/100 #0.05
 
 }
 \references{
+<<<<<<< HEAD
 \insertRef{Williamson2019}{RARtrials}
+=======
+\insertRef{Williamson2019}{RAR}
+>>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal
