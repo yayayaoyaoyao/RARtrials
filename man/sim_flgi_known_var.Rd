@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_flgi_known_var.r
 \name{sim_flgi_known_var}
 \alias{sim_flgi_known_var}
-\title{sim_flgi_known_var}
+\title{Simulate a Trial Using Forward-Looking Gittins Index for Continuous Endpoint with Known Variances}
 \usage{
 sim_flgi_known_var(
   Gittinstype,
@@ -58,11 +58,7 @@ following an exponential distribution.}
 \item{K}{number of total arms in the trial.}
 
 \item{noRuns2}{number of simulations for simulated allocation probabilities within each block. Default value is
-<<<<<<< HEAD
 set to 100, which is recommended in \insertCite{Villar2015}{RARtrials}.}
-=======
-set to 100, which is recommended in \insertCite{Villar2015}{RAR}.}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 
 \item{Tsize}{maximal sample size for the trial.}
 
@@ -91,16 +87,15 @@ a treatment group, respectively.}
 \item{side}{direction of one-sided test with the values of 'upper' or 'lower'.}
 }
 \value{
-A list of results, including final decision based on the Z test statistics with 1 stands
-for effectiveness and 0 stands for not selected, final decision based on the maximal Gittins
-index value at the final stage, Z test statistics and the simulated data set for one trial.
-The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated treatment group, and participants' results.
-In the final decision, 1 refers to selected, and 0 stands for not selected.
+\code{sim_flgi_known_var} returns an object of class "flgi". An object of class "flgi" is a list containing 
+final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
+the maximal Gittins index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 
+at the time of termination of that group in one trial. The simulated data set includes 5 columns: participant ID number, enrollment time, 
+observed time of results, allocated arm, and participants' result.
 }
 \description{
 Function for simulating a trial using the forward-looking Gittins index and the controlled forward-looking
-Gittins index algorithm for continuous outcomes with known variances in trials with 2-5 arms. The prior distributions
+Gittins index algorithm for continuous outcomes with known variances in trials with 2-5 arms. The conjugate prior distributions
 follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each arm.
 }
 \details{
@@ -109,7 +104,7 @@ controlled forward-looking Gittins index algorithm under both no delay and delay
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_known_var}.
 }
 \examples{
-#forward-looking Gittins index with delayed responses follow a normal distribution
+#forward-looking Gittins index rule with delayed responses follow a normal distribution
 #with a mean of 30 days and a standard deviation of 3 days
 sim_flgi_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
 TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
@@ -117,7 +112,7 @@ K=3,noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(1,3),
 prior_mean=rep(0,3),stopbound=1.84,mean=c(0.05,0.07,0.13),sd=c(0.346,
 0.346,0.346),side='upper')
 
-#forward-looking Gittins index with no delay responses
+#forward-looking Gittins index rule with no delay responses
 sim_flgi_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
 TimeToOutcome=0,enrollrate=1,K=2,noRuns2=100,Tsize=72,block=9,
 rule='FLGI PM',prior_n=rep(1,3),prior_mean=rep(0.08,3),stopbound=-1.656,
@@ -125,11 +120,7 @@ mean=c(0.155,0.1),sd=c(0.64,0.64),side='lower')
 
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Williamson2019}{RARtrials}
-=======
-\insertRef{Williamson2019}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

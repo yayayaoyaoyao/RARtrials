@@ -2,7 +2,7 @@
 % Please edit documentation in R/brar_select_au_known_var.r
 \name{brar_select_au_known_var}
 \alias{brar_select_au_known_var}
-\title{brar_select_au_known_var}
+\title{Select au in Bayesian Response-Adaptive Randomization with a Control Group for Continuous Endpoint with Known Variances}
 \usage{
 brar_select_au_known_var(
   Pats,
@@ -96,25 +96,15 @@ each arm is approximately \eqn{1\%}. The length of this parameter is \code{armn}
 \item{deltaa1}{a vector of pre-specified minimal effect size expected to be observed at the final stage
 for each arm. The length of this parameter is \code{armn}-1.}
 
-\item{mean10}{prior mean of arm 1 in the trial, which stands for the control. Default value is set to 1.}
+\item{mean10, sd10}{prior mean and sd in \eqn{N(mean,sd)} of arm 1 in the trial, which stands for the control. Default value is set to 1.}
 
-\item{mean20}{prior mean of arm 2 in the trial. Default value is set to \code{mean10}.}
+\item{mean20, sd20}{prior mean and sd in \eqn{N(mean,sd)} of arm 2 in the trial. Default value is set to \code{mean10} and \code{sd10}.}
 
-\item{mean30}{prior mean of arm 3 in the trial. Default value is set to \code{mean10}.}
+\item{mean30, sd30}{prior mean and sd in \eqn{N(mean,sd)} of arm 3 in the trial. Default value is set to \code{mean10} and \code{sd10}.}
 
-\item{mean40}{prior mean of arm 4 in the trial. Default value is set to \code{mean10}.}
+\item{mean40, sd40}{prior mean and sd in \eqn{N(mean,sd)} of arm 4 in the trial. Default value is set to \code{mean10} and \code{sd10}.}
 
-\item{mean50}{prior mean of arm 5 in the trial. Default value is set to \code{mean10}.}
-
-\item{sd10}{prior standard deviation of arm 1 in the trial, which stands for the control. Default value is set to 0.}
-
-\item{sd20}{prior standard deviation of arm 2 in the trial. Default value is set to \code{sd10}.}
-
-\item{sd30}{prior standard deviation of arm 3 in the trial. Default value is set to \code{sd10}.}
-
-\item{sd40}{prior standard deviation of arm 4 in the trial. Default value is set to \code{sd10}.}
-
-\item{sd50}{prior standard deviation of arm 5 in the trial. Default value is set to \code{sd10}.}
+\item{mean50, sd50}{prior mean and sd in \eqn{N(mean,sd)} of arm 5 in the trial. Default value is set to \code{mean10} and \code{sd10}.}
 
 \item{n10}{explicit prior n of arm 1 in the trial, which stands for the control. Default value is set to 1.}
 
@@ -135,38 +125,39 @@ only returns the selected stopping boundary for each iteration.}
 \item{...}{additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.}
 }
 \value{
-A list of results generated from formula \eqn{Pr(p_k>p_{control}+\delta|data_{t-1})} at each step.
+A list of results generated from formula \eqn{Pr(\mu_k>\mu_{control}+\delta|data_{t-1})} at each step.
 Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 calculated from \code{deltaa1} at the final stage.
 }
 \description{
 \code{brar_select_au_known_var} involves selecting au in Bayesian Response-Adaptive Randomization with a control group
-for continuous endpoints with known variance in trials with two to five arms. The prior distributions follow
+for continuous endpoints with known variance in trials with two to five arms. The conjugate prior distributions follow
 Normal (\eqn{N(mean,sd)}) distributions and can be specified individually for each arm.
 }
 \details{
 This function generates a data set or a value in one iteration for selecting the appropriate au using Bayesian
 response-adaptive randomization with a control group under null hypotheses with no delay and delay scenarios.
 The function can handle trials with up to 5 arms for continuous outcomes with known variances. This function uses the formula
-\eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^tp}}} with \code{side} equals to 'upper'
-and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\})^tp}}} 
+\eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp}}} with \code{side} equals to 'upper'
+and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp}}} 
 with \code{side} equals to 'lower', utilizing available data at each step.
 }
 \examples{
 #brar_select_au_known_var with delayed responses follow a normal distribution with
-#a mean of 30 days and a standard deviation of 3 days, where mean=c(8.74/100,8.74/100,8.74/100),
+#a mean of 30 days and a standard deviation of 3 days, where mean=c(8.9/100,8.74/100,8.74/100),
 #sd=c(0.009,0.009,0.009), tp=0.5 and the minimal effect size is 0.
 set.seed(789)
-stopbound1<-lapply(1:500,function(x){
+stopbound1<-lapply(1:200,function(x){
 brar_select_au_known_var(Pats=10,nMax=50000,TimeToOutcome=expression(
 rnorm(length( vStartTime ),30, 3)),enrollrate=0.1, N1=21,armn=3,
-N2=189,tp=0.5,armlabel=c(1,2,3),blocksize=6,mean=c(8.74/100,8.74/100,8.74/100),
-sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(0.00066,0.0003),tpp=0,deltaa1=c(0,0),
+N2=189,tp=0.5,armlabel=c(1,2,3),blocksize=6,mean=c((8.9/100+8.74/100+8.74/100)/3,
+(8.9/100+8.74/100+8.74/100)/3,(8.9/100+8.74/100+8.74/100)/3),
+sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(-0.0019,-0.0014),tpp=0,deltaa1=c(0,0),
 mean10=0.09,mean20=0.09,mean30=0.09, sd10=0.01,sd20=0.01,sd30=0.01,n10=1,n20=1,
 n30=1,side='lower')})
 simf<-list()
 simf1<-list()
-for (xx in 1:100){
+for (xx in 1:200){
  if (any(stopbound1[[xx]][21:188,2]<0.01)){
       simf[[xx]]<-NA
    }  else{
@@ -179,26 +170,23 @@ for (xx in 1:100){
  }
 }
 simf2<-do.call(rbind,simf)
-sum(is.na(simf2)) #5, achieve around 1\% futility
+sum(is.na(simf2)) #2, achieve around 1\% futility
 simf3<-do.call(rbind,simf1)
-sum(is.na(simf3)) #5, achieve around 1\% futility
+sum(is.na(simf3)) #2, achieve around 1\% futility
 stopbound1a<-cbind(simf2,simf3)
 stopbound1a[is.na(stopbound1a)] <- 0
-sum(stopbound1a[,1]>0.88 | stopbound1a[,2]>0.88)/500 #0.05
-#the selected stopping boundary is 0.88 with an overall lower one-sided type I
-#error of 0.05, based on 500 simulations. Because it is under the permutation null hypothesis,
-#the selected futility stopping should be an average of 0.00066 and 0.0003 which is 0.00048.
-#It is recommended to conduct more simulations to obtain a more accurate deltaa and au.
+sum(stopbound1a[,1]>0.968 | stopbound1a[,2]>0.968)/200 #0.05
+#the selected stopping boundary is 0.968 with an overall lower one-sided type I
+#error of 0.05, based on 200 simulations. Because it is under the permutation null hypothesis,
+#the selected deltaa should be an average of -0.0019 and -0.0014 which is -0.00165, although
+#deltaa could be close to each other with larger simulation numbers.
+#It is recommended to conduct more simulations (i.e., 1000) to obtain a more accurate deltaa and au.
 #As the simulation number increases, the choice of deltaa could be consistent for comparisons
 #of each arm to the control.
 
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
-=======
-\insertRef{Wathen2017}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

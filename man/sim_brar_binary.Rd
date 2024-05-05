@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_brar_binary.r
 \name{sim_brar_binary}
 \alias{sim_brar_binary}
-\title{sim_brar_binary}
+\title{Simulate a Trial Using Bayesian Response-Adaptive Randomization with a Control Group for Binary Outcomes}
 \usage{
 sim_brar_binary(
   Pats,
@@ -79,35 +79,20 @@ how each arm is labeled in a two-armed trial.}
 \item{blocksize}{size of block used for equal randomization regarding participants in the 'initialization' period.
 Recommend to be an even multiple of the number of total arms.}
 
-\item{alpha1}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
+\item{alpha1, beta1}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 1 which
 stands for the control. Default value is set to 1.}
 
-\item{beta1}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
-stands for the control. Default value is set to 1.}
+\item{alpha2, beta2}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 2.
+Default value is set to \code{alpha1} and \code{beta1}.}
 
-\item{alpha2}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-Default value is set to \code{alpha1}.}
+\item{alpha3, beta3}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 3.
+Default value is set to \code{alpha1} and \code{beta1}.}
 
-\item{beta2}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-Default value is set to \code{beta1}.}
+\item{alpha4, beta4}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 4.
+Default value is set to \code{alpha1} and \code{beta1}..}
 
-\item{alpha3}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 3.
-Default value is set to \code{alpha1}.}
-
-\item{beta3}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 3.
-Default value is set to \code{beta1}.}
-
-\item{alpha4}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 4.
-Default value is set to \code{alpha1}.}
-
-\item{beta4}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 4.
-Default value is set to \code{beta1}.}
-
-\item{alpha5}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 5.
-Default value is set to \code{alpha1}.}
-
-\item{beta5}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 5.
-Default value is set to \code{beta1}.}
+\item{alpha5, beta5}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 5.
+Default value is set to \code{alpha1} and \code{beta1}.}
 
 \item{minstart}{a specified number of participants when one starts to check decision rules.}
 
@@ -124,20 +109,20 @@ for each arm. The length of this parameter is \code{armn}-1.}
 \item{...}{additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.}
 }
 \value{
-A list of results, including final decision, test statistics, the simulated data set
-and participants accrued for each arm at the time of termination of that group in one trial.
+\code{sim_brar_binary} returns an object of class "brar". An object of class "brar" is a list containing 
+final decision, test statistics, the simulated data set and participants accrued for each arm 
+at the time of termination of that group in one trial.
 The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated arm, and participants' results.
-In the final decision, 'Superiorityfinal' refers to the selected arm, while 'Not Selected' indicates the arm stopped due to
-futility, and 'Control Selected' denotes the control arm chosen because other arms did not meet futility criteria before the 
-final stage or were not deemed effective at the final stage. 
+allocated arm, and participants' results. In the final decision, 'Superiorityfinal' refers to the selected arm, 
+while 'Not Selected' indicates the arm stopped due to futility, and 'Control Selected' denotes the control arm chosen 
+because other arms did not meet futility criteria before the final stage or were not deemed effective at the final stage. 
 Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 calculated from \code{deltaa1} at the final stage.
 }
 \description{
 \code{sim_brar_binary} simulate a trial with two to five arms using Bayesian Response-Adaptive 
-Randomization with a control group for binary outcomes. The prior distributions follow Beta
-(\eqn{beta(\alpha,\beta)}) distributions and can be specified individually for each arm.
+Randomization with a control group for binary outcomes. The conjugate prior distributions follow Beta
+(\eqn{Beta(\alpha,\beta)}) distributions and can be specified individually for each arm.
 }
 \details{
 This function generates a designed trial using Bayesian response-adaptive randomization with
@@ -155,11 +140,7 @@ enrollrate=0.1,N1=24,armn=2,h=c(0.2,0.4),au=0.436,N2=224,tp=0.5,armlabel=c(1,2),
 alpha1=1,beta1=1,alpha2=1,beta2=1,minstart=24,deltaa=-0.051,tpp=0,deltaa1=0.1,side='upper')
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
-=======
-\insertRef{Wathen2017}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

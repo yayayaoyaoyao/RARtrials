@@ -1,14 +1,15 @@
-#' @title flgi_stop_bound_flgi_unk_var
+#' @title Cut-off Value of Forward-looking Gittins index rule in Continuous Endpoint with Unknown Variances
 #' @description Function for simulating cut-off values at the final stage using the forward-looking Gittins index
 #' and the controlled forward-looking Gittins index algorithm for continuous outcomes with known variance in trials with
-#' 2-5 arms. The prior distributions follow Normal-Inverse-Gamma (NIG) (\eqn{NIG(V,m,a,b)}) distributions and should be the same for each arm.
+#' 2-5 arms. The prior distributions follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})
+#' distributions and should be the same for each arm.
 #' @details This function simulates trials using the forward-looking Gittins index and the
 #' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios to obtain
 #' cut-off values at the final stage, with control of type I error. The user is expected to run this function
 #' multiple times to determine a reasonable cut-off value for statistical inference.
-#' @aliases flgi_stop_bound_flgi_unk_var
+#' @aliases flgi_cut_off_unknown_var
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal
-#' @export flgi_stop_bound_flgi_unk_var
+#' @export flgi_cut_off_unknown_var
 #' @param Gittinstype type of Gittins indices, should be set to 'UNKV' in this function
 #' @param df discount factor which is the multiplier for loss at each additional patient in the future.
 #' Available values are 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99 and 0.995. The maximal sample size can be up to 10000.
@@ -53,39 +54,39 @@
 #' @param side direction of one-sided test with the values of 'upper' or 'lower'.
 #' @return Value of T test statistics for one trial.
 #' @examples
-#' #forward-looking Gittins index with delayed responses follow a normal distribution
+#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' set.seed(12345)
-#' stopbound1<-lapply(1:100,function(x){
-#' flgi_stop_bound_flgi_unk_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
+#' stopbound1<-lapply(1:10,function(x){
+#' flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
 #' TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
 #' K=3,noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(2,3),
 #' prior_mean1=rep(0,3),prior_sd1=rep(1,3),mean=c(-0.05,-0.05,-0.05),
 #' sd=c(0.346,0.346,0.346),side='upper')})
 #' stopbound1a<-do.call(rbind,stopbound1)
-#' sum(stopbound1a[,1]>1.885| stopbound1a[,2]>1.885 )/100 #0.05
+#' sum(stopbound1a[,1]>1.885| stopbound1a[,2]>1.885 )/10 #0.05
 #' #the selected cut-off value is 1.885 with an overall upper one-sided type I
-#' #error of 0.05, based on 100 simulations.
-#' #It is recommended to conduct more simulations to obtain a more accurate cut-off value.
+#' #error of 0.1, based on 10 simulations.
+#' #It is recommended to conduct more simulations to obtain an accurate cut-off value.
 #'
-#' #forward-looking Gittins index with no delay responses
+#' #forward-looking Gittins index rule with no delay responses
 #' set.seed(12345)
-#' stopbound2<-lapply(1:100,function(x){
-#' flgi_stop_bound_flgi_unk_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
+#' stopbound2<-lapply(1:10,function(x){
+#' flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
 #' TimeToOutcome=0,enrollrate=0.5,K=3,noRuns2=100,Tsize=120,block=8,
 #' rule='FLGI PM',prior_n=rep(2,3),prior_mean1=rep(0,3),prior_sd1=rep(1,3),
 #' mean=c(0.05,0.05,0.05),sd=c(0.346,0.346,0.346),side='lower')})
 #' stopbound2a<-do.call(rbind,stopbound2)
-#' sum(stopbound2a[,1]<=-2.0 | stopbound2a[,2]<=-2.0 )/100 #0.05
-#' #the selected cut-off value is -2.0 with an overall lower one-sided type I
-#' #error of 0.05, based on 100 simulations.
-#' #It is recommended to conduct more simulations to obtain a more accurate cut-off value.
+#' sum(stopbound2a[,1]<=-1.0 | stopbound2a[,2]<=-1.0 )/10 #0.1
+#' #the selected cut-off value is -1.0 with an overall lower one-sided type I
+#' #error of 0.1, based on 10 simulations.
+#' #It is recommended to conduct more simulations to obtain an accurate cut-off value.
 #'
 #' @references
 #' \insertRef{Williamson2019}{RARtrials}
 
 
-flgi_stop_bound_flgi_unk_var<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,enrollrate,K,noRuns2,Tsize,block,rule,
+flgi_cut_off_unknown_var<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,enrollrate,K,noRuns2,Tsize,block,rule,
                                prior_n,prior_mean1,prior_sd1, mean,sd,side ){
 
   if (is.null(gittins)){

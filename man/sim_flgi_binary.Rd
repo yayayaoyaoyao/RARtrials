@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_flgi_binary.r
 \name{sim_flgi_binary}
 \alias{sim_flgi_binary}
-\title{sim_flgi_binary}
+\title{Simulate a Trial Using Forward-Looking Gittins Index for Binary Endpoint}
 \usage{
 sim_flgi_binary(
   Gittinstype,
@@ -31,7 +31,7 @@ sim_flgi_binary(
 Available values are 0, 0.5, 0.7, 0.99 and 0.995. The maximal sample size can be up to 2000.}
 
 \item{gittins}{user specified Gittins indices for calculation in this function. Recommend using the
-\code{\link[gittins]{bmab_gi_multiple_ab}} function. If \code{gittins} is provided,
+\code{bmab_gi_multiple_ab} function from \code{gittins} package. If \code{gittins} is provided,
 \code{Gittinstype} and \code{df} should be NULL.}
 
 \item{Pats}{the number of patients accrued within a certain time frame indicates the
@@ -64,11 +64,7 @@ and the second column represents the prior of the number of failures.}
 \item{K}{number of total arms in the trial.}
 
 \item{noRuns2}{number of simulations for simulated allocation probabilities within each block. Default value is
-<<<<<<< HEAD
 set to 100, which is recommended in \insertCite{Villar2015}{RARtrials}.}
-=======
-set to 100, which is recommended in \insertCite{Villar2015}{RAR}.}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 
 \item{Tsize}{maximal sample size for the trial.}
 
@@ -90,17 +86,16 @@ the treatment group, respectively.}
 \item{side}{direction of one-sided test with the values of 'upper' or 'lower'.}
 }
 \value{
-A list of results, including final decision based on the Z test statistics with 1 stands
-for effectiveness and 0 stands for not selected, final decision based on the maximal Gittins
-index value at the final stage, Z test statistics and the simulated data set for one trial.
-The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated treatment group, and participants' results.
-In the final decision, 1 refers to selected, and 0 stands for not selected.
+\code{sim_flgi_binary} returns an object of class "flgi". An object of class "flgi" is a list containing 
+final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
+the maximal Gittins index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 
+at the time of termination of that group in one trial. The simulated data set includes 5 columns: participant ID number, enrollment time, 
+observed time of results, allocated arm, and participants' result.
 }
 \description{
 Function for simulating a trial using the forward-looking Gittins index and the controlled forward-looking
-Gittins index algorithm for binary outcomes in trials with 2-5 arms. The prior distributions
-follow Beta (\eqn{beta(\alpha,\beta)}) distributions and should be the same for each arm.
+Gittins index algorithm for binary outcomes in trials with 2-5 arms. The conjugate prior distributions
+follow Beta (\eqn{Beta(\alpha,\beta)}) distributions and should be the same for each arm.
 }
 \details{
 This function simulates a trial using the forward-looking Gittins index or the
@@ -108,35 +103,14 @@ controlled forward-looking Gittins index algorithm under both no delay and delay
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_binary}.
 }
 \examples{
-<<<<<<< HEAD
-#forward-looking Gittins index with delayed responses follow a normal distribution
+#forward-looking Gittins index rule with delayed responses follow a normal distribution
 #with a mean of 30 days and a standard deviation of 3 days
 sim_flgi_binary(Gittinstype='Binary',df=0.5,Pats=10,nMax=50000,TimeToOutcome=expression(
-=======
-#prior: beta(1,1); discount factor: 0; time horizon used: 100.
-#the number of states GI are calculated for: 168*2+2, the generated states form an upper
-#triangular matrix, and a constant of +2 is added due to the calculation.
-Gittins<-bmab_gi_multiple_ab(1,1,gamma=0,N=100,num_actions=168*2+2,tol=1e-3)
-#forward-looking Gittins index with delayed responses follow a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-sim_flgi_binary(gittins=Gittins,Pats=10,nMax=50000,TimeToOutcome=expression(
-rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
-K=2,Tsize=168,ptrue=c(0.1,0.3),block=2,rule='FLGI PM',ztype='unpooled',
-stopbound=1.885,side='upper')
-
-#prior: beta(1,1); discount factor: 0.5; time horizon used: 100.
-#the number of states GI are calculated for: 256*2+2.
-Gittins<-bmab_gi_multiple_ab(1,1,gamma=0.5,N=100,num_actions=256*2+2,
-tol=1e-3)
-#forward-looking Gittins index with delayed responses follow a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-sim_flgi_binary(gittins=Gittins,Pats=10,nMax=50000,TimeToOutcome=expression(
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
 K=2,Tsize=256,ptrue=c(0.2,0.4),block=2,rule='FLGI PM',ztype='unpooled',
 stopbound=-1.5,side='lower')
 
-#forward-looking Gittins index with delayed response follows a normal distribution
+#forward-looking Gittins index rule with delayed response follows a normal distribution
 #with a mean of 30 days and a standard deviation of 3 days
 sim_flgi_binary(Gittinstype='Binary',df=0,Pats=10,nMax=50000,TimeToOutcome=
 expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,
@@ -145,11 +119,7 @@ rule='FLGI PM',ztype='unpooled',stopbound=1.6,side='upper')
 
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Villar2015}{RARtrials}
-=======
-\insertRef{Villar2015}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal, Villar Sofia S.

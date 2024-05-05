@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_dabcd_min_var.r
 \name{sim_dabcd_min_var}
 \alias{sim_dabcd_min_var}
-\title{sim_dabcd_min_var}
+\title{Simulate a Trial Using Doubly Adaptive Biased Coin Design with Minmial Variance Strategy for Binary Endpoint}
 \usage{
 sim_dabcd_min_var(
   Pats,
@@ -58,11 +58,7 @@ for the control and the treatment group, respectively.}
 
 \item{type}{allocation type, with choices from 'RSIHR' and 'Neyman'.}
 
-<<<<<<< HEAD
 \item{gamma}{tuning parameter in Hu & Zhang's formula (\insertCite{Hu2004}{RARtrials}). When dabcd=0, this parameter does not need
-=======
-\item{gamma}{tuning parameter in Hu & Zhang's formula (\insertCite{Hu2004}{RAR}). When dabcd=0, this parameter does not need
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 to be specified. Default value is set to 2.}
 
 \item{alphaa}{the overall type I error to be controlled for the one-sided test. Default value is set to 0.025.}
@@ -70,11 +66,11 @@ to be specified. Default value is set to 2.}
 \item{side}{direction of a one-sided test, with values 'upper' or 'lower'.}
 }
 \value{
-A list of results, including final decision based on the Z test statistics with 1 stands
-for effectiveness and 0 stands for not selected, Z test statistics and the simulated data set for one trial.
+\code{sim_dabcd_min_var} returns an object of class "dabcd". An object of class "dabcd" is a list containing 
+final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected,
+Z test statistics, the simulated data set and participants accrued for each arm at the time of termination of that group in one trial.
 The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated arm, and participants' results.
-In the final decision, 1 refers to selected, and 0 stands for not selected.
+allocated arm, and participants' result.
 }
 \description{
 \code{sim_dabcd_min_var} can be used for doubly adaptive biased coin design with minimal variance
@@ -82,11 +78,7 @@ strategy for binary outcomes, targeting generalized Neyman allocation and genera
 with 2-5 arms.
 }
 \details{
-<<<<<<< HEAD
 The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
-=======
-The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RAR}.
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 With more than two arms the one-sided nominal level of each
 test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 }
@@ -101,11 +93,7 @@ armlabel=c(1,2,3),h=c(0.2,0.3,0.3),type='RSIHR',
 side='lower')
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Hu2004}{RARtrials}
-=======
-\insertRef{Hu2004}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

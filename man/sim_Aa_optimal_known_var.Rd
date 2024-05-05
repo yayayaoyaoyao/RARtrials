@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_Aa_optimal_known_var.r
 \name{sim_Aa_optimal_known_var}
 \alias{sim_Aa_optimal_known_var}
-\title{sim_Aa_optimal_known_var}
+\title{Simulate a Trial Using Aa Optimal Allocation for Continuous Endpoint with Known Variances}
 \usage{
 sim_Aa_optimal_known_var(
   Pats,
@@ -58,11 +58,11 @@ how each arm is labeled in a two-armed trial.}
 \item{side}{direction of a one-sided test, with values 'upper' or 'lower'.}
 }
 \value{
-A list of results, including final decision based on the Z test statistics with 1 stands
-for effectiveness and 0 stands for not selected, Z test statistics and the simulated data set for one trial.
+\code{sim_Aa_optimal_known_var} returns an object of class "Aaoptimal". An object of class "Aaoptimal" is a list containing 
+final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected,
+Z test statistics, the simulated data set and participants accrued for each arm at the time of termination of that group in one trial.
 The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated arm, and participants' results.
-In the final decision, 1 refers to selected, and 0 stands for not selected.
+allocated arm, and participants' result.
 }
 \description{
 \code{sim_Aa_optimal_known_var} simulates a trial for continuous endpoints with known variances,
@@ -90,11 +90,7 @@ rnorm(length( vStartTime ),30, 3)),enrollrate=0.9,N2=88,armn=2,
 mean=c(9.1/100,8.47/100),sd=c(0.009,0.009),alphaa=0.025,armlabel = c(1,2),side='lower')
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Oleksandr2013}{RARtrials}
-=======
-\insertRef{Oleksandr2013}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

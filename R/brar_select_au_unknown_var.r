@@ -1,12 +1,13 @@
-#' @title brar_select_au_unknown_var
+#' @title Select au in Bayesian Response-Adaptive Randomization with a Control Group for Continuous Endpoint with Unknown Variances
 #' @description \code{brar_select_au_unknown_var} involves selecting au in Bayesian Response-Adaptive Randomization with a control group
-#' for continuous endpoints with unknown variance in trials with two to five arms. The prior distributions follow
-#' Normal-Inverse-Gamma (NIG) (\eqn{NIG(V,m,a,b)}) distributions and can be specified individually for each arm.
+#' for continuous endpoints with unknown variance in trials with two to five arms. The conjugate prior distributions follow
+#' Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})
+#' distributions and can be specified individually for each arm.
 #' @details This function generates a data set or a value in one iteration for selecting the appropriate au using Bayesian
 #' response-adaptive randomization with a control group under null hypotheses with no delay and delay scenarios.
 #' The function can handle trials with up to 5 arms for continuous outcomes with unknown variances. This function uses the formula
-#' \eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^tp}}} with \code{side} equals to 'upper'
-#' and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\})^tp}}} 
+#' \eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp}}} with \code{side} equals to 'upper'
+#' and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp}}} 
 #' with \code{side} equals to 'lower', utilizing available data at each step.
 #' @aliases brar_select_au_unknown_var
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal
@@ -53,28 +54,17 @@
 #' @param output control the output of brar_select_au_binary. If the user does not specify anything, the function returns
 #' the entire dataset used to select the stopping boundary for each iteration. If the user specifies 'B', the function
 #' only returns the selected stopping boundary for each iteration.
-#' @param V01 a prior standard deviation of arm 1 in the normal distribution.
-#' @param a01 a prior shape parameter of arm 1 in the Inverse-Gamma distribution.
-#' @param b01 a prior rate parameter of arm 1 in the Inverse-Gamma distribution.
-#' @param m01 a prior mean of arm 1 in the normal distribution.
-#' @param V02 a prior standard deviation of arm 2 in the normal distribution. Default value is set to \code{V01}.
-#' @param a02 a prior shape parameter of arm 2 in the Inverse-Gamma distribution. Default value is set to \code{a01}.
-#' @param b02 a prior rate parameter of arm 2 in the Inverse-Gamma distribution. Default value is set to \code{b01}.
-#' @param m02 a prior mean of arm 2 in the normal distribution. Default value is set to \code{m01}.
-#' @param V03 a prior standard deviation of arm 3 in the normal distribution. Default value is set to \code{V01}.
-#' @param a03 a prior shape parameter of arm 3 in the Inverse-Gamma distribution. Default value is set to \code{a01}.
-#' @param b03 a prior rate parameter of arm 3 in the Inverse-Gamma distribution. Default value is set to \code{b01}.
-#' @param m03 a prior mean of arm 3 in the normal distribution. Default value is set to \code{m01}.
-#' @param V04 a prior standard deviation of arm 4 in the normal distribution. Default value is set to \code{V01}.
-#' @param a04 a prior shape parameter of arm 4 in the Inverse-Gamma distribution. Default value is set to \code{a01}.
-#' @param b04 a prior rate parameter of arm 4 in the Inverse-Gamma distribution. Default value is set to \code{b01}.
-#' @param m04 a prior mean of arm 4 in the normal distribution. Default value is set to \code{m01}.
-#' @param V05 a prior standard deviation of arm 5 in the normal distribution. Default value is set to \code{V01}.
-#' @param a05 a prior shape parameter of arm 5 in the Inverse-Gamma distribution. Default value is set to \code{a01}.
-#' @param b05 a prior rate parameter of arm 25 in the Inverse-Gamma distribution. Default value is set to \code{b01}.
-#' @param m05 a prior mean of arm 5 in the normal distribution. Default value is set to \code{m01}.
+#' @param V01,a01,b01,m01 prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 1 in the trial, which stands for the control.
+#' @param V02,a02,b02,m02 prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 2 in the trial. Default value is set to \code{V01},
+#' \code{a01}, \code{b01} and \code{m01}.
+#' @param V03,a03,b03,m03 prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 3 in the trial. Default value is set to \code{V01},
+#' \code{a01}, \code{b01} and \code{m01}.
+#' @param V04,a04,b04,m04 prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 4 in the trial. Default value is set to \code{V01},
+#' \code{a01}, \code{b01} and \code{m01}.
+#' @param V05,a05,b05,m05 prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 5 in the trial. Default value is set to \code{V01},
+#' \code{a01}, \code{b01} and \code{m01}.
 #' @param ... additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.
-#' @return A list of results generated from formula \eqn{Pr(p_k>p_{control}+\delta|data_{t-1})} at each step.
+#' @return A list of results generated from formula \eqn{Pr(\mu_k>\mu_{control}+\delta|data_{t-1})} at each step.
 #' Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 #' calculated from \code{deltaa1} at the final stage.
 #' @importFrom stats rnorm
@@ -86,7 +76,7 @@
 #' #(9.1/100+8.92/100+8.92/100)/3),sd=c(0.009,0.009,0.009),tp=1 and 
 #' #the minimal effect size is 0. All arms have the same prior distributions.
 #' set.seed(789)
-#' stopbound1<-lapply(1:1000,function(x){
+#' stopbound1<-lapply(1:200,function(x){
 #' brar_select_au_unknown_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
 #' length( vStartTime ),30, 3)), enrollrate=0.1, N1=192, armn=3, N2=1920, tp=1,
 #' armlabel=c(1,2,3), blocksize=6, mean=c((9.1/100+8.92/100+8.92/100)/3,
@@ -97,7 +87,7 @@
 #'
 #' simf<-list()
 #' simf1<-list()
-#' for (xx in 1:1000){
+#' for (xx in 1:200){
 #'  if (any(stopbound1[[xx]][193:1919,2]<0.01)){
 #'       simf[[xx]]<-NA
 #'    }  else{
@@ -110,17 +100,15 @@
 #'  }
 #'}
 #'simf2<-do.call(rbind,simf)
-#'sum(is.na(simf2)) #9, achieve around 1% futility
+#'sum(is.na(simf2)) #2, achieve around 1% futility
 #'simf3<-do.call(rbind,simf1)
-#'sum(is.na(simf3)) #8, achieve around 1% futility
+#'sum(is.na(simf3)) #2, achieve around 1% futility
 #'stopbound1a<-cbind(simf2,simf3)
 #'stopbound1a[is.na(stopbound1a)] <- 0
-#'sum(stopbound1a[,1]>0.9694 | stopbound1a[,2]>0.9694)/1000 #0.05
-#'#the selected stopping boundary is 0.9694 with an overall lower one-sided type 
-#'#I error of 0.05, based on 1000 simulations. Because it is under the permutation 
-#'#null hypothesis, the selected futility stopping should be an average of 0.00277
-#'#and 0.002 which is 0.002385. It is recommended to conduct more simulations to 
-#'#obtain a more accurate deltaa and au. As the simulation number increases, the
+#'sum(stopbound1a[,1]>0.9638 | stopbound1a[,2]>0.9638)/200 #0.05
+#'#the selected stopping boundary is 0.9638 with an overall lower one-sided type 
+#'#I error of 0.05, based on 200 simulations. It is recommended to conduct more simulations (i.e., 1000)  
+#'#to obtain a more accurate deltaa and au. As the simulation number increases, the
 #'#choice of deltaa could be consistent for comparisons of each arm to the control.
 #' @references 
 #' \insertRef{Wathen2017}{RARtrials}
@@ -215,10 +203,10 @@ brar_select_au_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,
           if (total>0){
             if (j>1){
               if (side=='lower'){
-                result[[j]]<- pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='lower')
+                result[[j]]<- pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='lower')
 
               }else if (side=='upper'){
-                result[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='upper')
+                result[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='upper')
 
               }
             }else if (j==1){
@@ -228,9 +216,9 @@ brar_select_au_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,
           }else if (total==0 ){
             if (j>1){
               if (side=='lower'){
-                result[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='lower')
+                result[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='lower')
               }else if (side=='upper'){
-                result[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='upper')
+                result[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa[armleft[j]-1],side='upper')
               }
 
             }else if (j==1){
@@ -250,9 +238,9 @@ brar_select_au_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,
             if (total>0){
               if (j>1){
                 if (side=='lower'){
-                  resultt[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='lower')
+                  resultt[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='lower')
                 }else if (side=='upper'){
-                  resultt[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='upper')
+                  resultt[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='upper')
                 }
               }else if (j==1){
                 resultt[[1]]<-0
@@ -261,10 +249,10 @@ brar_select_au_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,
             }else if (total==0 ){
               if (j>1){
                 if (side=='lower'){
-                  resultt[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='lower')
+                  resultt[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='lower')
 
                 }else if (side=='upper'){
-                  resultt[[j]]<-pgreater_unknown_var(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='upper')
+                  resultt[[j]]<-pgreater_NIX(part[[1]],part[[armleft[j]]],delta=deltaa1[armleft[j]-1],side='upper')
 
                 }
 

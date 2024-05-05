@@ -1,5 +1,5 @@
-#' @title sim_RPTW
-#' @description Simulate randomized play-the-winner rule in a two-armed trial with binary outcomes.
+#' @title Simulate a Trial Using Randomized Play-the-Winner Rule for Binary Endpoint
+#' @description Simulate randomized play-the-winner rule in a two-armed trial with binary endpoint.
 #' @details This function simulates trials using the randomized play-the-winner
 #' rule under both no delay and delay scenarios. This method is a type of urn design 
 #' with the motivation to allocate more participants to the better treatment group.
@@ -34,9 +34,12 @@
 #' @param N2 maximal sample size for the trial.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
 #' @param Z the selected cut-off value. Only specified Z when the cut-off value is selected by simulations.
-#' @return A list of results, including final decision, test statistics and the simulated data set for one trial.
+#' @return \code{sim_RPTW} returns an object of class "rptw". An object of class "rptw" is a list containing 
+#' final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, 
+#' Z test statistics, the simulated data set and participants accrued for each arm at the time of termination
+#' of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results with 1 stand for selected and 0 stand for not selected.
+#' allocated arm, and participants' result with 1 stand for selected and 0 stand for not selected.
 #' @importFrom stats qnorm
 #' @importFrom stats rbinom
 #' @examples
@@ -147,6 +150,17 @@ sim_RPTW<-  function(Pats,nMax,TimeToOutcome,enrollrate,na0,nb0,na1,nb1,h,alphaa
     }
   }
   
-  return(list(prr1,phi,data1))
+  output1<-list(prr1,phi,data1,c(na,nb))
+  class(output1)<-'rptw'
+  print.rptw<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.rptw(output1))
+  #return(list(prr1,phi,data1))
 
 }

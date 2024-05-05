@@ -1,7 +1,7 @@
-#' @title sim_flgi_binary
+#' @title Simulate a Trial Using Forward-Looking Gittins Index for Binary Endpoint
 #' @description Function for simulating a trial using the forward-looking Gittins index and the controlled forward-looking
-#' Gittins index algorithm for binary outcomes in trials with 2-5 arms. The prior distributions
-#' follow Beta (\eqn{beta(\alpha,\beta)}) distributions and should be the same for each arm.
+#' Gittins index algorithm for binary outcomes in trials with 2-5 arms. The conjugate prior distributions
+#' follow Beta (\eqn{Beta(\alpha,\beta)}) distributions and should be the same for each arm.
 #' @details This function simulates a trial using the forward-looking Gittins index or the
 #' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios.
 #' The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_binary}.
@@ -12,7 +12,7 @@
 #' @param df discount factor which is the multiplier for loss at each additional patient in the future.
 #' Available values are 0, 0.5, 0.7, 0.99 and 0.995. The maximal sample size can be up to 2000.
 #' @param gittins user specified Gittins indices for calculation in this function. Recommend using the
-#' \code{\link[gittins]{bmab_gi_multiple_ab}} function. If \code{gittins} is provided,
+#' \code{bmab_gi_multiple_ab} function from \code{gittins} package. If \code{gittins} is provided,
 #' \code{Gittinstype} and \code{df} should be NULL.
 #' @param Pats the number of patients accrued within a certain time frame indicates the
 #' count of individuals who have been affected by the disease during that specific period,
@@ -51,23 +51,22 @@
 #' @param ztype Z test statistics, with choice of values from 'pooled' and 'unpooled'.
 #' @param stopbound the cut-off value for Z test statistics, which is simulated under the null hypothesis.
 #' @param side direction of one-sided test with the values of 'upper' or 'lower'.
-#' @return A list of results, including final decision based on the Z test statistics with 1 stands
-#' for effectiveness and 0 stands for not selected, final decision based on the maximal Gittins
-#' index value at the final stage, Z test statistics and the simulated data set for one trial.
-#' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated treatment group, and participants' results.
-#' In the final decision, 1 refers to selected, and 0 stands for not selected.
+#' @return \code{sim_flgi_binary} returns an object of class "flgi". An object of class "flgi" is a list containing 
+#' final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
+#' the maximal Gittins index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 
+#' at the time of termination of that group in one trial. The simulated data set includes 5 columns: participant ID number, enrollment time, 
+#' observed time of results, allocated arm, and participants' result.
 #' @import GI
 #' @importFrom stats runif
 #' @examples
-#' #forward-looking Gittins index with delayed responses follow a normal distribution
+#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' sim_flgi_binary(Gittinstype='Binary',df=0.5,Pats=10,nMax=50000,TimeToOutcome=expression(
 #' rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
 #' K=2,Tsize=256,ptrue=c(0.2,0.4),block=2,rule='FLGI PM',ztype='unpooled',
 #' stopbound=-1.5,side='lower')
 #'
-#' #forward-looking Gittins index with delayed response follows a normal distribution
+#' #forward-looking Gittins index rule with delayed response follows a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' sim_flgi_binary(Gittinstype='Binary',df=0,Pats=10,nMax=50000,TimeToOutcome=
 #' expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,
@@ -256,7 +255,17 @@ sim_flgi_binary<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,en
   }
   decision=max.col(indexa)
 
-  return(list(b1,decision,zs1,data1))
-
+  #return(list(b1,decision,zs1,data1,n[,1]-4))
+  output1<-list(b1,decision,zs1,data1,n[,1]-4)
+  class(output1)<-'flgi'
+  print.flgi<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[3]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[5]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.flgi(output1))
 }
 

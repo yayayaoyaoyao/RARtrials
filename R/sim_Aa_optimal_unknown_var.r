@@ -1,4 +1,4 @@
-#' @title sim_Aa_optimal_unknown_var
+#' @title Simulate a Trial Using Aa Optimal Allocation for Continuous Endpoint with Unknown Variances
 #' @description \code{sim_Aa_optimal_unknown_var} simulates a trial for continuous endpoints with unknown variances,
 #' and the allocation probabilities change based on results of accumulated participants in the trial.
 #' @details This function aims to minimize the criteria \eqn{tr[A^TM^{-1}(\rho)A]}
@@ -37,11 +37,11 @@
 #' @param armlabel a vector of arm labels with an example of c(1, 2), where 1 and 2 describes
 #' how each arm is labeled in a two-armed trial.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
-#' @return A list of results, including final decision based on the T test statistics with 1 stands
-#' for effectiveness and 0 stands for not selected, T test statistics and the simulated data set for one trial.
+#' @return \code{sim_Aa_optimal_known_var} returns an object of class "Aaoptimal". An object of class "Aaoptimal" is a list containing 
+#' final decision based on the T test statistics with 1 stands for selected and 0 stands for not selected,
+#' T test statistics, the simulated data set and participants accrued for each arm at the time of termination of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results.
-#' In the final decision, 1 refers to selected, and 0 stands for not selected.
+#' allocated arm, and participants' result.
 #' @importFrom stats rnorm
 #' @importFrom stats sd
 #' @importFrom stats qt
@@ -132,7 +132,17 @@ sim_Aa_optimal_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,ar
   }
   pr1<-do.call(cbind,pr)
   zz1<-do.call(cbind,zz)
-  return(list(pr1,zz1,data1))
-
+ # return(list(pr1,zz1,data1))
+  output1<-list(pr1,zz1,data1,p[,3])
+  class(output1)<-'Aaoptimal'
+  print.Aaoptimal<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.Aaoptimal(output1))
 }
 

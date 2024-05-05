@@ -1,4 +1,4 @@
-#' @title sim_dabcd_min_var
+#' @title Simulate a Trial Using Doubly Adaptive Biased Coin Design with Minmial Variance Strategy for Binary Endpoint
 #' @description \code{sim_dabcd_min_var} can be used for doubly adaptive biased coin design with minimal variance
 #' strategy for binary outcomes, targeting generalized Neyman allocation and generalized RSIHR allocation
 #' with 2-5 arms. 
@@ -39,11 +39,11 @@
 #' to be specified. Default value is set to 2.
 #' @param alphaa the overall type I error to be controlled for the one-sided test. Default value is set to 0.025.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
-#' @return A list of results, including final decision based on the Z test statistics with 1 stands
-#' for effectiveness and 0 stands for not selected, Z test statistics and the simulated data set for one trial.
+#' @return \code{sim_dabcd_min_var} returns an object of class "dabcd". An object of class "dabcd" is a list containing 
+#' final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected,
+#' Z test statistics, the simulated data set and participants accrued for each arm at the time of termination of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results.
-#' In the final decision, 1 refers to selected, and 0 stands for not selected.
+#' allocated arm, and participants' result.
 #' @importFrom stats rbinom
 #' @importFrom stats qnorm
 #' @examples
@@ -163,5 +163,16 @@ sim_dabcd_min_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,armn,armlab
   }
   pr1<-do.call(cbind,pr)
   phi1<-do.call(cbind,phi)
-  return(list(pr1,phi1,data1))
+ # return(list(pr1,phi1,data1))
+  output1<-list(pr1,phi1,data1,Ntotal1)
+  class(output1)<-'dabcd'
+  print.dabcd<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.dabcd(output1))
 }

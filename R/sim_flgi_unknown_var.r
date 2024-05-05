@@ -1,7 +1,8 @@
-#' @title sim_flgi_unknown_var
+#' @title Simulate a Trial Using Forward-Looking Gittins Index for Continuous Endpoint with Unknown Variances
 #' @description Function for simulating a trial using the forward-looking Gittins index and the controlled forward-looking
 #' Gittins index algorithm for continuous outcomes with unknown variances in trials with 2-5 arms. The prior distributions
-#' follow Normal-Inverse-Gamma (NIG) (\eqn{NIG(V,m,a,b)}) distributions and should be the same for each arm.
+#' follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
+#' distributions and should be the same for each arm.
 #' @details This function simulates a trial using the forward-looking Gittins index or the
 #' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios.
 #' The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_unk_var}.
@@ -51,17 +52,16 @@
 #' for both groups. Another example is c(0.64,0.4) where 0.64 and 0.4 stand for the standard deviation for the control and
 #' a treatment group, respectively.
 #' @param side direction of one-sided test with the values of 'upper' or 'lower'.
-#' @return A list of results, including final decision based on the T test statistics with 1 stands
-#' for effectiveness and 0 stands for not selected, final decision based on the maximal Gittins
-#' index value at the final stage, T test statistics and the simulated data set for one trial.
-#' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated treatment group, and participants' results.
-#' In the final decision, 1 refers to selected, and 0 stands for not selected.
+#' @return \code{sim_flgi_unknown_var} returns an object of class "flgi". An object of class "flgi" is a list containing 
+#' final decision based on the T test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
+#' the maximal Gittins index value at the final stage, T test statistics, the simulated data set and participants accrued for each arm 
+#' at the time of termination of that group in one trial. The simulated data set includes 5 columns: participant ID number, enrollment time, 
+#' observed time of results, allocated arm, and participants' result.
 #' @importFrom stats runif
 #' @importFrom stats rnorm
 #' @importFrom stats sd
 #' @examples
-#' #forward-looking Gittins index with delayed responses follow a normal distribution
+#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' sim_flgi_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
 #' TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
@@ -69,7 +69,7 @@
 #' prior_mean1=rep(0,3),prior_sd1=rep(1,3),stopbound=1.885,
 #' mean=c(0.05,0.07,0.13),sd=c(0.346,0.346,0.346),side='upper')
 #'
-#' #forward-looking Gittins index with no delay responses
+#' #forward-looking Gittins index rule with no delay responses
 #' sim_flgi_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
 #' TimeToOutcome=0,enrollrate=0.5,K=3,noRuns2=100,Tsize=120,block=8,
 #' rule='FLGI PM',prior_n=rep(2,3),prior_mean1=rep(0,3),prior_sd1=rep(1,3),
@@ -296,8 +296,18 @@ sim_flgi_unknown_var<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutco
 
   decision= max.col(indexa)
 
-  return(list(ap,decision,zs1,data1))
-
+  #return(list(ap,decision,zs1,data1,nn))
+  output1<-list(ap,decision,zs1,data1,nn)
+  class(output1)<-'flgi'
+  print.flgi<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[3]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[5]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.flgi(output1))
 }
 
 

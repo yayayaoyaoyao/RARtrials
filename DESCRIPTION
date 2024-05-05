@@ -31,23 +31,20 @@ Description: This package contains some common response-adaptive randomisation m
              a control group using Thall \& Wathen method and forward-looking gittins index rule.
 Encoding: UTF-8
 Collate: 'brar_select_au_binary.r' 'brar_select_au_known_var.r'  'brar_select_au_unknown_var.r' 
-        'convert_gamma_to_chisq.r'  'dabcd_max_power.r' 'dabcd_min_var.r' 'flgi_stop_bound_binary.r'
-         'flgi_stop_bound_flgi_known_var.r' 'flgi_stop_bound_flgi_unk_var.r'
-          'Gittins.r' 'pgreater.r' 'pgreater_unknown_var.r'
-          'pmax.r' 'sim_RPTW.r'  'sim_A_optimal_known_var.r' 'sim_A_optimal_unknown_var.r'
-          'sim_Aa_optimal_known_var.r' 'sim_Aa_optimal_unknown_var.r'
+         'convert_gamma_to_chisq.r' 'convert_chisq_to_gamma.r'  'update_par_nichisq.r'
+          'pgreater_beta.r' 'pgreater_normal.r' 'pgreater_NIX.r'  'pmax_beta.r' 'pmax_normal.r' 'pmax_NIX.r' 
           'sim_brar_binary.r'  'sim_brar_known_var.r'  'sim_brar_unknown_var.r'
-          'sim_dabcd_max_power.r' 'sim_dabcd_min_var.r' 'sim_flgi_binary.r' 
-          'sim_flgi_known_var.r' 'sim_flgi_unknown_var.r' 
+          'flgi_cut_off_binary.r' 'flgi_cut_off_known_var.r' 'flgi_cut_off_unknown_var.r'
+          'Gittins.r' 'sim_flgi_binary.r' 'sim_flgi_known_var.r' 'sim_flgi_unknown_var.r' 
+          'dabcd_max_power.r' 'dabcd_min_var.r' 
+          'sim_RPTW.r'  'sim_A_optimal_known_var.r' 'sim_A_optimal_unknown_var.r'
+          'sim_Aa_optimal_known_var.r' 'sim_Aa_optimal_unknown_var.r'
+          'sim_dabcd_max_power.r' 'sim_dabcd_min_var.r' 
           'sim_RSIHR_optimal_known_var.r'  'sim_RSIHR_optimal_unknown_var.r' 
-          'update_par_nichisq.r' 'functions.r' 'RAR-package.r'
+           'functions.r' 'RAR-package.r'
 Depends: R(> 4.0), stats, GI
 Imports: Rdpack(>= 0.7)
 RdMacros: Rdpack
-<<<<<<< HEAD
-=======
-LazyData: true
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 RoxygenNote: 7.3.1
 Suggests: 
     knitr,

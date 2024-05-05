@@ -1,6 +1,6 @@
-#' @title brar_select_au_binary
+#' @title Select au in Bayesian Response-Adaptive Randomization with a Control Group for Binary Endpoint
 #' @description \code{brar_select_au_binary} involves selecting au in Bayesian Response-Adaptive Randomization with a control group
-#' for binary outcomes with two to five arms. The prior distributions follow Beta (\eqn{beta(\alpha,\beta)}) distributions
+#' for binary outcomes with two to five arms. The conjugate prior distributions follow Beta (\eqn{Beta(\alpha,\beta)}) distributions
 #' and can be specified individually for each arm.
 #' @details This function generates a data set or a value in one iteration for selecting the appropriate au using Bayesian
 #' response-adaptive randomization with a control group under null hypotheses with no delay and delay scenarios.
@@ -40,26 +40,16 @@
 #' how each arm is labeled in a two-armed trial.
 #' @param blocksize size of block used for equal randomization regarding participants in the 'initialization' period.
 #' Recommend to be an even multiple of the number of total arms.
-#' @param alpha1 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
+#' @param alpha1,beta1 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 1 which
 #' stands for the control. Default value is set to 1.
-#' @param alpha2 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-#' Default value is set to \code{alpha1}.
-#' @param alpha3 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 3.
-#' Default value is set to \code{alpha1}.
-#' @param alpha4 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 4.
-#' Default value is set to \code{alpha1}.
-#' @param alpha5 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 5.
-#' Default value is set to \code{alpha1}.
-#' @param beta1 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
-#' stands for the control. Default value is set to 1.
-#' @param beta2 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-#' Default value is set to \code{beta1}.
-#' @param beta3 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 3.
-#' Default value is set to \code{beta1}.
-#' @param beta4 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 4.
-#' Default value is set to \code{beta1}.
-#' @param beta5 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 5.
-#' Default value is set to \code{beta1}.
+#' @param alpha2,beta2 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 2.
+#' Default value is set to \code{alpha1} and \code{beta1}.
+#' @param alpha3,beta3 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 3.
+#' Default value is set to \code{alpha1} and \code{beta1}.
+#' @param alpha4,beta4 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 4.
+#' Default value is set to \code{alpha1} and \code{beta1}..
+#' @param alpha5,beta5 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 5.
+#' Default value is set to \code{alpha1} and \code{beta1}.
 #' @param minstart a specified number of participants when one starts to check decision rules.
 #' @param deltaa a vector of minimal effect expected to be observed for early futility stopping in
 #' each arm is approximately \eqn{1\%}. The length of this parameter is \code{armn}-1.
@@ -97,7 +87,7 @@
 #'sum(is.na(simf1))/100  #1, achieve around 1% futility
 #'sum(simf1>0.436,na.rm=TRUE)/100  #0.05
 #'#the selected stopping boundary is 0.436 with an overall upper one-sided type I
-#'#error of 0.05, based on 100 simulations. It is recommended to conduct more simulations
+#'#error of 0.05, based on 100 simulations. It is recommended to conduct more simulations (i.e., 1000)
 #'#to obtain a more accurate au.
 #' @references 
 #' \insertRef{Wathen2017}{RARtrials}
@@ -169,10 +159,10 @@ brar_select_au_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,N2,
       for (j in 1:length(armleft)){
         if (total>0){
           if (j>1){
-            result[[j]]<-pgreater(A=mat[[1]][1,1]+alpha[[1]],
-                                  B=mat[[1]][1,2]+beta[[1]],
-                                  a=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
-                                  b=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
+            result[[j]]<-pgreater_beta(a1=mat[[1]][1,1]+alpha[[1]],
+                                  b1=mat[[1]][1,2]+beta[[1]],
+                                  a2=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
+                                  b2=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
                                   delta=deltaa[armleft[j]-1],side=side)
           }else if (j==1){
             result[[1]]<-0
@@ -180,10 +170,10 @@ brar_select_au_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,N2,
 
         }else if (total==0 ){
           if (j>1){
-            result[[j]]<-pgreater(A=alpha[[1]],
-                                  B=beta[[1]],
-                                  a=alpha[[armleft[j]]],
-                                  b=beta[[armleft[j]]],
+            result[[j]]<-pgreater_beta(a1=alpha[[1]],
+                                  b1=beta[[1]],
+                                  a2=alpha[[armleft[j]]],
+                                  b2=beta[[armleft[j]]],
                                   delta=deltaa[armleft[j]-1],side=side)
           }else if (j==1){
             result[[1]]<-0
@@ -206,10 +196,10 @@ brar_select_au_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,N2,
         for (j in 1:length(armleft)){
           if (total>0){
             if (j>1){
-              resultt[[j]]<-pgreater(A=mat[[1]][1,1]+alpha[[1]],
-                                     B=mat[[1]][1,2]+beta[[1]],
-                                     a=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
-                                     b=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
+              resultt[[j]]<-pgreater_beta(a1=mat[[1]][1,1]+alpha[[1]],
+                                     b1=mat[[1]][1,2]+beta[[1]],
+                                     a2=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
+                                     b2=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
                                      delta=deltaa1[armleft[j]-1],side=side)
             }else if (j==1){
               resultt[[1]]<-0
@@ -217,10 +207,10 @@ brar_select_au_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,N2,
 
           }else if (total==0 ){
             if (j>1){
-              resultt[[j]]<-pgreater(A=alpha[[1]],
-                                     B=beta[[1]],
-                                     a=alpha[[armleft[j]]],
-                                     b=beta[[armleft[j]]],
+              resultt[[j]]<-pgreater_beta(a1=alpha[[1]],
+                                     b1=beta[[1]],
+                                     a2=alpha[[armleft[j]]],
+                                     b2=beta[[armleft[j]]],
                                      delta=deltaa1[armleft[j]-1],side=side)
             }else if (j==1){
               resultt[[1]]<-0

@@ -1,9 +1,9 @@
-#' @title Gittins
+#' @title Gittins indices
 #' @description \code{Gittins} can provide Gittins indices for binary reward processes
 #' and normal reward processes with known and unknown variance for certain discount factors.
 #' Binary reward process can handle scenarios with up to 2000 participants in a trial, while
 #' normal reward process can handle scenarios with up to 10000 participants in a trial.
-#' @details Gittins indices for binary outcomes are generated from \code{\link[gittins]{bmab_gi_multiple_ab}} function with
+#' @details Gittins indices for binary outcomes are generated from \code{bmab_gi_multiple_ab} function from \code{gittins} package with
 #' time horizon 100, 100, 100, 1000, 1000 for discount factor 0, 0.5, 0.7, 0.99 and 0.995 respectively.
 #' Gittins indices for continuous outcomes are obtained by linear extrapolation using Table 8.1 and Table 8.3
 #' in \insertCite{Gittins2011}{RARtrials}.

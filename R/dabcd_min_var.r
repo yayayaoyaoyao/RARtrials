@@ -1,4 +1,4 @@
-#' @title dabcd_min_var
+#' @title Allocation Probabilities Using Doubly Adaptive Biased Coin Design with Minimal Variance Strategy for Binary Endpoint
 #' @description \code{dabcd_min_var} can be used for doubly adaptive biased coin design with minimal variance
 #' strategy for binary outcomes, targeting generalized Neyman allocation and generalized RSIHR allocation. The return 
 #' of this function is a vector of allocation probabilities to each arm, with the pre-specified number of participants in the trial.

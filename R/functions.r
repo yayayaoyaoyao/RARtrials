@@ -190,7 +190,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
   aloo<-vector("list",length(armleft))
   if (total>0){
     if (length(armleft)==2){
-      aloo[[1]]<-pmax(outcome='binary',armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[1]]<-pmax_beta(armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b1=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a2=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b2=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),side=side)
@@ -198,14 +198,14 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
 
     }else if (length(armleft)==3){
 
-      aloo[[1]]<-pmax(outcome='binary',armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[1]]<-pmax_beta(armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b1=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a2=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b2=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
                        a3=mat[[armleft[3]]][1,1]+get(sprintf("alpha%s",armleft[3])),
                        b3=mat[[armleft[3]]][1,2]+get(sprintf("beta%s",armleft[3])),side=side)
 
-      aloo[[2]]<-pmax(outcome='binary',armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[2]]<-pmax_beta(armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b2=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a1=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b1=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -216,7 +216,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
 
     }else if (length(armleft)==4){
 
-      aloo[[1]]<-pmax(outcome='binary',armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[1]]<-pmax_beta(armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b1=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a2=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b2=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -225,7 +225,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
                        a4=mat[[armleft[4]]][1,1]+get(sprintf("alpha%s",armleft[4])),
                        b4=mat[[armleft[4]]][1,2]+get(sprintf("beta%s",armleft[4])),side=side)
 
-      aloo[[2]]<-pmax(outcome='binary',armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[2]]<-pmax_beta(armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b2=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a1=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b1=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -234,7 +234,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
                        a4=mat[[armleft[4]]][1,1]+get(sprintf("alpha%s",armleft[4])),
                        b4=mat[[armleft[4]]][1,2]+get(sprintf("beta%s",armleft[4])),side=side)
 
-      aloo[[3]]<-pmax(outcome='binary',armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[3]]<-pmax_beta(armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b2=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a3=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b3=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -247,7 +247,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
 
     }else if (length(armleft)==5){
 
-      aloo[[1]]<-pmax(outcome='binary',armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[1]]<-pmax_beta(armn=length(armleft),a1=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b1=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a2=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b2=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -258,7 +258,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
                        a5=mat[[armleft[5]]][1,1]+get(sprintf("alpha%s",armleft[5])),
                        b5=mat[[armleft[5]]][1,2]+get(sprintf("beta%s",armleft[5])),side=side)
 
-      aloo[[2]]<-pmax(outcome='binary',armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[2]]<-pmax_beta(armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b2=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a1=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b1=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -269,7 +269,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
                        a5=mat[[armleft[5]]][1,1]+get(sprintf("alpha%s",armleft[5])),
                        b5=mat[[armleft[5]]][1,2]+get(sprintf("beta%s",armleft[5])),side=side)
 
-      aloo[[3]]<-pmax(outcome='binary',armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[3]]<-pmax_beta(armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b2=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a3=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b3=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -280,7 +280,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
                        a5=mat[[armleft[5]]][1,1]+get(sprintf("alpha%s",armleft[5])),
                        b5=mat[[armleft[5]]][1,2]+get(sprintf("beta%s",armleft[5])),side=side)
 
-      aloo[[4]]<-pmax(outcome='binary',armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
+      aloo[[4]]<-pmax_beta(armn=length(armleft),a2=mat[[1]][1,1]+get(sprintf("alpha%s",1)),
                        b2=mat[[1]][1,2]+get(sprintf("beta%s",1)),
                        a3=mat[[armleft[2]]][1,1]+get(sprintf("alpha%s",armleft[2])),
                        b3=mat[[armleft[2]]][1,2]+get(sprintf("beta%s",armleft[2])),
@@ -303,7 +303,7 @@ alofun<-function(alpha1,beta1,alpha2,beta2,alpha3,beta3,
 
 #### pnichisq_mu calculates the cumulative density function (CDF) of the marginal posterior of mu,
 #### which follows a t-distribution from a normal-inverse-gamma distribution. This function is only
-#### used in 'pgreater_unknown_var.r'.
+#### used in 'pgreater_NIG.r'.
 #### x: vector of quantiles.
 #### par: vector of current parameters from a normal-inverse-chi-squared distribution.
 #### side: direction of a one-sided test, with values 'upper' or 'lower'.
@@ -353,7 +353,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
   aloo<-vector("list",length(armleft))
   if (total>0){
     if (length(armleft)==2){
-      aloo[[1]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[1]][1,1],
+      aloo[[1]]<-pmax_normal(armn=length(armleft),mean1=mat[[1]][1,1],
                                  sd1=mat[[1]][1,3],
                                  mean2=mat[[armleft[2]]][1,1],
                                  sd2=mat[[armleft[2]]][1,3],side=side)
@@ -361,14 +361,14 @@ alofun_kn_var<-function(mat,total,armleft,side){
 
     }else if (length(armleft)==3){
 
-      aloo[[1]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[1]][1,1],
+      aloo[[1]]<-pmax_normal(armn=length(armleft),mean1=mat[[1]][1,1],
                                  sd1=mat[[1]][1,3],
                                  mean2=mat[[armleft[2]]][1,1],
                                  sd2=mat[[armleft[2]]][1,3],
                                  mean3=mat[[armleft[3]]][1,1],
                                  sd3=mat[[armleft[3]]][1,3],side=side)
 
-      aloo[[2]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[armleft[2]]][1,1],
+      aloo[[2]]<-pmax_normal(armn=length(armleft),mean1=mat[[armleft[2]]][1,1],
                                  sd1=mat[[armleft[2]]][1,3],
                                  mean2=mat[[1]][1,1],
                                  sd2=mat[[1]][1,3],
@@ -379,7 +379,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
 
     }else if (length(armleft)==4){
 
-      aloo[[1]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[1]][1,1],
+      aloo[[1]]<-pmax_normal(armn=length(armleft),mean1=mat[[1]][1,1],
                                  sd1=mat[[1]][1,2],
                                  mean2=mat[[armleft[2]]][1,1],
                                  sd2=mat[[armleft[2]]][1,3],
@@ -388,7 +388,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
                                  mean4=mat[[armleft[4]]][1,1],
                                  sd4=mat[[armleft[4]]][1,3],side=side)
 
-      aloo[[2]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[armleft[2]]][1,1],
+      aloo[[2]]<-pmax_normal(armn=length(armleft),mean1=mat[[armleft[2]]][1,1],
                                  sd1=mat[[armleft[2]]][1,3],
                                  mean2=mat[[1]][1,1],
                                  sd2=mat[[1]][1,2],
@@ -397,7 +397,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
                                  mean4=mat[[armleft[4]]][1,1],
                                  sd4=mat[[armleft[4]]][1,3],side=side)
 
-      aloo[[3]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[armleft[3]]][1,1],
+      aloo[[3]]<-pmax_normal(armn=length(armleft),mean1=mat[[armleft[3]]][1,1],
                                  sd1=mat[[armleft[3]]][1,3],
                                  mean2=mat[[1]][1,1],
                                  sd2=mat[[1]][1,2],
@@ -410,7 +410,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
 
     }else if (length(armleft)==5){
 
-      aloo[[1]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[1]][1,1],
+      aloo[[1]]<-pmax_normal(armn=length(armleft),mean1=mat[[1]][1,1],
                                  sd1=mat[[1]][1,],
                                  mean2=mat[[armleft[2]]][1,1],
                                  sd2=mat[[armleft[2]]][1,3],
@@ -421,7 +421,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
                                  mean5=mat[[armleft[5]]][1,1],
                                  sd5=mat[[armleft[5]]][1,3],side=side)
 
-      aloo[[2]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[armleft[2]]][1,1],
+      aloo[[2]]<-pmax_normal(armn=length(armleft),mean1=mat[[armleft[2]]][1,1],
                                  sd1=mat[[armleft[2]]][1,3],
                                  mean2=mat[[1]][1,1],
                                  sd2=mat[[1]][1,2],
@@ -432,7 +432,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
                                  mean5=mat[[armleft[5]]][1,1],
                                  sd5=mat[[armleft[5]]][1,3],side=side)
 
-      aloo[[3]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[armleft[3]]][1,1],
+      aloo[[3]]<-pmax_normal(armn=length(armleft),mean1=mat[[armleft[3]]][1,1],
                                  sd1=mat[[armleft[3]]][1,3],
                                  mean2=mat[[1]][1,1],
                                  sd2=mat[[1]][1,3],
@@ -443,7 +443,7 @@ alofun_kn_var<-function(mat,total,armleft,side){
                                  mean5=mat[[armleft[5]]][1,1],
                                  sd5=mat[[armleft[5]]][1,3],side=side)
 
-      aloo[[4]]<-pmax(outcome='KV',armn=length(armleft),mean1=mat[[armleft[4]]][1,1],
+      aloo[[4]]<-pmax_normal(armn=length(armleft),mean1=mat[[armleft[4]]][1,1],
                                  sd1=mat[[armleft[4]]][1,3],
                                  mean2=mat[[1]][1,1],
                                  sd2=mat[[1]][1,3],
@@ -477,36 +477,36 @@ alofun_unk_var<-function(mat,total,armleft,side){
   aloo<-vector("list",length(armleft))
   if (total>0){
     if (length(armleft)==2){
-      aloo[[1]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],side=side)
+      aloo[[1]]<-pmax_NIX(armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],side=side)
       aloo[[2]]<-1-aloo[[1]]
 
     }else if (length(armleft)==3){
 
-      aloo[[1]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],par3=mat[[armleft[3]]],side=side)
+      aloo[[1]]<-pmax_NIX(armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],par3=mat[[armleft[3]]],side=side)
 
-      aloo[[2]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[armleft[2]]],par2=mat[[1]],par3=mat[[armleft[3]]],side=side)
+      aloo[[2]]<-pmax_NIX(armn=length(armleft),par1=mat[[armleft[2]]],par2=mat[[1]],par3=mat[[armleft[3]]],side=side)
 
       aloo[[3]]<-1-aloo[[1]]-aloo[[2]]
 
     }else if (length(armleft)==4){
 
-      aloo[[1]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],side=side)
+      aloo[[1]]<-pmax_NIX(armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],side=side)
 
-      aloo[[2]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[armleft[2]]],par2=mat[[1]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],side=side)
+      aloo[[2]]<-pmax_NIX(armn=length(armleft),par1=mat[[armleft[2]]],par2=mat[[1]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],side=side)
 
-      aloo[[3]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[armleft[3]]],par2=mat[[1]],par3=mat[[armleft[2]]],par4=mat[[armleft[4]]],side=side)
+      aloo[[3]]<-pmax_NIX(armn=length(armleft),par1=mat[[armleft[3]]],par2=mat[[1]],par3=mat[[armleft[2]]],par4=mat[[armleft[4]]],side=side)
 
       aloo[[4]]<-1- aloo[[1]]-aloo[[2]]-aloo[[3]]
 
     }else if (length(armleft)==5){
 
-      aloo[[1]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],par5=mat[[armleft[5]]],side=side)
+      aloo[[1]]<-pmax_NIX(armn=length(armleft),par1=mat[[1]],par2=mat[[armleft[2]]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],par5=mat[[armleft[5]]],side=side)
 
-      aloo[[2]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[armleft[2]]],par2=mat[[1]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],par5=mat[[armleft[5]]],side=side)
+      aloo[[2]]<-pmax_NIX(armn=length(armleft),par1=mat[[armleft[2]]],par2=mat[[1]],par3=mat[[armleft[3]]],par4=mat[[armleft[4]]],par5=mat[[armleft[5]]],side=side)
 
-      aloo[[3]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[armleft[3]]],par2=mat[[1]],par3=mat[[armleft[2]]],par4=mat[[armleft[4]]],par5=mat[[armleft[5]]],side=side)
+      aloo[[3]]<-pmax_NIX(armn=length(armleft),par1=mat[[armleft[3]]],par2=mat[[1]],par3=mat[[armleft[2]]],par4=mat[[armleft[4]]],par5=mat[[armleft[5]]],side=side)
 
-      aloo[[4]]<-pmax(outcome='UNKV',armn=length(armleft),par1=mat[[armleft[4]]],par2=mat[[1]],par3=mat[[armleft[2]]],par4=mat[[armleft[3]]],par5=mat[[armleft[5]]],side=side)
+      aloo[[4]]<-pmax_NIX(armn=length(armleft),par1=mat[[armleft[4]]],par2=mat[[1]],par3=mat[[armleft[2]]],par4=mat[[armleft[3]]],par5=mat[[armleft[5]]],side=side)
 
       aloo[[5]]<-1-aloo[[1]]-aloo[[2]]-aloo[[3]]-aloo[[4]]
     }

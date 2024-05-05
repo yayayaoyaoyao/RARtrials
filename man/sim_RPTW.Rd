@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_RPTW.r
 \name{sim_RPTW}
 \alias{sim_RPTW}
-\title{sim_RPTW}
+\title{Simulate a Trial Using Randomized Play-the-Winner Rule for Binary Endpoint}
 \usage{
 sim_RPTW(
   Pats,
@@ -63,12 +63,15 @@ for the control and a treatment group, respectively.}
 \item{Z}{the selected cut-off value. Only specified Z when the cut-off value is selected by simulations.}
 }
 \value{
-A list of results, including final decision, test statistics and the simulated data set for one trial.
+\code{sim_RPTW} returns an object of class "rptw". An object of class "rptw" is a list containing 
+final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, 
+Z test statistics, the simulated data set and participants accrued for each arm at the time of termination
+of that group in one trial.
 The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated arm, and participants' results with 1 stand for selected and 0 stand for not selected.
+allocated arm, and participants' result with 1 stand for selected and 0 stand for not selected.
 }
 \description{
-Simulate randomized play-the-winner rule in a two-armed trial with binary outcomes.
+Simulate randomized play-the-winner rule in a two-armed trial with binary endpoint.
 }
 \details{
 This function simulates trials using the randomized play-the-winner
@@ -85,11 +88,7 @@ sim_RPTW(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime )
 enrollrate=0.9,na0=1,nb0=1,na1=1,nb1=1,h=c(0.1,0.3),alphaa=0.025,N2=168,side='upper')
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Wei1978}{RARtrials}
-=======
-\insertRef{Wei1978}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley & Alain Vandal

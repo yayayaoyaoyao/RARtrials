@@ -1,4 +1,4 @@
-#' @title dabcd_max_power
+#' @title Allocation Probabilities Using Doubly Adaptive Biased Coin Design with Maximal Power Strategy for Binary Endpoint
 #' @description \code{dabcd_max_power} can be used for doubly adaptive biased coin design with maximal power
 #' strategy for binary outcomes, targeting generalized Neyman allocation and generalized RSIHR allocation. The return 
 #' of this function is a vector of allocation probabilities to each arm, with the pre-specified number of participants in the trial.

@@ -1,12 +1,12 @@
-#' @title sim_brar_known_var
+#' @title Simulate a Trial Using Bayesian Response-Adaptive Randomization with a Control Group for Continuous Endpoint with Known Variances
 #' @description \code{sim_brar_known_var} simulate a trial with two to five arms using Bayesian Response-Adaptive 
-#' Randomization with a control group for continuous outcomes with known variances. The prior distributions follow
+#' Randomization with a control group for continuous outcomes with known variances. The conjugate prior distributions follow
 #' Normal (\eqn{N(mean,sd)}) distributions and can be specified individually for each arm.
 #' @details This function generates a designed trial using Bayesian response-adaptive randomization with
 #' a control group under no delay and delay scenarios for continuous outcomes with known variances. The function can handle trials with up to
 #' 5 arms. This function uses the formula
-#' \eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^tp}}} with \code{side} equals to 'upper'
-#' and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\})^tp}}}
+#' \eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp}}} with \code{side} equals to 'upper'
+#' and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp}}} 
 #' with \code{side} equals to 'lower', utilizing available data at each step.
 #' @aliases sim_brar_known_var
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal
@@ -51,16 +51,11 @@
 #' @param tpp indicator of \code{tp} equals to n/2N. When \code{tp} is n/2N, \code{tpp} should be assigned 1. Default value is set to 0.
 #' @param deltaa1 a vector of pre-specified minimal effect size expected to be observed at the final stage
 #' for each arm. The length of this parameter is \code{armn}-1.
-#' @param mean10 prior mean of arm 1 in the trial, which stands for the control. Default value is set to 1.
-#' @param mean20 prior mean of arm 2 in the trial. Default value is set to \code{mean10}.
-#' @param mean30 prior mean of arm 3 in the trial. Default value is set to \code{mean10}.
-#' @param mean40 prior mean of arm 4 in the trial. Default value is set to \code{mean10}.
-#' @param mean50 prior mean of arm 5 in the trial. Default value is set to \code{mean10}.
-#' @param sd10 prior standard deviation of arm 1 in the trial, which stands for the control. Default value is set to 0.
-#' @param sd20 prior standard deviation of arm 2 in the trial. Default value is set to \code{sd10}.
-#' @param sd30 prior standard deviation of arm 3 in the trial. Default value is set to \code{sd10}.
-#' @param sd40 prior standard deviation of arm 4 in the trial. Default value is set to \code{sd10}.
-#' @param sd50 prior standard deviation of arm 5 in the trial. Default value is set to \code{sd10}.
+#' @param mean10,sd10 prior mean and sd in \eqn{N(mean,sd)} of arm 1 in the trial, which stands for the control. Default value is set to 1.
+#' @param mean20,sd20 prior mean and sd in \eqn{N(mean,sd)} of arm 2 in the trial. Default value is set to \code{mean10} and \code{sd10}.
+#' @param mean30,sd30 prior mean and sd in \eqn{N(mean,sd)} of arm 3 in the trial. Default value is set to \code{mean10} and \code{sd10}.
+#' @param mean40,sd40 prior mean and sd in \eqn{N(mean,sd)} of arm 4 in the trial. Default value is set to \code{mean10} and \code{sd10}.
+#' @param mean50,sd50 prior mean and sd in \eqn{N(mean,sd)} of arm 5 in the trial. Default value is set to \code{mean10} and \code{sd10}.
 #' @param n10 explicit prior n of arm 1 in the trial, which stands for the control. Default value is set to 1.
 #' @param n20 explicit prior n of arm 2 in the trial. Default value is set to \code{n10}.
 #' @param n30 explicit prior n of arm 3 in the trial. Default value is set to \code{n10}.
@@ -68,13 +63,13 @@
 #' @param n50 explicit prior n of arm 5 in the trial. Default value is set to \code{n10}.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
 #' @param ... additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.
-#' @return A list of results, including final decision, test statistics, the simulated data set
-#' and participants accrued for each arm at the time of termination of that group in one trial.
+#' @return \code{sim_brar_known_var} returns an object of class "brar". An object of class "brar" is a list containing 
+#' final decision, test statistics, the simulated data set and participants accrued for each arm 
+#' at the time of termination of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results.
-#' In the final decision, 'Superiorityfinal' refers to the selected arm, while 'Not Selected' indicates the arm stopped due to
-#' futility, and 'Control Selected' denotes the control arm chosen because other arms did not meet futility criteria before the 
-#' final stage or were not deemed effective at the final stage. 
+#' allocated arm, and participants' results. In the final decision, 'Superiorityfinal' refers to the selected arm, 
+#' while 'Not Selected' indicates the arm stopped due to futility, and 'Control Selected' denotes the control arm chosen 
+#' because other arms did not meet futility criteria before the final stage or were not deemed effective at the final stage. 
 #' Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 #' calculated from \code{deltaa1} at the final stage.
 #' @importFrom stats pnorm
@@ -82,12 +77,12 @@
 #' @importFrom Rdpack reprompt
 #' @examples
 #' #sim_brar_known_var with delayed responses follow a normal distribution with
-#' #a mean of 30 days and a standard deviation of 3 days, where mean=c(8.74/100,8.74/100,8.74/100),
+#' #a mean of 30 days and a standard deviation of 3 days, where mean=c(8.9/100,8.74/100,8.74/100),
 #' #sd=c(0.009,0.009,0.009), tp=0.5 and the minimal effect size is 0.
 #' sim_brar_known_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
-#' length(vStartTime),30, 3)),enrollrate=0.1, N1=21,armn=3,au=c(0.901,0.901),
-#' N2=189,tp=0.5,armlabel=c(1,2,3),blocksize=6,mean=c(8.74/100,8.74/100,8.74/100),
-#' sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(0.00048,0.00048),tpp=0,deltaa1=c(0,0),
+#' length(vStartTime),30, 3)),enrollrate=0.1, N1=21,armn=3,au=c(0.968,0.968),
+#' N2=189,tp=0.5,armlabel=c(1,2,3),blocksize=6,mean=c(8.9/100,8.74/100,8.74/100),
+#' sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(-0.00165,-0.00165),tpp=0,deltaa1=c(0,0),
 #' mean10=0.09,mean20=0.09,mean30=0.09,sd10=0.01,sd20=0.01,sd30=0.01,n10=1,n20=1,n30=1,side='lower')
 #' @references 
 #' \insertRef{Wathen2017}{RARtrials}
@@ -353,7 +348,23 @@ sim_brar_known_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,au,N2,tp
 
       }
       data11<-data1[1:N2,]
-      return(list(decision,phi,data11,stopp))
+      
+      nn<-rep(NA,armn)
+      for (k in 1:armn) {
+        nn[k]=nrow(data1[which(data1[,4]==k ),,drop=FALSE])
+      }
+      output1<-list(decision[2:armn],phi[2:armn],data11,nn)
+      class(output1)<-'brar'
+      print.brar<-function(output1,...){
+        cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+        cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+        cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+        invisible(output1)
+      }
+      
+      
+      return(print.brar(output1))
+     # return(list(decision,phi,data11,stopp))
 
     }
   }

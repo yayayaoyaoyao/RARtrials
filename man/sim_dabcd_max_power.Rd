@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_dabcd_max_power.r
 \name{sim_dabcd_max_power}
 \alias{sim_dabcd_max_power}
-\title{sim_dabcd_max_power}
+\title{Simulate a Trial Using Doubly Adaptive Biased Coin Design with Maximal Power Strategy for Binary Endpoint}
 \usage{
 sim_dabcd_max_power(
   Pats,
@@ -70,11 +70,11 @@ to be specified. Default value is set to 2.}
 \item{side}{direction of a one-sided test, with values 'upper' or 'lower'.}
 }
 \value{
-A list of results, including final decision based on the Z test statistics with 1 stands
-for effectiveness and 0 stands for not selected, Z test statistics and the simulated data set for one trial.
+\code{sim_dabcd_max_power} returns an object of class "dabcd". An object of class "dabcd" is a list containing 
+final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected,
+Z test statistics, the simulated data set and participants accrued for each arm at the time of termination of that group in one trial.
 The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated arm, and participants' results.
-In the final decision, 1 refers to selected, and 0 stands for not selected.
+allocated arm, and participants' result.
 }
 \description{
 \code{sim_dabcd_max_power} can be used for doubly adaptive biased coin design with maximal power
@@ -82,15 +82,9 @@ strategy for binary outcomes, targeting generalized Neyman allocation and genera
 }
 \details{
 The function simulates a trial for doubly adaptive biased coin design with maximal power strategy targeting
-<<<<<<< HEAD
 generalized Neyman allocation with 2-5 arms which is provided in \insertCite{Tymofyeyev2007}{RARtrials} and
 generalized RSIHR allocation with 2-3 arms which is provided in \insertCite{Jeon2010}{RARtrials}, with modifications for typos
 in \insertCite{Sabo2016}{RARtrials}. All of those methods are not smoothed. The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
-=======
-generalized Neyman allocation with 2-5 arms which is provided in \insertCite{Tymofyeyev2007}{RAR} and
-generalized RSIHR allocation with 2-3 arms which is provided in \insertCite{Jeon2010}{RAR}, with modifications for typos
-in \insertCite{Sabo2016}{RAR}. All of those methods are not smoothed. The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RAR}.
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 With more than two armd the one-sided nominal level of each test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 }
 \examples{
@@ -105,17 +99,10 @@ side='upper')
 
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Hu2004}{RARtrials}
 \insertRef{Tymofyeyev2007}{RARtrials}
 \insertRef{Jeon2010}{RARtrials}
 \insertRef{Sabo2016}{RARtrials}
-=======
-\insertRef{Hu2004}{RAR}
-\insertRef{Tymofyeyev2007}{RAR}
-\insertRef{Jeon2010}{RAR}
-\insertRef{Sabo2016}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

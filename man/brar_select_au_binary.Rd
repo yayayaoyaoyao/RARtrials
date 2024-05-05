@@ -2,7 +2,7 @@
 % Please edit documentation in R/brar_select_au_binary.r
 \name{brar_select_au_binary}
 \alias{brar_select_au_binary}
-\title{brar_select_au_binary}
+\title{Select au in Bayesian Response-Adaptive Randomization with a Control Group for Binary Endpoint}
 \usage{
 brar_select_au_binary(
   Pats,
@@ -76,35 +76,20 @@ how each arm is labeled in a two-armed trial.}
 \item{blocksize}{size of block used for equal randomization regarding participants in the 'initialization' period.
 Recommend to be an even multiple of the number of total arms.}
 
-\item{alpha1}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
+\item{alpha1, beta1}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 1 which
 stands for the control. Default value is set to 1.}
 
-\item{beta1}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
-stands for the control. Default value is set to 1.}
+\item{alpha2, beta2}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 2.
+Default value is set to \code{alpha1} and \code{beta1}.}
 
-\item{alpha2}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-Default value is set to \code{alpha1}.}
+\item{alpha3, beta3}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 3.
+Default value is set to \code{alpha1} and \code{beta1}.}
 
-\item{beta2}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-Default value is set to \code{beta1}.}
+\item{alpha4, beta4}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 4.
+Default value is set to \code{alpha1} and \code{beta1}..}
 
-\item{alpha3}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 3.
-Default value is set to \code{alpha1}.}
-
-\item{beta3}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 3.
-Default value is set to \code{beta1}.}
-
-\item{alpha4}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 4.
-Default value is set to \code{alpha1}.}
-
-\item{beta4}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 4.
-Default value is set to \code{beta1}.}
-
-\item{alpha5}{\eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 5.
-Default value is set to \code{alpha1}.}
-
-\item{beta5}{\eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 5.
-Default value is set to \code{beta1}.}
+\item{alpha5, beta5}{\eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 5.
+Default value is set to \code{alpha1} and \code{beta1}.}
 
 \item{minstart}{a specified number of participants when one starts to check decision rules.}
 
@@ -131,7 +116,7 @@ calculated from \code{deltaa1} at the final stage.
 }
 \description{
 \code{brar_select_au_binary} involves selecting au in Bayesian Response-Adaptive Randomization with a control group
-for binary outcomes with two to five arms. The prior distributions follow Beta (\eqn{beta(\alpha,\beta)}) distributions
+for binary outcomes with two to five arms. The conjugate prior distributions follow Beta (\eqn{Beta(\alpha,\beta)}) distributions
 and can be specified individually for each arm.
 }
 \details{
@@ -164,15 +149,11 @@ simf1<-do.call(rbind,simf)
 sum(is.na(simf1))/100  #1, achieve around 1\% futility
 sum(simf1>0.436,na.rm=TRUE)/100  #0.05
 #the selected stopping boundary is 0.436 with an overall upper one-sided type I
-#error of 0.05, based on 100 simulations. It is recommended to conduct more simulations
+#error of 0.05, based on 100 simulations. It is recommended to conduct more simulations (i.e., 1000)
 #to obtain a more accurate au.
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Wathen2017}{RARtrials}
-=======
-\insertRef{Wathen2017}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

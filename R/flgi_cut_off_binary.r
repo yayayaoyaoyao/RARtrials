@@ -1,20 +1,20 @@
-#' @title flgi_stop_bound_binary
+#' @title Cut-off Value of Forward-looking Gittins index rule in Binary Endpoint
 #' @description Function for simulating cut-off values at the final stage using the forward-looking Gittins index
 #' and the controlled forward-looking Gittins index algorithm for binary outcomes in trials with 2-5 arms.
-#' The prior distributions follow Beta (\eqn{beta(\alpha,\beta)}) distributions and should be the same for each
+#' The conjugate prior distributions follow Beta (\eqn{Beta(\alpha,\beta)}) distributions and should be the same for each
 #' arm.
 #' @details This function simulates trials using the forward-looking Gittins index and the
 #' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios to obtain
 #' cut-off values at the final stage, with control of type I error. The user is expected to run this function
 #' multiple times to determine a reasonable cut-off value for statistical inference.
-#' @aliases flgi_stop_bound_binary
+#' @aliases flgi_cut_off_binary
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal, Villar Sofia S.
-#' @export flgi_stop_bound_binary
+#' @export flgi_cut_off_binary
 #' @param Gittinstype type of Gittins indices, should be set to 'binary' in this function.
 #' @param df discount factor which is the multiplier for loss at each additional patient in the future.
 #' Available values are 0, 0.5, 0.7, 0.99 and 0.995. The maximal sample size can be up to 2000.
 #' @param gittins user specified Gittins indices for calculation in this function. Recommend using the
-#' \code{\link[gittins]{bmab_gi_multiple_ab}} function. If \code{gittins} is provided,
+#' \code{bmab_gi_multiple_ab} function from \code{gittins} package. If \code{gittins} is provided,
 #' \code{Gittinstype} and \code{df} should be NULL.
 #' @param Pats the number of patients accrued within a certain time frame indicates the
 #' count of individuals who have been affected by the disease during that specific period,
@@ -54,37 +54,37 @@
 #' @import GI
 #' @return Value of Z test statistics for one trial.
 #' @examples
-#' #forward-looking Gittins index with delayed responses follow a normal distribution
+#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' set.seed(12345)
-#' stopbound1<-lapply(1:100,function(x){ flgi_stop_bound_binary(Gittinstype='Binary',df=0.5,Pats=10,
+#' stopbound1<-lapply(1:10,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0.5,Pats=10,
 #' nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
 #' enrollrate=0.1,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=256,ptrue=c(0.2,0.2),block=2,
 #' rule='FLGI PM',ztype='unpooled')})
 #' stopbound1a<-do.call(rbind,stopbound1)
-#' sum(stopbound1a< (-1.5) )/100 #0.05
-#' #the selected cut-off value is -1.5 with an overall lower one-sided type I
-#' #error of 0.05, based on 100 simulations.
-#' #It is recommended to conduct more simulations to obtain a more accurate cut-off value.
+#' sum(stopbound1a< (-1.82) )/10 #0.1
+#' #the selected cut-off value is -1.82 with an overall lower one-sided type I
+#' #error of 0.1, based on 10 simulations.
+#' #It is recommended to conduct more simulations (i.e.,1000) to obtain an accurate cut-off value.
 #'
-#' #forward-looking Gittins index with delayed responses follow a normal distribution
+#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' set.seed(12345)
-#' stopbound2<-lapply(1:100,function(x){ flgi_stop_bound_binary(Gittinstype='Binary',df=0,Pats=10,
+#' stopbound2<-lapply(1:10,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0,Pats=10,
 #' nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
 #' enrollrate=0.1,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=256,ptrue=c(0.2,0.2),block=2,
 #' rule='FLGI PM',ztype='unpooled')})
 #' stopbound2a<-do.call(rbind,stopbound2)
-#' sum(stopbound2a>1.6)/100 #0.05
-#' #the selected cut-off value is 1.6 with an overall upper one-sided type I
-#' #error of 0.05, based on 100 simulations.
-#' #It is recommended to conduct more simulations to obtain a more accurate cut-off value.
+#' sum(stopbound2a>0.5)/10 #0.1
+#' #the selected cut-off value is 0.5 with an overall upper one-sided type I
+#' #error of 0.1, based on 10 simulations.
+#' #It is recommended to conduct more simulations (i.e.,1000) to obtain an accurate cut-off value.
 #'
 #' @references
 #' \insertRef{Gittins2011}{RARtrials}
 #' \insertRef{Villar2015}{RARtrials}
 
-flgi_stop_bound_binary<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,enrollrate,I0,K,noRuns2=100,Tsize,ptrue,block,rule,ztype){
+flgi_cut_off_binary<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,enrollrate,I0,K,noRuns2=100,Tsize,ptrue,block,rule,ztype){
 
 
   if (is.null(gittins)){

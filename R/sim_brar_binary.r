@@ -1,7 +1,7 @@
-#' @title sim_brar_binary
+#' @title Simulate a Trial Using Bayesian Response-Adaptive Randomization with a Control Group for Binary Outcomes
 #' @description \code{sim_brar_binary} simulate a trial with two to five arms using Bayesian Response-Adaptive 
-#' Randomization with a control group for binary outcomes. The prior distributions follow Beta
-#' (\eqn{beta(\alpha,\beta)}) distributions and can be specified individually for each arm.
+#' Randomization with a control group for binary outcomes. The conjugate prior distributions follow Beta
+#' (\eqn{Beta(\alpha,\beta)}) distributions and can be specified individually for each arm.
 #' @details This function generates a designed trial using Bayesian response-adaptive randomization with
 #' a control group under no delay and delay scenarios for binary outcomes. The function can handle trials with up to
 #' 5 arms. This function uses the formula
@@ -42,26 +42,16 @@
 #' how each arm is labeled in a two-armed trial.
 #' @param blocksize size of block used for equal randomization regarding participants in the 'initialization' period.
 #' Recommend to be an even multiple of the number of total arms.
-#' @param alpha1 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
+#' @param alpha1,beta1 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 1 which
 #' stands for the control. Default value is set to 1.
-#' @param alpha2 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-#' Default value is set to \code{alpha1}.
-#' @param alpha3 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 3.
-#' Default value is set to \code{alpha1}.
-#' @param alpha4 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 4.
-#' Default value is set to \code{alpha1}.
-#' @param alpha5 \eqn{\alpha} in the \eqn{beta(\alpha,\beta)} prior for arm 5.
-#' Default value is set to \code{alpha1}.
-#' @param beta1 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 1 which
-#' stands for the control. Default value is set to 1.
-#' @param beta2 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 2.
-#' Default value is set to \code{beta1}.
-#' @param beta3 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 3.
-#' Default value is set to \code{beta1}.
-#' @param beta4 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 4.
-#' Default value is set to \code{beta1}.
-#' @param beta5 \eqn{\beta} in the \eqn{beta(\alpha,\beta)}, prior for arm 5.
-#' Default value is set to \code{beta1}.
+#' @param alpha2,beta2 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)}, prior for arm 2.
+#' Default value is set to \code{alpha1} and \code{beta1}.
+#' @param alpha3,beta3 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 3.
+#' Default value is set to \code{alpha1} and \code{beta1}.
+#' @param alpha4,beta4 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 4.
+#' Default value is set to \code{alpha1} and \code{beta1}..
+#' @param alpha5,beta5 \eqn{\alpha} and \eqn{\beta} in the \eqn{Beta(\alpha,\beta)} prior for arm 5.
+#' Default value is set to \code{alpha1} and \code{beta1}.
 #' @param minstart a specified number of participants when one starts to check decision rules.
 #' @param deltaa a vector of minimal effect expected to be observed for early futility stopping in
 #' each arm is approximately \eqn{1\%}. The length of this parameter is \code{armn}-1.
@@ -70,13 +60,13 @@
 #' for each arm. The length of this parameter is \code{armn}-1.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
 #' @param ... additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.
-#' @return A list of results, including final decision, test statistics, the simulated data set
-#' and participants accrued for each arm at the time of termination of that group in one trial.
+#' @return \code{sim_brar_binary} returns an object of class "brar". An object of class "brar" is a list containing 
+#' final decision, test statistics, the simulated data set and participants accrued for each arm 
+#' at the time of termination of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results.
-#' In the final decision, 'Superiorityfinal' refers to the selected arm, while 'Not Selected' indicates the arm stopped due to
-#' futility, and 'Control Selected' denotes the control arm chosen because other arms did not meet futility criteria before the 
-#' final stage or were not deemed effective at the final stage. 
+#' allocated arm, and participants' results. In the final decision, 'Superiorityfinal' refers to the selected arm, 
+#' while 'Not Selected' indicates the arm stopped due to futility, and 'Control Selected' denotes the control arm chosen 
+#' because other arms did not meet futility criteria before the final stage or were not deemed effective at the final stage. 
 #' Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 #' calculated from \code{deltaa1} at the final stage.
 #' @importFrom stats rbinom
@@ -154,10 +144,10 @@ sim_brar_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,au,N2,tp,
       for (j in 1:length(armleft)){
         if (total>0){
           if (j>1){
-            result[[j]]<-pgreater(A=mat[[1]][1,1]+alpha[[1]],
-                                  B=mat[[1]][1,2]+beta[[1]],
-                                  a=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
-                                  b=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
+            result[[j]]<-pgreater_beta(a1=mat[[1]][1,1]+alpha[[1]],
+                                  b1=mat[[1]][1,2]+beta[[1]],
+                                  a2=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
+                                  b2=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
                                   delta=deltaa[armleft[j]-1],side=side)
           }else if (j==1){
             result[[1]]<-0
@@ -165,10 +155,10 @@ sim_brar_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,au,N2,tp,
 
         }else if (total==0 ){
           if (j>1){
-            result[[j]]<-pgreater(A=alpha[[1]],
-                                  B=beta[[1]],
-                                  a=alpha[[armleft[j]]],
-                                  b=beta[[armleft[j]]],
+            result[[j]]<-pgreater_beta(a1=alpha[[1]],
+                                  b1=beta[[1]],
+                                  a2=alpha[[armleft[j]]],
+                                  b2=beta[[armleft[j]]],
                                   delta=deltaa[armleft[j]-1],side=side)
           }else if (j==1){
             result[[1]]<-0
@@ -191,10 +181,10 @@ sim_brar_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,au,N2,tp,
         for (j in 1:length(armleft)){
           if (total>0){
             if (j>1){
-              resultt[[j]]<-pgreater(A=mat[[1]][1,1]+alpha[[1]],
-                                     B=mat[[1]][1,2]+beta[[1]],
-                                     a=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
-                                     b=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
+              resultt[[j]]<-pgreater_beta(a1=mat[[1]][1,1]+alpha[[1]],
+                                     b1=mat[[1]][1,2]+beta[[1]],
+                                     a2=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
+                                     b2=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
                                      delta=deltaa1[armleft[j]-1],side=side)
             }else if (j==1){
               resultt[[1]]<-0
@@ -202,10 +192,10 @@ sim_brar_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,au,N2,tp,
 
           }else if (total==0 ){
             if (j>1){
-              resultt[[j]]<-pgreater(A=alpha[[1]],
-                                     B=beta[[1]],
-                                     a=alpha[[armleft[j]]],
-                                     b=beta[[armleft[j]]],
+              resultt[[j]]<-pgreater_beta(a1=alpha[[1]],
+                                     b1=beta[[1]],
+                                     a2=alpha[[armleft[j]]],
+                                     b2=beta[[armleft[j]]],
                                      delta=deltaa1[armleft[j]-1],side=side)
             }else if (j==1){
               resultt[[1]]<-0
@@ -219,20 +209,20 @@ sim_brar_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,au,N2,tp,
       for (j in 1:length(armleft)){
         if (total>0){
           if (j>1){
-            posteriorp[[j]]<-pgreater(A=mat[[1]][1,1]+alpha[[1]],
-                                      B=mat[[1]][1,2]+beta[[1]],
-                                      a=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
-                                      b=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
+            posteriorp[[j]]<-pgreater_beta(a1=mat[[1]][1,1]+alpha[[1]],
+                                      b1=mat[[1]][1,2]+beta[[1]],
+                                      a2=mat[[armleft[j]]][1,1]+alpha[[armleft[j]]],
+                                      b2=mat[[armleft[j]]][1,2]+beta[[armleft[j]]],
                                       delta=deltaa1[armleft[j]-1],side=side)
           }else if (j==1){
             posteriorp[[j]]<-0
           }
         }else if (total==0 ){
           if (j>1){
-            posteriorp[[j]]<-pgreater(A=alpha[[1]],
-                                      B=beta[[1]],
-                                      a=alpha[[armleft[j]]],
-                                      b=beta[[armleft[j]]],
+            posteriorp[[j]]<-pgreater_beta(a1=alpha[[1]],
+                                      b1=beta[[1]],
+                                      a2=alpha[[armleft[j]]],
+                                      b2=beta[[armleft[j]]],
                                       delta=deltaa1[armleft[j]-1],side=side)
           }else if (j==1){
             posteriorp[[j]]<-0
@@ -304,37 +294,39 @@ sim_brar_binary<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,h,au,N2,tp,
         if (sim111t[1,k]>au[armleft[k]-1] & is.na(decision[armleft[k]])){
           decision[armleft[k]]<-'Superiorityfinal'
           stopp[armleft[k]]<-jjj
-
-         # if (deltaa==0){
-         #   phi[armleft[k]]<-sim111t[1,k]
-         # }else if (deltaa!=0){
-            phi[armleft[k]]<-posteriorp1[1,k]
-         # }
+          phi[armleft[k]]<-posteriorp1[1,k]
         }
       }
       for (k in 1:length(armleft)) {
-        if (is.na(decision[armleft[k]] )) {#decision[armleft[k]] %in% NA
-
+        if (is.na(decision[armleft[k]] )) {
           decision[armleft[k]]<-'Not Selected'
           stopp[armleft[k]]<-jjj
-          #if (deltaa==0){
-          #  phi[armleft[k]]<-sim111t[1,k]
-          #}else if (deltaa!=0){
-            phi[armleft[k]]<-posteriorp1[1,k]
-          #}
+          phi[armleft[k]]<-posteriorp1[1,k]
         }
       }
       if (length( which (decision %in%  'Futility'))==(armn-1) &
           is.na(decision[1])){
-        decision[1]<-'Control Selected'
-       # if (deltaa==0){
-       #   phi[1]<-sim111t[1,1]
-       # }else if (deltaa!=0){
+          decision[1]<-'Control Selected'
           phi[1]<-posteriorp1[1,1]
-       # }
+
       }
       data11<-data1[1:N2,]
-      return(list(decision,phi,data11,stopp))
+      
+      nn<-rep(NA,armn)
+      for (k in 1:armn) {
+        nn[k]=nrow(data1[which(data1[,4]==k ),,drop=FALSE])
+      }
+      output1<-list(decision[2:armn],phi[2:armn],data11,nn)
+      class(output1)<-'brar'
+      print.brar<-function(output1,...){
+        cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+        cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+        cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+        invisible(output1)
+    }
+
+
+      return(print.brar(output1))
 
     }
   }

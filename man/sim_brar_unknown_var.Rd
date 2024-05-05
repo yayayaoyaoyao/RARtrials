@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_brar_unknown_var.r
 \name{sim_brar_unknown_var}
 \alias{sim_brar_unknown_var}
-\title{sim_brar_unknown_var}
+\title{Simulate a Trial Using Bayesian Response-Adaptive Randomization with a Control Group for Continuous Endpoint with Unknown Variances}
 \usage{
 sim_brar_unknown_var(
   Pats,
@@ -104,72 +104,47 @@ each arm is approximately \eqn{1\%}. The length of this parameter is \code{armn}
 \item{deltaa1}{a vector of pre-specified minimal effect size expected to be observed at the final stage
 for each arm. The length of this parameter is \code{armn}-1.}
 
-\item{V01}{a prior standard deviation of arm 1 in the normal distribution.}
+\item{V01, a01, b01, m01}{prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 1 in the trial, which stands for the control.}
 
-\item{a01}{a prior shape parameter of arm 1 in the Inverse-Gamma distribution.}
+\item{V02, a02, b02, m02}{prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 2 in the trial. Default value is set to \code{V01},
+\code{a01}, \code{b01} and \code{m01}.}
 
-\item{b01}{a prior rate parameter of arm 1 in the Inverse-Gamma distribution.}
+\item{V03, a03, b03, m03}{prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 3 in the trial. Default value is set to \code{V01},
+\code{a01}, \code{b01} and \code{m01}.}
 
-\item{m01}{a prior mean of arm 1 in the normal distribution.}
+\item{V04, a04, b04, m04}{prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 4 in the trial. Default value is set to \code{V01},
+\code{a01}, \code{b01} and \code{m01}.}
 
-\item{V02}{a prior standard deviation of arm 2 in the normal distribution. Default value is set to \code{V01}.}
-
-\item{V03}{a prior standard deviation of arm 3 in the normal distribution. Default value is set to \code{V01}.}
-
-\item{V04}{a prior standard deviation of arm 4 in the normal distribution. Default value is set to \code{V01}.}
-
-\item{V05}{a prior standard deviation of arm 5 in the normal distribution. Default value is set to \code{V01}.}
-
-\item{a02}{a prior shape parameter of arm 2 in the Inverse-Gamma distribution. Default value is set to \code{a01}.}
-
-\item{a03}{a prior shape parameter of arm 3 in the Inverse-Gamma distribution. Default value is set to \code{a01}.}
-
-\item{a04}{a prior shape parameter of arm 4 in the Inverse-Gamma distribution. Default value is set to \code{a01}.}
-
-\item{a05}{a prior shape parameter of arm 5 in the Inverse-Gamma distribution. Default value is set to \code{a01}.}
-
-\item{b02}{a prior rate parameter of arm 2 in the Inverse-Gamma distribution. Default value is set to \code{b01}.}
-
-\item{b03}{a prior rate parameter of arm 3 in the Inverse-Gamma distribution. Default value is set to \code{b01}.}
-
-\item{b04}{a prior rate parameter of arm 4 in the Inverse-Gamma distribution. Default value is set to \code{b01}.}
-
-\item{b05}{a prior rate parameter of arm 25 in the Inverse-Gamma distribution. Default value is set to \code{b01}.}
-
-\item{m02}{a prior mean of arm 2 in the normal distribution. Default value is set to \code{m01}.}
-
-\item{m03}{a prior mean of arm 3 in the normal distribution. Default value is set to \code{m01}.}
-
-\item{m04}{a prior mean of arm 4 in the normal distribution. Default value is set to \code{m01}.}
-
-\item{m05}{a prior mean of arm 5 in the normal distribution. Default value is set to \code{m01}.}
+\item{V05, a05, b05, m05}{prior parameters m, V, a, b in \eqn{NIG(V,m,a,b)} of arm 5 in the trial. Default value is set to \code{V01},
+\code{a01}, \code{b01} and \code{m01}.}
 
 \item{side}{direction of a one-sided test, with values 'upper' or 'lower'.}
 
 \item{...}{additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.}
 }
 \value{
-A list of results, including final decision, test statistics, the simulated data set
-and participants accrued for each arm at the time of termination of that group in one trial.
+\code{sim_brar_unknown_var} returns an object of class "brar". An object of class "brar" is a list containing 
+final decision, test statistics, the simulated data set and participants accrued for each arm 
+at the time of termination of that group in one trial.
 The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-allocated arm, and participants' results.
-In the final decision, 'Superiorityfinal' refers to the selected arm, while 'Not Selected' indicates the arm stopped due to
-futility, and 'Control Selected' denotes the control arm chosen because other arms did not meet futility criteria before the 
-final stage or were not deemed effective at the final stage. 
+allocated arm, and participants' results. In the final decision, 'Superiorityfinal' refers to the selected arm, 
+while 'Not Selected' indicates the arm stopped due to futility, and 'Control Selected' denotes the control arm chosen 
+because other arms did not meet futility criteria before the final stage or were not deemed effective at the final stage. 
 Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 calculated from \code{deltaa1} at the final stage.
 }
 \description{
 \code{sim_brar_unknown_var} simulate a trial with two to five arms using Bayesian Response-Adaptive 
-Randomization with a control group for continuous outcomes with unknown variances. The prior distributions
-follow Normal-Inverse-Gamma (NIG) (\eqn{NIG(V,m,a,b)}) distributions and can be specified individually for each arm.
+Randomization with a control group for continuous outcomes with unknown variances. The conjugate prior distributions
+follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
+distributions and can be specified individually for each arm.
 }
 \details{
 This function generates a designed trial using Bayesian response-adaptive randomization with
 a control group under no delay and delay scenarios for continuous outcomes with unknown variances. 
 The function can handle trials with up to 5 arms. This function uses the formula
-\eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^tp}}} with \code{side} equals to 'upper'
-and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\})^tp}}}
+\eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp}}} with \code{side} equals to 'upper'
+and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp}}}
 with \code{side} equals to 'lower', utilizing available data at each step.
 }
 \examples{
@@ -178,17 +153,13 @@ with \code{side} equals to 'lower', utilizing available data at each step.
 #where mean=c(9.19/100,8.92/100,8.92/100), sd=c(0.009,0.009,0.009), tp=1 and 
 #the minimal effect size is 0.
 sim_brar_unknown_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
-length(vStartTime ),30,3)),enrollrate=0.1, N1=192,armn=3,au=c(0.9694,0.9694),
+length(vStartTime ),30,3)),enrollrate=0.1, N1=192,armn=3,au=c(0.9638,0.9638),
 N2=1920,tp=1,armlabel=c(1, 2,3),blocksize=6,mean=c(9.19/100,8.92/100,8.92/100),
 sd=c(0.009,0.009,0.009), minstart=192,deltaa=c(0.00075,0.00075),
 tpp=0,deltaa1=c(0,0),V01=1/2,a01=0.3,m01=9/100,b01=0.00001,side='lower')
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Kevin2007}{RARtrials}
-=======
-\insertRef{Kevin2007}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

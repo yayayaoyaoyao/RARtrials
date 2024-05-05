@@ -2,37 +2,33 @@
 % Please edit documentation in R/convert_gamma_to_chisq.r
 \name{convert_gamma_to_chisq}
 \alias{convert_gamma_to_chisq}
-\title{convert_gamma_to_chisq}
+\title{Convert parameters from a Normal-Inverse-Gamma Distribution to a
+Normal-Inverse-Chi-Squared Distribution}
 \usage{
 convert_gamma_to_chisq(gpar)
 }
 \arguments{
-\item{gpar}{a list of parameters including m, V, a, b from a normal-inverse-gamma distribution.}
+\item{gpar}{a list of parameters including m, V, a, b from a Normal-Inverse-Gamma distribution.}
 }
 \value{
-a list of parameters of a normal-inverse-gamma distribution.
+a list of parameters including mu, kappa, nu, sigsq from a Normal-Inverse-Chi-Squared distribution.
 }
 \description{
-Convert parameters from a normal-inverse-gamma distribution to a
-normal-inverse-chi-squared distribution.
+Convert parameters from a Normal-Inverse-Gamma distribution to a
+Normal-Inverse-Chi-Squared distribution.
 }
 \details{
-This function convert parameters from a normal-inverse-gamma distribution to a
-normal-inverse-chi-squared distribution.
+This function convert parameters from a Normal-Inverse-Gamma 
+(\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
+distribution to a Normal-Inverse-Chi-Squared 
+(\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)}) 
+distribution.
 }
 \examples{
 convert_gamma_to_chisq(list(V=1/2,a=0.5,m=9.1/100,b=0.00002))
 }
 \references{
-<<<<<<< HEAD
 \insertRef{Kevin2007}{RARtrials}
-=======
-{Wathen, J. K., & Thall, P. F. (2017). A simulation study of outcome adaptive
-randomization in multi-arm clinical trials. Clinical trials (London, England), 14(5), 432–440.
-https://doi.org/10.1177/1740774517692302}
-
-\insertRef{Kevin2007}{RAR}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 }
 \author{
 Chuyao Xu, Thomas Lumley, Alain Vandal

@@ -1,8 +1,8 @@
-#' @title sim_A_optimal_unknown_var
+#' @title Simulate a Trial Using A Optimal Allocation for Continuous Endpoint with Unknown Variances
 #' @description \code{sim_A_optimal_unknown_var} simulates a trial for continuous endpoints with unknown variances,
 #' and the allocation probabilities change based on results of accumulated participants in the trial.
 #' @details This function aims to minimize the criteria \eqn{tr[M^{-1}(\mathbf{\rho})]}
-#' and to minimize the overall variance of pairwise comparisons. It is analogous to Neyman
+#' and to minimize the overall variance of pairwise comparisons. It is generalized Neyman
 #' allocation, specifically designed for continuous endpoints with known variances.
 #' With more than two arms the one-sided nominal level of each test is \code{alphaa}
 #' divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
@@ -38,11 +38,12 @@
 #' @param armlabel a vector of arm labels with an example of c(1, 2), where 1 and 2 describes
 #' how each arm is labeled in a two-armed trial.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
-#' @return A list of results, including final decision based on the T test statistics with 1 stands
-#' for effectiveness and 0 stands for not selected, T test statistics and the simulated data set for one trial.
+#' @return \code{sim_A_optimal_unknown_var} returns an object of class "aoptimal". An object of class "aoptimal" is a list containing 
+#' final decision based on the T test statistics with 1 stands for selected and 0 stands for not selected,
+#' T test statistics, the simulated data set and participants accrued for each arm 
+#' at the time of termination of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results.
-#' In the final decision, 1 refers to selected, and 0 stands for not selected.
+#' allocated arm, and participants' result.
 #' @importFrom stats rnorm
 #' @importFrom stats sd
 #' @importFrom stats qt
@@ -133,7 +134,20 @@ sim_A_optimal_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,arm
   }
   pr1<-do.call(cbind,pr)
   zz1<-do.call(cbind,zz)
-  return(list(pr1,zz1,data1))
+  
+  output1<-list(pr1,zz1,data1,p[,3])
+  class(output1)<-'aoptimal'
+  print.aoptimal<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.aoptimal(output1))
+  
+ # return(list(pr1,zz1,data1))
 
 }
 

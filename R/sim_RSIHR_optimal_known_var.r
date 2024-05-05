@@ -1,12 +1,8 @@
-#' @title sim_RSIHR_optimal_known_var
+#' @title Simulate a Trial Using Generalized RSIHR Allocation for Continuous Endpoint with Known Variances
 #' @description \code{sim_RSIHR_optimal_known_var} simulates a trial for continuous endpoints with known variances,
 #' and the allocation probabilities are fixed. 
 #' @details This function aims to minimize the criteria \eqn{\sum_{i=1}^{K}n_i\Psi_i}
-<<<<<<< HEAD
 #' with constraints \eqn{\frac{\sigma_1^2}{n_1}+\frac{\sigma_k^2}{n_k}\leq C}, where \eqn{k=2,...,K}
-=======
-#' with constraints \eqn{\frac{\si_1^2}{n_1}+\frac{\si_k^2}{n_k}\leq C}, where \eqn{k=2,...,K}
->>>>>>> 61147631f1f0ee0048e12fc72aae70846a4c38ac
 #' for some fixed C. It is equivalent to generalized RSIHR allocation for continuous endpoints with known variances.
 #' With more than two arms the one-sided nominal level of each test is \code{alphaa} divided 
 #' by \code{arm*(arm-1)/2}; a Bonferroni correction.
@@ -42,11 +38,11 @@
 #' @param cc value in the formula of measure of treatment effectiveness, usually take the average
 #' of mean responses in the hypotheses. \code{cc} is the same as C in the details.
 #' @param side direction of a one-sided test, with values 'upper' or 'lower'.
-#' @return A list of results, including final decision based on Z the test statistics with 1 stands
-#' for effectiveness and 0 stands for not selected, Z test statistics and the simulated data set for one trial.
+#' @return \code{sim_RSIHR_optimal_known_var} returns an object of class "RSIHRoptimal". An object of class "RSIHRoptimal" is a list containing 
+#' final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected,
+#' Z test statistics, the simulated data set and participants accrued for each arm at the time of termination of that group in one trial.
 #' The simulated data set includes 5 columns: participant ID number, enrollment time, observed time of results,
-#' allocated arm, and participants' results.
-#' In the final decision, 1 refers to selected, and 0 stands for not selected.
+#' allocated arm, and participants' result.
 #' @importFrom stats pnorm
 #' @importFrom stats rnorm
 #' @examples
@@ -169,8 +165,18 @@ sim_RSIHR_optimal_known_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,a
   pr10<-do.call(cbind,prr1)
   zz<-do.call(cbind,pr)
 
-  return(list(pr10,zz,data1))
-
+ # return(list(pr10,zz,data1))
+  output1<-list(pr10,zz,data1,p[,3])
+  class(output1)<-'RSIHRoptimal'
+  print.RSIHRoptimal<-function(output1,...){
+    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
+    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
+    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
+    invisible(output1)
+  }
+  
+  
+  return(print.RSIHRoptimal(output1))
 }
 
 
