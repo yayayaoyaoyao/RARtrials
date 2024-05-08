@@ -36,7 +36,7 @@ could be a month, a week or any other time frame. When the unit changes,
 the number of TimeToOutcome should also change. It can be in the format
 of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
 with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-These related functions are adapted from \url{http://github.com/kwathen/IntroBayesianSimulation}.
+These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
 Refer to the website for more details.}
 
 \item{enrollrate}{probability that patients in the population can enroll in the trial.
@@ -84,7 +84,7 @@ strategy for binary outcomes, targeting generalized Neyman allocation and genera
 The function simulates a trial for doubly adaptive biased coin design with maximal power strategy targeting
 generalized Neyman allocation with 2-5 arms which is provided in \insertCite{Tymofyeyev2007}{RARtrials} and
 generalized RSIHR allocation with 2-3 arms which is provided in \insertCite{Jeon2010}{RARtrials}, with modifications for typos
-in \insertCite{Sabo2016}{RARtrials}. All of those methods are not smoothed. The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
+in \insertCite{Sabo2016}{RARtrials}. All of those methods are not smoothed. The output of this function is based on Hu \code{\&} Zhang's formula \insertCite{Hu2004}{RARtrials}.
 With more than two armd the one-sided nominal level of each test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 }
 \examples{

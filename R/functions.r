@@ -1156,3 +1156,59 @@ which.is.min <- function(x)
   y <- seq_along(x)[x == min(x)]
   if(length(y) > 1L) sample(y, 1L) else y
 }
+
+
+# #### different print methods
+# print.aoptimal<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste((round(x[[2]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 
+# 
+# print.dabcd<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste((round(x[[2]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 
+# 
+# print.brar<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 
+# 
+# print.flgi<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste(round(x[[3]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[5]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 
+# 
+# print.RSIHRoptimal<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 
+# print.rptw<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 
+# print.Aaoptimal<-function(x,...){
+#   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+#   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
+#   cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+#   invisible(x)
+# }
+# 

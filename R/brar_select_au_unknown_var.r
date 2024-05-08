@@ -24,7 +24,7 @@
 #' the number of TimeToOutcome should also change. It can be in the format
 #' of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
 #' with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-#' These related functions are adapted from \url{http://github.com/kwathen/IntroBayesianSimulation}.
+#' These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
 #' Refer to the website for more details.
 #' @param enrollrate probability that patients in the population can enroll in the trial.
 #' This parameter is related to the number of people who have been affected by the disease in the population,

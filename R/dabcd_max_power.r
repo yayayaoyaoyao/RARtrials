@@ -5,7 +5,7 @@
 #' @details The function simulates allocation probabilities for doubly adaptive biased coin design with maximal power strategy targeting
 #' generalized Neyman allocation with 2-5 arms which is provided in \insertCite{Tymofyeyev2007}{RARtrials} or
 #' generalized RSIHR allocation with 2-3 arms which is provided in \insertCite{Jeon2010}{RARtrials}, with modifications for typos
-#' in \insertCite{Sabo2016}{RARtrials}. All of those methods are not smoothed. The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
+#' in \insertCite{Sabo2016}{RARtrials}. All of those methods are not smoothed. The output of this function is based on Hu \code{\&} Zhang's formula \insertCite{Hu2004}{RARtrials}.
 #' With more than two armd the one-sided nominal level of each test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 #' @aliases dabcd_max_power
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal

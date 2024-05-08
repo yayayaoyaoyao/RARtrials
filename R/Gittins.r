@@ -17,7 +17,6 @@
 #' 0, 0.5, 0.7, 0.99 and 0.995 for \code{Gittinstype} in 'binary'.
 #' @return A vector of Gittins indices for \code{Gittinstype} in 'UNKV' and 'KV'. A matrix of
 #' Gittins indices for \code{Gittinstype} in 'binary'.
-#' @import GI
 #' @importFrom stats approx
 #' @examples
 #' Gittins(Gittinstype='UNKV',df=0.5)

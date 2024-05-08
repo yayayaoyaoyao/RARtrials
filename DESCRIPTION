@@ -25,10 +25,10 @@ Authors@R: c(person(given="Chuyao",
  )
 Date: 2024-05-01
 Maintainer: Chuyao Xu  <cxu870@aucklanduni.ac.nz>
-Description: This package contains some common response-adaptive randomisation methods in literatures,
+Description: This package contains some common response-adaptive randomisation methods in literature,
              including the randomized play-the-winner rule, doubly adaptive biased coin design with minimal variance strategy and
-             maximal power stategy targeting Neyman allocation and RSIHR allocation, bayesian response-adaptive randomization with 
-             a control group using Thall \& Wathen method and forward-looking gittins index rule.
+             maximal power strategy targeting Neyman allocation and RSIHR allocation, Bayesian response-adaptive randomization with 
+             a control group using Thall \& Wathen method and forward-looking Gittins index rule.
 Encoding: UTF-8
 Collate: 'brar_select_au_binary.r' 'brar_select_au_known_var.r'  'brar_select_au_unknown_var.r' 
          'convert_gamma_to_chisq.r' 'convert_chisq_to_gamma.r'  'update_par_nichisq.r'
@@ -42,7 +42,7 @@ Collate: 'brar_select_au_binary.r' 'brar_select_au_known_var.r'  'brar_select_au
           'sim_dabcd_max_power.r' 'sim_dabcd_min_var.r' 
           'sim_RSIHR_optimal_known_var.r'  'sim_RSIHR_optimal_unknown_var.r' 
            'functions.r' 'RAR-package.r'
-Depends: R(> 4.0), stats, GI
+Depends: R(> 4.0), stats
 Imports: Rdpack(>= 0.7)
 RdMacros: Rdpack
 RoxygenNote: 7.3.1

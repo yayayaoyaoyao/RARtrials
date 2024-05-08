@@ -35,7 +35,7 @@ of this function is a vector of allocation probabilities to each arm, with the p
 }
 \details{
 The function simulates allocation probabilities for doubly adaptive biased coin design with minimal variance strategy targeting
-generalized Neyman allocation and generalized RSIHR allocation with 2-5 arms. The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
+generalized Neyman allocation and generalized RSIHR allocation with 2-5 arms. The output of this function is based on Hu \code{\&} Zhang's formula \insertCite{Hu2004}{RARtrials}.
 With more than two armd the one-sided nominal level of each test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 }
 \examples{

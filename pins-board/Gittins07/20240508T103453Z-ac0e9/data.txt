@@ -1,0 +1,10 @@
+file: Gittins07.json
+file_size: 25748827
+pin_hash: ac0e9aeb41083db5
+type: json
+title: 'Gittins07: a pinned double vector'
+description: ~
+tags: ~
+urls: ~
+created: 20240508T103453Z
+api_version: 1

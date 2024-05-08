@@ -21,7 +21,7 @@
 #' the number of TimeToOutcome should also change. It can be in the format
 #' of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
 #' with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-#' These related functions are adapted from \url{http://github.com/kwathen/IntroBayesianSimulation}.
+#' These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
 #' Refer to the website for more details.
 #' @param enrollrate probability that patients in the population can enroll in the trial.
 #' This parameter is related to the number of people who have been affected by the disease in the population,
@@ -119,14 +119,18 @@ sim_A_optimal_known_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N2,armn,mea
  # return(list(pr1,zz1,data1))
   output1<-list(pr1,zz1,data1,p[,3])
   class(output1)<-'aoptimal'
-  print.aoptimal<-function(output1,...){
-    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
-    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
-    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
-    invisible(output1)
-  }
+
   
-  
-  return(print.aoptimal(output1))
+  return(output1)
 }
 
+
+
+#' @export print.aoptimal
+#' @export
+print.aoptimal<-function(x,...){
+  cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+  cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
+  cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+  invisible(x)
+}

@@ -2,7 +2,7 @@
 #' @description \code{sim_dabcd_min_var} can be used for doubly adaptive biased coin design with minimal variance
 #' strategy for binary outcomes, targeting generalized Neyman allocation and generalized RSIHR allocation
 #' with 2-5 arms. 
-#' @details The output of this function is based on Hu \& Zhang's formula \insertCite{Hu2004}{RARtrials}.
+#' @details The output of this function is based on Hu \code{\&} Zhang's formula \insertCite{Hu2004}{RARtrials}.
 #' With more than two arms the one-sided nominal level of each
 #' test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
 #' @aliases sim_dabcd_min_var
@@ -20,7 +20,7 @@
 #' the number of TimeToOutcome should also change. It can be in the format
 #' of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
 #' with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-#' These related functions are adapted from \url{http://github.com/kwathen/IntroBayesianSimulation}.
+#' These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
 #' Refer to the website for more details.
 #' @param enrollrate probability that patients in the population can enroll in the trial.
 #' This parameter is related to the number of people who have been affected by the disease in the population,
@@ -166,13 +166,15 @@ sim_dabcd_min_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,armn,armlab
  # return(list(pr1,phi1,data1))
   output1<-list(pr1,phi1,data1,Ntotal1)
   class(output1)<-'dabcd'
-  print.dabcd<-function(output1,...){
-    cat("\nFinal Decision:\n",paste(output1[[1]],sep=', ',collapse=', '),"\n")
-    cat("\nTest Statistics:\n",paste(output1[[2]],sep=', ',collapse=', '),"\n")
-    cat("\nAccumulated Number of Participants in Each Arm:\n",paste(output1[[4]],sep=', ',collapse=', '))
-    invisible(output1)
-  }
   
-  
-  return(print.dabcd(output1))
+  return(output1)
+}
+
+#' @export print.dabcd
+#' @export
+print.dabcd<-function(x,...){
+  cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
+  cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
+  cat("\nAccumulated Number of Participants in Each Arm:\n",paste(x[[4]],sep=', ',collapse=', '))
+  invisible(x)
 }
