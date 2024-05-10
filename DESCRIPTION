@@ -26,8 +26,8 @@ Authors@R: c(person(given="Chuyao",
 Maintainer: Chuyao Xu  <cxu870@aucklanduni.ac.nz>
 Description: Some response-adaptive randomisation methods commonly found in literature are included in this package.
              These methods include the randomized play-the-winner rule, doubly adaptive biased coin design with minimal variance strategy and
-             maximal power strategy targeting Neyman allocation and RSIHR allocation, Bayesian response-adaptive randomization with 
-             a control group using Thall \& Wathen method and the forward-looking Gittins index rule.
+             maximal power strategy targeting 'Neyman' allocation and 'RSIHR' allocation, Bayesian response-adaptive randomization with 
+             a control group using 'Thall' \& 'Wathen' method and the forward-looking 'Gittins' index rule.
 Encoding: UTF-8
 Collate: 'brar_select_au_binary.r' 'brar_select_au_known_var.r'  'brar_select_au_unknown_var.r' 
          'convert_gamma_to_chisq.r' 'convert_chisq_to_gamma.r'  'update_par_nichisq.r'
