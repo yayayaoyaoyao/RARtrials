@@ -65,16 +65,9 @@
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' sim_flgi_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
 #' TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
-#' K=3,noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(2,3),
-#' prior_mean1=rep(0,3),prior_sd1=rep(1,3),stopbound=1.885,
+#' K=3,noRuns2=100,Tsize=100,block=20,rule='FLGI PM',prior_n=rep(2,3),
+#' prior_mean1=rep(0,3),prior_sd1=rep(1,3),stopbound=0.8,
 #' mean=c(0.05,0.07,0.13),sd=c(0.346,0.346,0.346),side='upper')
-#'
-#' #forward-looking Gittins index rule with no delay responses
-#' sim_flgi_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
-#' TimeToOutcome=0,enrollrate=0.5,K=3,noRuns2=100,Tsize=120,block=8,
-#' rule='FLGI PM',prior_n=rep(2,3),prior_mean1=rep(0,3),prior_sd1=rep(1,3),
-#' stopbound=-2.0,mean=c(0.05,0.07,0.13),sd=c(0.346,0.346,0.346),
-#' side='lower')
 #' @references
 #' \insertRef{Williamson2019}{RARtrials}
 
@@ -304,7 +297,7 @@ sim_flgi_unknown_var<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutco
   return(output1)
 }
 
-#' @export print.flgi
+
 #' @export
 print.flgi<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")

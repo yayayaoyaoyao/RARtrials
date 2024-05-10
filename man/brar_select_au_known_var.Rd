@@ -147,17 +147,17 @@ with \code{side} equals to 'lower', utilizing available data at each step.
 #a mean of 30 days and a standard deviation of 3 days, where mean=c(8.9/100,8.74/100,8.74/100),
 #sd=c(0.009,0.009,0.009), tp=0.5 and the minimal effect size is 0.
 set.seed(789)
-stopbound1<-lapply(1:200,function(x){
+stopbound1<-lapply(1:10,function(x){
 brar_select_au_known_var(Pats=10,nMax=50000,TimeToOutcome=expression(
 rnorm(length( vStartTime ),30, 3)),enrollrate=0.1, N1=21,armn=3,
 N2=189,tp=0.5,armlabel=c(1,2,3),blocksize=6,mean=c((8.9/100+8.74/100+8.74/100)/3,
 (8.9/100+8.74/100+8.74/100)/3,(8.9/100+8.74/100+8.74/100)/3),
-sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(-0.0019,-0.0014),tpp=0,deltaa1=c(0,0),
+sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(0,0.001),tpp=0,deltaa1=c(0,0),
 mean10=0.09,mean20=0.09,mean30=0.09, sd10=0.01,sd20=0.01,sd30=0.01,n10=1,n20=1,
 n30=1,side='lower')})
 simf<-list()
 simf1<-list()
-for (xx in 1:200){
+for (xx in 1:10){
  if (any(stopbound1[[xx]][21:188,2]<0.01)){
       simf[[xx]]<-NA
    }  else{
@@ -170,17 +170,17 @@ for (xx in 1:200){
  }
 }
 simf2<-do.call(rbind,simf)
-sum(is.na(simf2)) #2, achieve around 1\% futility
+sum(is.na(simf2)) #1, achieve around 10\% futility
 simf3<-do.call(rbind,simf1)
-sum(is.na(simf3)) #2, achieve around 1\% futility
+sum(is.na(simf3)) #1, achieve around 10\% futility
 stopbound1a<-cbind(simf2,simf3)
 stopbound1a[is.na(stopbound1a)] <- 0
-sum(stopbound1a[,1]>0.968 | stopbound1a[,2]>0.968)/200 #0.05
-#the selected stopping boundary is 0.968 with an overall lower one-sided type I
-#error of 0.05, based on 200 simulations. Because it is under the permutation null hypothesis,
-#the selected deltaa should be an average of -0.0019 and -0.0014 which is -0.00165, although
+sum(stopbound1a[,1]>0.973 | stopbound1a[,2]>0.973)/10 #0.1
+#the selected stopping boundary is 0.973 with an overall lower one-sided type I
+#error of 0.1, based on 10 simulations. Because it is under the permutation null hypothesis,
+#the selected deltaa should be an average of 0 and 0.001 which is 0.0005, although
 #deltaa could be close to each other with larger simulation numbers.
-#It is recommended to conduct more simulations (i.e., 1000) to obtain a more accurate deltaa and au.
+#It is recommended to conduct more simulations (i.e., 1000) to obtain an accurate deltaa and au.
 #As the simulation number increases, the choice of deltaa could be consistent for comparisons
 #of each arm to the control.
 

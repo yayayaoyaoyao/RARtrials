@@ -70,13 +70,13 @@
 #' #a mean of 30 days and a standard deviation of 3 days, where h1=c(0.2,0.4), tp=0.5,
 #' #early futility stopping is set at -0.085, and the minimal effect size is 0.1.
 #' set.seed(123)
-#' stopbound1<-lapply(1:100,function(x){brar_select_au_binary(Pats=10,
+#' stopbound1<-lapply(1:10,function(x){brar_select_au_binary(Pats=10,
 #' nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
 #' enrollrate=0.1,N1=24,armn=2,h=c(0.3,0.3),N2=224,tp=0.5,armlabel=c(1,2),
-#' blocksize=4,alpha1=1,beta1=1,alpha2=1,beta2=1,minstart=24,deltaa=-0.051,
+#' blocksize=4,alpha1=1,beta1=1,alpha2=1,beta2=1,minstart=24,deltaa=-0.01,
 #' tpp=0,deltaa1=0.1,side='upper')})
 #' simf<-list()
-#' for (xx in 1:100){
+#' for (xx in 1:10){
 #'     if (any(stopbound1[[xx]][24:223,2]<0.01)){
 #'       simf[[xx]]<-NA
 #'    }  else{
@@ -84,11 +84,11 @@
 #'  }
 #'}
 #'simf1<-do.call(rbind,simf)
-#'sum(is.na(simf1))/100  #1, achieve around 1% futility
-#'sum(simf1>0.436,na.rm=TRUE)/100  #0.05
-#'#the selected stopping boundary is 0.436 with an overall upper one-sided type I
-#'#error of 0.05, based on 100 simulations. It is recommended to conduct more simulations (i.e., 1000)
-#'#to obtain a more accurate au.
+#'sum(is.na(simf1))/10  #1, achieve around 10% futility
+#'sum(simf1>0.36,na.rm=TRUE)/10  #0.1
+#'#the selected stopping boundary is 0.36 with an overall upper one-sided type I
+#'#error of 0.1, based on 10 simulations. It is recommended to conduct more simulations 
+#'#(i.e., 1000) to obtain an accurate au.
 #' @references 
 #' \insertRef{Wathen2017}{RARtrials}
 

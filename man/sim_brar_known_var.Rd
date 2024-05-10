@@ -152,9 +152,9 @@ with \code{side} equals to 'lower', utilizing available data at each step.
 #a mean of 30 days and a standard deviation of 3 days, where mean=c(8.9/100,8.74/100,8.74/100),
 #sd=c(0.009,0.009,0.009), tp=0.5 and the minimal effect size is 0.
 sim_brar_known_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
-length(vStartTime),30, 3)),enrollrate=0.1, N1=21,armn=3,au=c(0.968,0.968),
+length(vStartTime),30, 3)),enrollrate=0.1, N1=21,armn=3,au=c(0.973,0.973),
 N2=189,tp=0.5,armlabel=c(1,2,3),blocksize=6,mean=c(8.9/100,8.74/100,8.74/100),
-sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(-0.00165,-0.00165),tpp=0,deltaa1=c(0,0),
+sd=c(0.009,0.009,0.009),minstart=21,deltaa=c(0.0005,0.0005),tpp=0,deltaa1=c(0,0),
 mean10=0.09,mean20=0.09,mean30=0.09,sd10=0.01,sd20=0.01,sd30=0.01,n10=1,n20=1,n30=1,side='lower')
 }
 \references{

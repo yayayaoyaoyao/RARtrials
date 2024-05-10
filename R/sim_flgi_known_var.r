@@ -208,7 +208,6 @@ sim_flgi_known_var<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome
 }
 
 
-#' @export print.flgi
 #' @export
 print.flgi<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")

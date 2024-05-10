@@ -174,9 +174,7 @@ sim_RSIHR_optimal_known_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,a
 
 
 
-
-#' @export print.RSIHRoptimal
-#' @export
+#' @export  
 print.RSIHRoptimal<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")

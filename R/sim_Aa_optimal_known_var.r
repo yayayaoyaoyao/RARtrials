@@ -123,8 +123,7 @@ sim_Aa_optimal_known_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N2,armn,me
 
 }
 
-#' @export print.Aaoptimal
-#' @export
+#' @export 
 print.Aaoptimal<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")

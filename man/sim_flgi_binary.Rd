@@ -106,17 +106,9 @@ The cut-off value used for \code{stopbound} is obtained by simulations using \co
 #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #with a mean of 30 days and a standard deviation of 3 days
 sim_flgi_binary(Gittinstype='Binary',df=0.5,Pats=10,nMax=50000,TimeToOutcome=expression(
-rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
-K=2,Tsize=256,ptrue=c(0.2,0.4),block=2,rule='FLGI PM',ztype='unpooled',
-stopbound=-1.5,side='lower')
-
-#forward-looking Gittins index rule with delayed response follows a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-sim_flgi_binary(Gittinstype='Binary',df=0,Pats=10,nMax=50000,TimeToOutcome=
-expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,
-I0= matrix(1,nrow=2,2),K=2,Tsize=256,ptrue=c(0.2,0.2),block=2,
-rule='FLGI PM',ztype='unpooled',stopbound=1.6,side='upper')
-
+rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,I0= matrix(1,nrow=2,2),
+K=2,Tsize=100,ptrue=c(0.2,0.5),block=20,rule='FLGI PM',ztype='unpooled',
+stopbound=-1.3,side='lower')
 }
 \references{
 \insertRef{Villar2015}{RARtrials}

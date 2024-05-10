@@ -77,12 +77,12 @@
 #' @examples
 #' #sim_brar_unknown_var with delayed responses follow a normal distribution with
 #' #a mean of 30 days and a standard deviation of 3 days under the null hypothesis,
-#' #where mean=c(9.19/100,8.92/100,8.92/100), sd=c(0.009,0.009,0.009), tp=1 and 
+#' #where mean=c(9.19/100,8.74/100,8.74/100), sd=c(0.009,0.009,0.009), tp=1 and 
 #' #the minimal effect size is 0.
 #' sim_brar_unknown_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
-#' length(vStartTime ),30,3)),enrollrate=0.1, N1=192,armn=3,au=c(0.9638,0.9638),
-#' N2=1920,tp=1,armlabel=c(1, 2,3),blocksize=6,mean=c(9.19/100,8.92/100,8.92/100),
-#' sd=c(0.009,0.009,0.009), minstart=192,deltaa=c(0.00075,0.00075),
+#' length(vStartTime ),30,3)),enrollrate=0.1, N1=48,armn=3,au=c(0.85,0.85),
+#' N2=480,tp=1,armlabel=c(1, 2,3),blocksize=6,mean=c(9.19/100,8.74/100,8.74/100),
+#' sd=c(0.009,0.009,0.009), minstart=48,deltaa=c(-0.000325,-0.000325),
 #' tpp=0,deltaa1=c(0,0),V01=1/2,a01=0.3,m01=9/100,b01=0.00001,side='lower')
 #' @references 
 #' \insertRef{Kevin2007}{RARtrials}
@@ -383,7 +383,6 @@ sim_brar_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,armn,au,N2,
 
 
 
-#' @export print.brar
 #' @export 
 print.brar<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")

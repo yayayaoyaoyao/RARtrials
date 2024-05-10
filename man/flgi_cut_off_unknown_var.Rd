@@ -108,25 +108,12 @@ set.seed(12345)
 stopbound1<-lapply(1:10,function(x){
 flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
 TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
-K=3,noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(2,3),
+K=3,noRuns2=100,Tsize=100,block=20,rule='FLGI PM',prior_n=rep(2,3),
 prior_mean1=rep(0,3),prior_sd1=rep(1,3),mean=c(-0.05,-0.05,-0.05),
 sd=c(0.346,0.346,0.346),side='upper')})
 stopbound1a<-do.call(rbind,stopbound1)
-sum(stopbound1a[,1]>1.885| stopbound1a[,2]>1.885 )/10 #0.05
-#the selected cut-off value is 1.885 with an overall upper one-sided type I
-#error of 0.1, based on 10 simulations.
-#It is recommended to conduct more simulations to obtain an accurate cut-off value.
-
-#forward-looking Gittins index rule with no delay responses
-set.seed(12345)
-stopbound2<-lapply(1:10,function(x){
-flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
-TimeToOutcome=0,enrollrate=0.5,K=3,noRuns2=100,Tsize=120,block=8,
-rule='FLGI PM',prior_n=rep(2,3),prior_mean1=rep(0,3),prior_sd1=rep(1,3),
-mean=c(0.05,0.05,0.05),sd=c(0.346,0.346,0.346),side='lower')})
-stopbound2a<-do.call(rbind,stopbound2)
-sum(stopbound2a[,1]<=-1.0 | stopbound2a[,2]<=-1.0 )/10 #0.1
-#the selected cut-off value is -1.0 with an overall lower one-sided type I
+sum(stopbound1a[,1]>0.8| stopbound1a[,2]>0.8 )/10 #0.1
+#the selected cut-off value is 0.8 with an overall upper one-sided type I
 #error of 0.1, based on 10 simulations.
 #It is recommended to conduct more simulations to obtain an accurate cut-off value.
 

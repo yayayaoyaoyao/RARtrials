@@ -9,6 +9,7 @@
 #' in \insertCite{Gittins2011}{RARtrials}.
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export Gittins
+#' @importFrom stats approx
 #' @param Gittinstype type of Gittins indices, with choices from 'binary', 'UNKV' and 'KV'.
 #' 'binary' represents binary outcomes, 'UNKV' and 'KV' represent continuous outcomes with
 #'  known and unknown variance respectively.
@@ -17,11 +18,10 @@
 #' 0, 0.5, 0.7, 0.99 and 0.995 for \code{Gittinstype} in 'binary'.
 #' @return A vector of Gittins indices for \code{Gittinstype} in 'UNKV' and 'KV'. A matrix of
 #' Gittins indices for \code{Gittinstype} in 'binary'.
-#' @importFrom stats approx
+#' @import pins
 #' @examples
 #' Gittins(Gittinstype='UNKV',df=0.5)
-#' Gittins(Gittinstype='KV',df=0.7)
-#' Gittins(Gittinstype='Binary',df=0.5)
+#' Gittins(Gittinstype='binary',df=0)
 #' @references 
 #' \insertRef{Gittins2011}{RARtrials}
 
@@ -188,16 +188,22 @@ Gittins<-function(Gittinstype,df){
   }
 
   if (Gittinstype=='Binary'){
+    board<-pins::board_url( 'https://raw.githubusercontent.com/yayayaoyaoyao/GI/main/pins-board/_pins.yaml')
+     
     if (df==0){
-      GI<-GI::Gittins0
+      GI<-board%>%pin_read('Gittins0')
     }else if (df==0.5){
-      GI<-GI::Gittins05
+      GI<-board%>%pin_read('Gittins05')
+      #GI<-GI::Gittins05
     }else if (df==0.995){
-      GI<-GI::Gittins0995
+      GI<-board%>%pin_read('Gittins0995')
+      #GI<-GI::Gittins0995
     }else if (df==0.7){
-      GI<-GI::Gittins07
+      GI<-board%>%pin_read('Gittins07')
+      #GI<-GI::Gittins07
     }else if (df==0.99){
-      GI<-GI::Gittins099
+      GI<-board%>%pin_read('Gittins099')
+      #GI<-GI::Gittins099
     }
   }
 

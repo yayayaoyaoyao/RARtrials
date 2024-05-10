@@ -56,23 +56,14 @@
 #' the maximal Gittins index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 
 #' at the time of termination of that group in one trial. The simulated data set includes 5 columns: participant ID number, enrollment time, 
 #' observed time of results, allocated arm, and participants' result.
-#' @import GI
 #' @importFrom stats runif
 #' @examples
 #' #forward-looking Gittins index rule with delayed responses follow a normal distribution
 #' #with a mean of 30 days and a standard deviation of 3 days
 #' sim_flgi_binary(Gittinstype='Binary',df=0.5,Pats=10,nMax=50000,TimeToOutcome=expression(
-#' rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,I0= matrix(1,nrow=2,2),
-#' K=2,Tsize=256,ptrue=c(0.2,0.4),block=2,rule='FLGI PM',ztype='unpooled',
-#' stopbound=-1.5,side='lower')
-#'
-#' #forward-looking Gittins index rule with delayed response follows a normal distribution
-#' #with a mean of 30 days and a standard deviation of 3 days
-#' sim_flgi_binary(Gittinstype='Binary',df=0,Pats=10,nMax=50000,TimeToOutcome=
-#' expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,
-#' I0= matrix(1,nrow=2,2),K=2,Tsize=256,ptrue=c(0.2,0.2),block=2,
-#' rule='FLGI PM',ztype='unpooled',stopbound=1.6,side='upper')
-#'
+#' rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,I0= matrix(1,nrow=2,2),
+#' K=2,Tsize=100,ptrue=c(0.2,0.5),block=20,rule='FLGI PM',ztype='unpooled',
+#' stopbound=-1.3,side='lower')
 #' @references 
 #' \insertRef{Villar2015}{RARtrials}
 
@@ -264,7 +255,7 @@ sim_flgi_binary<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,en
   return(output1)
 }
 
-#' @export print.flgi
+
 #' @export
 print.flgi<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")

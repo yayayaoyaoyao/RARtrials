@@ -71,44 +71,46 @@
 #' @importFrom Rdpack reprompt
 #' @examples
 #' #brar_select_au_unknown_var with delayed responses follow a normal distribution with
-#' #a mean of 30 days and a standard deviation of 3 days, where 
-#' #mean=c((9.1/100+8.92/100+8.92/100)/3,(9.1/100+8.92/100+8.92/100)/3,
-#' #(9.1/100+8.92/100+8.92/100)/3),sd=c(0.009,0.009,0.009),tp=1 and 
+#' #a mean of 60 days and a standard deviation of 3 days, where 
+#' #mean=c((9.1/100+8.74/100+8.74/100)/3,(9.1/100+8.74/100+8.74/100)/3,
+#' #(9.1/100+8.74/100+8.74/100)/3),sd=c(0.009,0.009,0.009),tp=1 and 
 #' #the minimal effect size is 0. All arms have the same prior distributions.
 #' set.seed(789)
-#' stopbound1<-lapply(1:200,function(x){
+#' stopbound1<-lapply(1:5,function(x){
 #' brar_select_au_unknown_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
-#' length( vStartTime ),30, 3)), enrollrate=0.1, N1=192, armn=3, N2=1920, tp=1,
-#' armlabel=c(1,2,3), blocksize=6, mean=c((9.1/100+8.92/100+8.92/100)/3,
-#' (9.1/100+8.92/100+8.92/100)/3,(9.1/100+8.92/100+8.92/100)/3) ,
-#' sd=c(0.009,0.009,0.009),minstart=192, deltaa=c(0.00075,0.00075), tpp=0, 
+#' length( vStartTime ),30, 3)), enrollrate=0.1, N1=48, armn=3, N2=480, tp=1,
+#' armlabel=c(1,2,3), blocksize=6, mean=c((9.1/100+8.74/100+8.74/100)/3,
+#' (9.1/100+8.74/100+8.74/100)/3,(9.1/100+8.74/100+8.74/100)/3) ,
+#' sd=c(0.009,0.009,0.009),minstart=48, deltaa=c(-0.0003,-0.00035), tpp=0, 
 #' deltaa1=c(0,0),V01=1/2,a01=0.3,m01=9/100,b01=0.00001,side='lower')
 #'})
 #'
 #' simf<-list()
 #' simf1<-list()
-#' for (xx in 1:200){
-#'  if (any(stopbound1[[xx]][193:1919,2]<0.01)){
+#' for (xx in 1:5){
+#'  if (any(stopbound1[[xx]][48:479,2]<0.01)){
 #'       simf[[xx]]<-NA
 #'    }  else{
-#'       simf[[xx]]<-stopbound1[[xx]][1920,2]
+#'       simf[[xx]]<-stopbound1[[xx]][480,2]
 #'  }
-#'  if (any(stopbound1[[xx]][193:1919,3]<0.01)){
+#'  if (any(stopbound1[[xx]][48:479,3]<0.01)){
 #'       simf1[[xx]]<-NA
 #'    }  else{
-#'       simf1[[xx]]<-stopbound1[[xx]][1920,3]
+#'       simf1[[xx]]<-stopbound1[[xx]][480,3]
 #'  }
 #'}
 #'simf2<-do.call(rbind,simf)
-#'sum(is.na(simf2)) #2, achieve around 1% futility
+#'sum(is.na(simf2)) #1, achieve around 20% futility
 #'simf3<-do.call(rbind,simf1)
-#'sum(is.na(simf3)) #2, achieve around 1% futility
+#'sum(is.na(simf3)) #1, achieve around 20% futility
 #'stopbound1a<-cbind(simf2,simf3)
 #'stopbound1a[is.na(stopbound1a)] <- 0
-#'sum(stopbound1a[,1]>0.9638 | stopbound1a[,2]>0.9638)/200 #0.05
-#'#the selected stopping boundary is 0.9638 with an overall lower one-sided type 
-#'#I error of 0.05, based on 200 simulations. It is recommended to conduct more simulations (i.e., 1000)  
-#'#to obtain a more accurate deltaa and au. As the simulation number increases, the
+#'sum(stopbound1a[,1]>0.85 | stopbound1a[,2]>0.85)/5 #0.2
+#'#the selected stopping boundary is 0.85 with an overall lower one-sided type 
+#'#I error of 0.2, based on 5 simulations. Because it is under the permutation null hypothesis,
+#'#the selected deltaa should be an average of -0.0003 and -0.00035 which is -0.000325.
+#'#It is recommended to conduct more simulations (i.e., 1000)  
+#'#to obtain an accurate deltaa and au. As the simulation number increases, the
 #'#choice of deltaa could be consistent for comparisons of each arm to the control.
 #' @references 
 #' \insertRef{Wathen2017}{RARtrials}

@@ -136,8 +136,8 @@ with \code{side} equals to 'lower', utilizing available data at each step.
 #sim_brar_binary with delayed responses follow a normal distribution with a mean
 #of 30 days and a standard deviation of 3 days, where h1=c(0.2,0.4) and tp=0.5.
 sim_brar_binary(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
-enrollrate=0.1,N1=24,armn=2,h=c(0.2,0.4),au=0.436,N2=224,tp=0.5,armlabel=c(1,2),blocksize=4,
-alpha1=1,beta1=1,alpha2=1,beta2=1,minstart=24,deltaa=-0.051,tpp=0,deltaa1=0.1,side='upper')
+enrollrate=0.1,N1=24,armn=2,h=c(0.2,0.4),au=0.36,N2=224,tp=0.5,armlabel=c(1,2),blocksize=4,
+alpha1=1,beta1=1,alpha2=1,beta2=1,minstart=24,deltaa=-0.01,tpp=0,deltaa1=0.1,side='upper')
 }
 \references{
 \insertRef{Wathen2017}{RARtrials}

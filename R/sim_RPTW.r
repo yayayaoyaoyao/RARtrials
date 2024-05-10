@@ -4,7 +4,7 @@
 #' rule under both no delay and delay scenarios. This method is a type of urn design 
 #' with the motivation to allocate more participants to the better treatment group.
 #' @aliases sim_RPTW
-#' @author Chuyao Xu, Thomas Lumley & Alain Vandal
+#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export sim_RPTW
 #' @param Pats the number of patients accrued within a certain time frame indicates the
 #' count of individuals who have been affected by the disease during that specific period,
@@ -23,10 +23,9 @@
 #' @param enrollrate probability that patients in the population can enroll in the trial.
 #' This parameter is related to the number of people who have been affected by the disease in the population,
 #' following an exponential distribution.
-#' @param na0 the initial number of balls in the urn represents the control group.
-#' @param nb0 the initial number of balls in the urn represents the treatment group.
-#' @param na1 additional number of balls represents the control group added to the urn after the result of each participant.
-#' @param nb1 additional number of balls represents the treatment group added to the urn after the result of each participant.
+#' @param na0,nb0 the initial number of balls in the urn represents the control group and the treatment group.
+#' @param na1,nb1 additional number of balls represents the control group and the treatment group added to 
+#' the urn after the result of each participant.
 #' @param h a vector of hypothesis, for example, as c(0.1,0.1) where 0.1 stands for the success probability
 #' for both groups. Another example is c(0.1,0.3) where 0.1 and 0.3 stand for the success probabilities
 #' for the control and a treatment group, respectively.
@@ -159,7 +158,6 @@ sim_RPTW<-  function(Pats,nMax,TimeToOutcome,enrollrate,na0,nb0,na1,nb1,h,alphaa
 }
 
 
-#' @export print.rptw
 #' @export 
 print.rptw<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")

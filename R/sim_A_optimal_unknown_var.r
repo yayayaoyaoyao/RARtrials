@@ -146,8 +146,7 @@ sim_A_optimal_unknown_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,arm
 }
 
 
-#' @export print.aoptimal
-#' @export
+#' @export 
 print.aoptimal<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")

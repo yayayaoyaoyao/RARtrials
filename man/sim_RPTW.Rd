@@ -42,13 +42,10 @@ Refer to the website for more details.}
 This parameter is related to the number of people who have been affected by the disease in the population,
 following an exponential distribution.}
 
-\item{na0}{the initial number of balls in the urn represents the control group.}
+\item{na0, nb0}{the initial number of balls in the urn represents the control group and the treatment group.}
 
-\item{nb0}{the initial number of balls in the urn represents the treatment group.}
-
-\item{na1}{additional number of balls represents the control group added to the urn after the result of each participant.}
-
-\item{nb1}{additional number of balls represents the treatment group added to the urn after the result of each participant.}
+\item{na1, nb1}{additional number of balls represents the control group and the treatment group added to 
+the urn after the result of each participant.}
 
 \item{h}{a vector of hypothesis, for example, as c(0.1,0.1) where 0.1 stands for the success probability
 for both groups. Another example is c(0.1,0.3) where 0.1 and 0.3 stand for the success probabilities
@@ -91,5 +88,5 @@ enrollrate=0.9,na0=1,nb0=1,na1=1,nb1=1,h=c(0.1,0.3),alphaa=0.025,N2=168,side='up
 \insertRef{Wei1978}{RARtrials}
 }
 \author{
-Chuyao Xu, Thomas Lumley & Alain Vandal
+Chuyao Xu, Thomas Lumley, Alain Vandal
 }

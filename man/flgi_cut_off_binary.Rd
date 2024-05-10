@@ -100,27 +100,13 @@ multiple times to determine a reasonable cut-off value for statistical inference
 set.seed(12345)
 stopbound1<-lapply(1:10,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0.5,Pats=10,
 nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
-enrollrate=0.1,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=256,ptrue=c(0.2,0.2),block=2,
+enrollrate=0.5,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=100,ptrue=c(0.2,0.2),block=20,
 rule='FLGI PM',ztype='unpooled')})
 stopbound1a<-do.call(rbind,stopbound1)
-sum(stopbound1a< (-1.82) )/10 #0.1
-#the selected cut-off value is -1.82 with an overall lower one-sided type I
+sum(stopbound1a< (-1.3) )/10#0.1
+#the selected cut-off value is -1.3 with an overall lower one-sided type I
 #error of 0.1, based on 10 simulations.
 #It is recommended to conduct more simulations (i.e.,1000) to obtain an accurate cut-off value.
-
-#forward-looking Gittins index rule with delayed responses follow a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-set.seed(12345)
-stopbound2<-lapply(1:10,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0,Pats=10,
-nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
-enrollrate=0.1,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=256,ptrue=c(0.2,0.2),block=2,
-rule='FLGI PM',ztype='unpooled')})
-stopbound2a<-do.call(rbind,stopbound2)
-sum(stopbound2a>0.5)/10 #0.1
-#the selected cut-off value is 0.5 with an overall upper one-sided type I
-#error of 0.1, based on 10 simulations.
-#It is recommended to conduct more simulations (i.e.,1000) to obtain an accurate cut-off value.
-
 }
 \references{
 \insertRef{Gittins2011}{RARtrials}

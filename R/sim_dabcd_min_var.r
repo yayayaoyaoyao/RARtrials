@@ -170,8 +170,7 @@ sim_dabcd_min_var<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,armn,armlab
   return(output1)
 }
 
-#' @export print.dabcd
-#' @export
+#' @export 
 print.dabcd<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")

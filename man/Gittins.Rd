@@ -33,8 +33,7 @@ in \insertCite{Gittins2011}{RARtrials}.
 }
 \examples{
 Gittins(Gittinstype='UNKV',df=0.5)
-Gittins(Gittinstype='KV',df=0.7)
-Gittins(Gittinstype='Binary',df=0.5)
+Gittins(Gittinstype='binary',df=0)
 }
 \references{
 \insertRef{Gittins2011}{RARtrials}

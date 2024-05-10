@@ -688,8 +688,7 @@ sim_dabcd_max_power<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,
 
 }
 
-#' @export print.dabcd
-#' @export
+#' @export 
 print.dabcd<-function(x,...){
   cat("\nFinal Decision:\n",paste(x[[1]],sep=', ',collapse=', '),"\n")
   cat("\nTest Statistics:\n",paste(round(x[[2]],2),sep=', ',collapse=', '),"\n")
