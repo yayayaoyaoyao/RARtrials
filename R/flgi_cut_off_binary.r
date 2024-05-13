@@ -54,18 +54,20 @@
 #' @import pins
 #' @return Value of Z test statistics for one trial.
 #' @examples
-#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
-#' #with a mean of 30 days and a standard deviation of 3 days
-#' set.seed(12345)
-#' stopbound1<-lapply(1:10,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0.5,Pats=10,
-#' nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),
-#' enrollrate=0.5,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=100,ptrue=c(0.2,0.2),block=20,
+#' #The forward-looking Gittins index rule with delayed responses follow a normal distribution
+#' #with a mean of 60 days and a standard deviation of 3 days
+#' #One can run the following command 20000 times to obtain the selected cut-off value around 1.9991
+#' #with an upper one-sided type I error 0.025
+#' \donttest{
+#' stopbound1<-lapply(1:20000,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0.5,Pats=10,
+#' nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),60, 3)),
+#' enrollrate=0.9,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=992,ptrue=c(0.6,0.6),block=20,
 #' rule='FLGI PM',ztype='unpooled')})
 #' stopbound1a<-do.call(rbind,stopbound1)
-#' sum(stopbound1a< (-1.3) )/10#0.1
-#' #the selected cut-off value is -1.3 with an overall lower one-sided type I
-#' #error of 0.1, based on 10 simulations.
-#' #It is recommended to conduct more simulations (i.e.,1000) to obtain an accurate cut-off value.
+#' sum(stopbound1a>(1.9991) )/20000
+#' #The selected cut-off value is around 1.9991 with an overall lower one-sided type I
+#' #error of 0.025, based on 20000 simulations.
+#' }
 #' @references
 #' \insertRef{Gittins2011}{RARtrials}
 #' \insertRef{Villar2015}{RARtrials}

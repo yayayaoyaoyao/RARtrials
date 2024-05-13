@@ -102,21 +102,22 @@ cut-off values at the final stage, with control of type I error. The user is exp
 multiple times to determine a reasonable cut-off value for statistical inference.
 }
 \examples{
-#forward-looking Gittins index rule with delayed responses follow a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-set.seed(12345)
-stopbound1<-lapply(1:10,function(x){
-flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
-TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
-K=3,noRuns2=100,Tsize=100,block=20,rule='FLGI PM',prior_n=rep(2,3),
-prior_mean1=rep(0,3),prior_sd1=rep(1,3),mean=c(-0.05,-0.05,-0.05),
-sd=c(0.346,0.346,0.346),side='upper')})
+#The forward-looking Gittins index rule with delayed responses follow a normal 
+#distribution with a mean of 60 days and a standard deviation of 3 days
+#One can run the following command 20000 times to obtain the selected cut-off 
+#value around -1.9298 with an overall lower one-sided type I error 0.025
+\donttest{
+stopbound1<-lapply(1:20000,function(x){ 
+flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.5,Pats=10,nMax=50000,
+TimeToOutcome=expression(rnorm( length( vStartTime ),60, 3)),enrollrate=0.9,
+K=3,noRuns2=100,Tsize=852,block=20,rule='FLGI PM',prior_n=rep(2,3),
+prior_mean1=rep(9/100,3),prior_sd1=rep(0.006324555,3),
+mean=c(9.1/100,9.1/100,9.1/100),sd=c(0.009,0.009,0.009),side='lower')})
 stopbound1a<-do.call(rbind,stopbound1)
-sum(stopbound1a[,1]>0.8| stopbound1a[,2]>0.8 )/10 #0.1
-#the selected cut-off value is 0.8 with an overall upper one-sided type I
-#error of 0.1, based on 10 simulations.
-#It is recommended to conduct more simulations to obtain an accurate cut-off value.
-
+sum(stopbound1a<(-1.9298) )/20000
+#The selected cut-off value is around -1.9298 with an overall lower one-sided 
+#type I error of 0.025, based on 20000 simulations.
+}
 }
 \references{
 \insertRef{Williamson2019}{RARtrials}

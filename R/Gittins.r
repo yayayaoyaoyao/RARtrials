@@ -10,18 +10,17 @@
 #' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export Gittins
 #' @importFrom stats approx
-#' @param Gittinstype type of Gittins indices, with choices from 'binary', 'UNKV' and 'KV'.
-#' 'binary' represents binary outcomes, 'UNKV' and 'KV' represent continuous outcomes with
+#' @param Gittinstype type of Gittins indices, with choices from 'Binary', 'UNKV' and 'KV'.
+#' 'Binary' represents binary outcomes, 'UNKV' and 'KV' represent continuous outcomes with
 #'  known and unknown variance respectively.
 #' @param df discount factor which is the multiplier for loss at each additional patient in the future.
 #' Available values are 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99 and 0.995 for \code{Gittinstype} in 'UNKV' and 'KV';
 #' 0, 0.5, 0.7, 0.99 and 0.995 for \code{Gittinstype} in 'binary'.
 #' @return A vector of Gittins indices for \code{Gittinstype} in 'UNKV' and 'KV'. A matrix of
-#' Gittins indices for \code{Gittinstype} in 'binary'.
+#' Gittins indices for \code{Gittinstype} in 'Binary'.
 #' @import pins
 #' @examples
-#' Gittins(Gittinstype='UNKV',df=0.5)
-#' Gittins(Gittinstype='binary',df=0)
+#' Gittins(Gittinstype='KV',df=0.5)
 #' @references 
 #' \insertRef{Gittins2011}{RARtrials}
 
@@ -188,21 +187,21 @@ Gittins<-function(Gittinstype,df){
   }
 
   if (Gittinstype=='Binary'){
-    board<-pins::board_url( 'https://raw.githubusercontent.com/yayayaoyaoyao/RARtrials/main/R/pins-board/_pins.yaml')
+    board<-pins::board_url('https://raw.githubusercontent.com/yayayaoyaoyao/RARtrials/main/R/pins-board/_pins.yaml')
      
     if (df==0){
-      GI<-board%>%pin_read('Gittins0')
+      GI<-pin_read(board,'Gittins0')
     }else if (df==0.5){
-      GI<-board%>%pin_read('Gittins05')
+      GI<-pin_read(board,'Gittins05')
       #GI<-GI::Gittins05
     }else if (df==0.995){
-      GI<-board%>%pin_read('Gittins0995')
+      GI<-pin_read(board,'Gittins0995')
       #GI<-GI::Gittins0995
     }else if (df==0.7){
-      GI<-board%>%pin_read('Gittins07')
+      GI<-pin_read(board,'Gittins07')
       #GI<-GI::Gittins07
     }else if (df==0.99){
-      GI<-board%>%pin_read('Gittins099')
+      GI<-pin_read(board,'Gittins099')
       #GI<-GI::Gittins099
     }
   }

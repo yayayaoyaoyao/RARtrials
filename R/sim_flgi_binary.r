@@ -58,12 +58,13 @@
 #' observed time of results, allocated arm, and participants' result.
 #' @importFrom stats runif
 #' @examples
-#' #forward-looking Gittins index rule with delayed responses follow a normal distribution
-#' #with a mean of 30 days and a standard deviation of 3 days
+#' #The forward-looking Gittins index rule with delayed responses follow a normal distribution
+#' #with a mean of 60 days and a standard deviation of 3 days
+#' \donttest{
 #' sim_flgi_binary(Gittinstype='Binary',df=0.5,Pats=10,nMax=50000,TimeToOutcome=expression(
-#' rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,I0= matrix(1,nrow=2,2),
-#' K=2,Tsize=100,ptrue=c(0.2,0.5),block=20,rule='FLGI PM',ztype='unpooled',
-#' stopbound=-1.3,side='lower')
+#' rnorm( length( vStartTime ),60, 3)),enrollrate=0.9,I0= matrix(1,nrow=2,2),
+#' K=2,Tsize=992,ptrue=c(0.6,0.7),block=20,rule='FLGI PM',ztype='unpooled',
+#' stopbound=1.9991,side='upper')}
 #' @references 
 #' \insertRef{Villar2015}{RARtrials}
 

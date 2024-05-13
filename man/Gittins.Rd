@@ -7,8 +7,8 @@
 Gittins(Gittinstype, df)
 }
 \arguments{
-\item{Gittinstype}{type of Gittins indices, with choices from 'binary', 'UNKV' and 'KV'.
-'binary' represents binary outcomes, 'UNKV' and 'KV' represent continuous outcomes with
+\item{Gittinstype}{type of Gittins indices, with choices from 'Binary', 'UNKV' and 'KV'.
+'Binary' represents binary outcomes, 'UNKV' and 'KV' represent continuous outcomes with
  known and unknown variance respectively.}
 
 \item{df}{discount factor which is the multiplier for loss at each additional patient in the future.
@@ -17,7 +17,7 @@ Available values are 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99 and 0.995 for \code{Git
 }
 \value{
 A vector of Gittins indices for \code{Gittinstype} in 'UNKV' and 'KV'. A matrix of
-Gittins indices for \code{Gittinstype} in 'binary'.
+Gittins indices for \code{Gittinstype} in 'Binary'.
 }
 \description{
 \code{Gittins} can provide Gittins indices for binary reward processes
@@ -32,8 +32,7 @@ Gittins indices for continuous outcomes are obtained by linear extrapolation usi
 in \insertCite{Gittins2011}{RARtrials}.
 }
 \examples{
-Gittins(Gittinstype='UNKV',df=0.5)
-Gittins(Gittinstype='binary',df=0)
+Gittins(Gittinstype='KV',df=0.5)
 }
 \references{
 \insertRef{Gittins2011}{RARtrials}

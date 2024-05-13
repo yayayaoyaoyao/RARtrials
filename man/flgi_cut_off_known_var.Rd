@@ -98,32 +98,38 @@ cut-off values at the final stage, with control of type I error. The user is exp
 multiple times to determine a reasonable cut-off value for statistical inference.
 }
 \examples{
-#forward-looking Gittins index rule with delayed responses follow a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-set.seed(12345)
-stopbound1<-lapply(1:10,function(x){
+#The forward-looking Gittins index rule with delayed responses follow a normal 
+#distribution with a mean of 30 days and a standard deviation of 3 days
+#One can run the following command 20000 times to obtain the selected cut-off
+#value around -2.1725 with an overall lower one-sided type I error 0.025
+\donttest{
+stopbound1<-lapply(1:20000,function(x){ 
 flgi_cut_off_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
 TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
-K=3,noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(1,3),
-prior_mean=rep(0,3),mean=c(-0.05,-0.05,-0.05),sd=c(0.346,0.346,0.346),side='upper')})
+K=3,noRuns2=100,Tsize=852,block=20,rule='FLGI PM',prior_n=rep(1,3),
+prior_mean=rep(9/100,3),mean=c(9.1/100,9.1/100,9.1/100),sd=c(0.009,0.009,0.009),
+side='lower')})
 stopbound1a<-do.call(rbind,stopbound1)
-sum(stopbound1a[,1]>1.84 | stopbound1a[,2]>1.84 )/10 #0.1
-#the selected cut-off value is 1.84 with an overall upper one-sided type I
-#error of 0.1, based on 10 simulations.
-#It is recommended to conduct more simulations to obtain an accurate cut-off value.
+sum(stopbound1a<(-2.1725) )/20000
+#The selected cut-off value is around -2.1725 with an overall lower one-sided 
+#type I error of 0.025, based on 20000 simulations.
+}
 
-#forward-looking Gittins index rule with no delay responses
-set.seed(12345)
-stopbound2<-replicate(10,flgi_cut_off_known_var(Gittinstype='KV',
-df=0.995,Pats=10,nMax=50000,TimeToOutcome=0,enrollrate=1,K=2,noRuns2=100,
-Tsize=72,block=9,rule='FLGI PM',prior_n=rep(2,3),prior_mean=rep(0,3),
-mean=c(0.155,0.155),sd=c(0.64,0.64),side='lower'))
-stopbound2a<-matrix(rbind(stopbound2),ncol=1)
-sum(stopbound2a[,1]<=-1.656 )/10 #0.1
-#the selected cut-off value is -1.656 with an overall lower one-sided type I
-#error of 0.1, based on 10 simulations.
-#It is recommended to conduct more simulations to obtain an accurate cut-off value.
 
+#One can run the following command 20000 times to obtain the selected cut-off 
+#value around -2.075 with an overall lower one-sided type I error 0.025
+\donttest{
+stopbound1<-lapply(1:20000,function(x){
+flgi_cut_off_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
+TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,
+K=3,noRuns2=100,Tsize=852,block=20,rule='CFLGI',prior_n=rep(1,3),
+prior_mean=rep(9/100,3),mean=c(9.1/100,9.1/100,9.1/100),sd=c(0.009,0.009,0.009),
+side='lower')})
+stopbound1a<-do.call(rbind,stopbound1)
+sum(stopbound1a<(-2.075) )/20000
+#The selected cut-off value is around -2.075 with an overall lower one-sided type I
+#error of 0.025, based on 20000 simulations.
+}
 }
 \references{
 \insertRef{Williamson2019}{RARtrials}

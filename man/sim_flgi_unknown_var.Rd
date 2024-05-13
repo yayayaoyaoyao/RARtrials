@@ -108,13 +108,14 @@ controlled forward-looking Gittins index algorithm under both no delay and delay
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_unk_var}.
 }
 \examples{
-#forward-looking Gittins index rule with delayed responses follow a normal distribution
-#with a mean of 30 days and a standard deviation of 3 days
-sim_flgi_unknown_var(Gittinstype='UNKV',df=0.995,Pats=10,nMax=50000,
-TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
-K=3,noRuns2=100,Tsize=100,block=20,rule='FLGI PM',prior_n=rep(2,3),
-prior_mean1=rep(0,3),prior_sd1=rep(1,3),stopbound=0.8,
-mean=c(0.05,0.07,0.13),sd=c(0.346,0.346,0.346),side='upper')
+#The forward-looking Gittins index rule with delayed responses follow a normal 
+#with a mean of 60 days and a standard deviation of 3 days
+\donttest{
+sim_flgi_unknown_var(Gittinstype='UNKV',df=0.5,Pats=10,nMax=50000,
+TimeToOutcome=expression(rnorm( length( vStartTime ),60, 3)),enrollrate=0.9,
+K=3,noRuns2=100,Tsize=852,block=20,rule='FLGI PM',prior_n=rep(2,3),
+prior_mean1=rep(9/100,3),stopbound=(-1.9298),prior_sd1=rep(0.006324555,3),
+mean=c(9.1/100,8.83/100,8.83/100),sd=c(0.009,0.009,0.009),side='lower')}
 }
 \references{
 \insertRef{Williamson2019}{RARtrials}
