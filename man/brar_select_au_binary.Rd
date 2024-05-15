@@ -57,7 +57,7 @@ Refer to the website for more details.}
 This parameter is related to the number of people who have been affected by the disease in the population,
 following an exponential distribution.}
 
-\item{N1}{number of participants with equal randomization in the ''initialization''initialization' period.
+\item{N1}{number of participants with equal randomization in the 'initialization' period.
 Recommend using 10 percent of the total sample size.}
 
 \item{armn}{number of total arms in the trial.}

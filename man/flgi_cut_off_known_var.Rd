@@ -102,7 +102,7 @@ multiple times to determine a reasonable cut-off value for statistical inference
 #distribution with a mean of 30 days and a standard deviation of 3 days
 #One can run the following command 20000 times to obtain the selected cut-off
 #value around -2.1725 with an overall lower one-sided type I error 0.025
-\donttest{
+\dontrun{
 stopbound1<-lapply(1:20000,function(x){ 
 flgi_cut_off_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
 TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.5,
@@ -118,7 +118,7 @@ sum(stopbound1a<(-2.1725) )/20000
 
 #One can run the following command 20000 times to obtain the selected cut-off 
 #value around -2.075 with an overall lower one-sided type I error 0.025
-\donttest{
+\dontrun{
 stopbound1<-lapply(1:20000,function(x){
 flgi_cut_off_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
 TimeToOutcome=expression(rnorm( length( vStartTime ),30, 3)),enrollrate=0.1,

@@ -28,7 +28,7 @@
 #' @param enrollrate probability that patients in the population can enroll in the trial.
 #' This parameter is related to the number of people who have been affected by the disease in the population,
 #' following an exponential distribution.
-#' @param N1 number of participants with equal randomization in the ''initialization''initialization' period.
+#' @param N1 number of participants with equal randomization in the 'initialization' period.
 #' Recommend using 10 percent of the total sample size.
 #' @param armn number of total arms in the trial.
 #' @param h a vector of success probabilities in hypotheses, for example, as c(0.1,0.1) where 0.1 stands for the success probability

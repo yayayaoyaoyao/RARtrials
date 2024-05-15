@@ -33,6 +33,10 @@ in \insertCite{Gittins2011}{RARtrials}.
 }
 \examples{
 Gittins(Gittinstype='KV',df=0.5)
+\donttest{
+Gittins(Gittinstype='Binary',df=0.995)
+Gittins(Gittinstype='UNKV',df=0.99)
+}
 }
 \references{
 \insertRef{Gittins2011}{RARtrials}
