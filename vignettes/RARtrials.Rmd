@@ -17,27 +17,27 @@ bibliography: RARtrials.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This R package is designed for simulating most popular response-adaptive randomization methods in the literature with comparisons of each treatment group to a control group under no delay and delayed scenarios. All the designs are based on one-sided tests with a choice from values of 'upper' and 'lower'. The general assumption is that binary outcomes follow Binomial distributions, while continuous outcomes follow normal distributions. Additionally, the number of patients accrued in the population follows a Poisson distribution and users can specify the enrollment rate of patients enrolled in the trial. The methods included in this R package are as follows:
+RARtrials is designed for simulating most popular response-adaptive randomization methods in the literature with comparisons of each treatment group to a control group under no delay and delayed scenarios. All the designs are based on one-sided tests with a choice from values of 'upper' and 'lower'. The general assumption is that binary outcomes follow Binomial distributions, while continuous outcomes follow normal distributions. Additionally, the number of patients accrued in the population follows a Poisson distribution and users can specify the enrollment rate of patients enrolled in the trial. The methods included in this R package are as follows:
 
-* \quad The Randomized play-the-winner rule for binary outcomes in two-armed trials [@Wei1978];
-* \quad Doubly adaptive biased coin design targeting Neyman allocation and RSIHR allocation using minimal variance strategy for binary outcomes in trials with up to five arms [@Biswas2004] [@Atkinson2013];
+* \quad The Randomized Play-the-Winner rule for binary outcomes in two-armed trials [@Wei1978];
+* \quad Doubly adaptive biased coin design targeting Neyman allocation and RSIHR allocation using minimal variance strategy for binary outcomes in trials with up to five arms [@Biswas2004; @Atkinson2013];
 * \quad Doubly adaptive biased coin design targeting Neyman allocation and RSIHR allocation using maximal
 power strategy for binary outcomes in trials with up to five arms and up to three arms respectively
-[@Tymofyeyev2007] [@Jeon2010] [@Sabo2016];
+[@Tymofyeyev2007; @Jeon2010; @Sabo2016];
 * \quad Neyman allocation ($A_a$-optimal allocation and $A$-optimal allocation) and generalised RSIHR
 allocation subject to constraints for continuous outcomes with known and unknown variances in
 trials with up to five arms [@Oleksandr2013];
 * \quad Bayesian response-adaptive randomization using the Thall & Wathen method for binary outcomes and
 continuous outcomes with known and unknown variances in trials with up to five arms [@Thall2007];
 * \quad Forward-looking Gittins index and controlled forward-looking Gittins index for binary outcomes and
-continuous outcomes with known and unknown variances in trials with up to five arms [@Villar2015] [@Williamson2019].
+continuous outcomes with known and unknown variances in trials with up to five arms [@Villar2015; @Williamson2019].
 
 # The Randomized Play-the-Winner Rule for Binary Outcomes
-The famous randomized play-the-winner rule, proposed by Wei and Durham in 1978 [@Wei1978], has been well studied over the past decades. Some properties can be summarized as follows:
+The famous Randomized Play-the-Winner rule, proposed by @Wei1978, has been well studied over the past decades. Some properties can be summarized as follows:
 
 \quad $1. n_A/n \to q_B/(q_A+q_B)$ almost surely, with $n_A$ representing the random variable for number of participants on treatment A, $n$ representing the total sample size, $q_A$ and $q_B$ representing the probabilities of failure under treatment A and B, respectively;
 
-\quad $2.$ 	The asymptotic properties of maximum likelihood estimators following the randomized play-the-winner rule satisfy
+\quad $2.$ 	The asymptotic properties of maximum likelihood estimators following the Randomized Play-the-wWinner rule satisfy
 	$$\sqrt{n}\left(\begin{bmatrix}
 	\hat{p}_A \\
 	\hat{p}_B
@@ -50,7 +50,7 @@ The famous randomized play-the-winner rule, proposed by Wei and Durham in 1978 [
 	\right)$$
 	in distribution, with $p_A$ and $p_B$ to be the probabilities of success under treatment A and B, respectively;
 	
-\quad $3.$ Inference following the randomized play-the-winner rule can be done using standard asymptotic tests. For a difference of two proportions, we can use a $Z^2$ test statistic, given by $$Z^2=\frac{(\hat{p}_A-\hat{p}_B)^2}{\frac{\hat{p}_A\hat{q}_A}{n_A}+\frac{\hat{p}_B\hat{q}_B}{n_B}}|n_A,n_B\stackrel{d}\rightarrow\chi_1^2, \quad \mbox{with } n_A+n_B=n,\mbox{ }n\rightarrow \infty.$$
+\quad $3.$ Inference following the Randomized Play-the-Winner rule can be done using standard asymptotic tests. For a difference of two proportions, we can use a $Z^2$ test statistic, given by $$Z^2=\frac{(\hat{p}_A-\hat{p}_B)^2}{\frac{\hat{p}_A\hat{q}_A}{n_A}+\frac{\hat{p}_B\hat{q}_B}{n_B}}|n_A,n_B\stackrel{d}\rightarrow\chi_1^2, \quad \mbox{with } n_A+n_B=n,\mbox{ }n\rightarrow \infty.$$
 
 When sample size is large enough,the asymptotic chi-square test is satisfied. On the other hand, it is also appropriate to select a cut-off value to control the type I error and calculate the power.
 
@@ -102,10 +102,10 @@ $$
 with the generalization to $K$-armed trials given below
 $$\frac{\hat{p}_{k,t-1}^*\bigg(\frac{\hat{p}_{k,t-1}^*}{\frac{n_{k,t-1}}{t-1}}\bigg)^\gamma}{\sum_{i=1}^{K}\hat{p}_{i,t-1}^*\bigg(\frac{\hat{p}_{i,t-1}^*}{\frac{n_{i,t-1}}{t-1}}\bigg)^\gamma}.$$
 
-In Hu \& Zhang's formula, $\hat{p}_{k,t-1}^*$ is the optimal allocation ratio , which can apply the generalized Neyman allocation which minimize the total sample size given as $\sqrt{p_iq_i}/\sum_{i=1}^{K}\sqrt{p_iq_i}$ [@Biswas2004] [@Atkinson2013] or the generalized RSIHR allocation which minimize the expected number of failures given as $\sqrt{p_k}/\sum_{i=1}^{K}\sqrt{p_i}$ [@Rosenberger2015]. Those formulas can be generalized to $K$-armed trials from two-armed trials by employing a minimize variance strategy, which minimize the overall variances of test statistics for all comparisons to the control group. In this package, there are functions that return the allocation probabilities given data accumulated at each specified time point, as well as functions to simulate an actual trial data set.
+In Hu \& Zhang's formula, $\hat{p}_{k,t-1}^*$ is the optimal allocation ratio of arm $k$ up to time $t$, which can apply the generalized Neyman allocation to minimize the total sample size given as $\sqrt{p_iq_i}/\sum_{i=1}^{K}\sqrt{p_iq_i}$ [@Biswas2004; @Atkinson2013] or the generalized RSIHR allocation to minimize the expected number of failures given as $\sqrt{p_k}/\sum_{i=1}^{K}\sqrt{p_i}$ [@Rosenberger2015]. Those formulas can be generalized to $K$-armed trials from two-armed trials by employing a minimize variance strategy, which minimize the overall variances of test statistics for all comparisons to the control group. In this package, there are functions that return the allocation probabilities given data accumulated at each specified time point, as well as functions to simulate an actual trial data set.
 
 ```{r}
-#Example: doubly adaptive biased coin design with five arms targeting 
+#Example: Doubly adaptive biased coin design with five arms targeting 
 #RSIHR allocation using minimal variance strategy with return of allocation 
 #probabilities before applying Hu \& Zhang's formula.
 dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR',
@@ -123,7 +123,7 @@ dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR'
 The other method targeting the generalized Neyman and RSIHR allocation are given in @Tymofyeyev2007 and @Jeon2010 with modifications in @Sabo2016 respectively by employing a maximal power strategy, which maximise the marginal power of one selected comparison from all comparisons to the control group. All of those methods are not smoothed compared to the original papers in this package, because the smoothing technique does not function as indicated.
 
 ```{r }
-#Example: doubly adaptive biased coin design with three arms targeting 
+#Example: Doubly adaptive biased coin design with three arms targeting 
 #RSIHR allocation using maximal power strategy with return of allocation
 #probabilities before applying Hu \& Zhang's formula.
 dabcd_max_power(NN=c(20,60,60),Ntotal1=c(86,90,90),armn=3,BB=0.1, type='Neyman',dabcd=0)
@@ -155,10 +155,10 @@ of arms and $C$ is some fixed values. The optimal allocation probabilities are g
 $$\rho_1=\frac{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}}{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}+w_2+...+w_k},$$
 
 $$\rho_k=\frac{w_k}{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}+w_2+...+w_k}\mbox{, with }  k=2,...,K.$$
-This package is built on $\Psi_i=P(X_i\leq c)=\Phi[(\mu_A-c)/\sigma_A]$ and $w_k=\sigma_k$ [@Atkinson2013]. All of these methods can be applied to scenarios with both known and unknown variances. In cases where variances are unknown, the unknown parameter are estimated from the available data.
+This package is built on $\Psi_i=P(X_i\leq c)=\Phi[(\mu_A-c)/\sigma_A]$ and $w_k=\sigma_k$ [@Atkinson2013]. All of those methods can be applied to scenarios with both known and unknown variances. In cases where variances are unknown, the unknown parameter are estimated from the available data.
 
 ```{r eval=FALSE}
-#Example: generalized RSIHR optimal allocation with unknown variance in three-armed trials
+#Example: Generalized RSIHR optimal allocation with unknown variances in three-armed trials
 set.seed(12345)
 #Under the null hypothesis
 sim2a<-lapply(1:5000,function(x){sim_RSIHR_optimal_known_var(Pats=10,nMax=50000,
@@ -184,13 +184,13 @@ sum(h1decision[,1]==1|h1decision[,2]==1)/5000
 ```
 
 ## Bayesian Response-Adaptive Randomisation with a Control Group
-In this package, Bayesian response-adaptive randomization refers to the Thall & Wathen method with a control group [@Thall2007] [@Wathen2017]. This method can be applied not only to two-armed trials but also to multi-armed trials. Suppose the number of treatment groups is $K$ and the posterior probabilities are $p_1,...,p_K$ considering data available after recruitment of participant $t-1$. The generalization formula of allocation probability for arm $k$ at time recruitment of participant $t$ is given as $$p_{k,t}=\frac{Pr(p_k=max\{p_1,...,p_K\}|data_{t-1})^\gamma}{\sum_{i=1}^{K}Pr(p_i=max\{p_1,...,p_K\}|data_{t-1})^\gamma}.$$
+In this package, Bayesian response-adaptive randomization refers to the Thall & Wathen method with a control group [@Thall2007; @Wathen2017]. This method can be applied not only to two-armed trials but also to multi-armed trials. Suppose the number of treatment groups is $K$ and the posterior probabilities are $p_1,...,p_K$ considering data available after recruitment of participant $t-1$. The generalization formula of allocation probability for arm $k$ at the recruitment of participant $t$ is given as $$p_{k,t}=\frac{Pr(p_k=max\{p_1,...,p_K\}|data_{t-1})^\gamma}{\sum_{i=1}^{K}Pr(p_i=max\{p_1,...,p_K\}|data_{t-1})^\gamma}.$$
 
-In this formula, $\gamma$ is a tuning parameter with commonly used values $1, 0.5, and n/2N$. The posterior probabilities $p_1,...,p_K$ are often restricted to $[e,1-e]$ for $0<e<1$. The decision rules of this method include three parts [@Wathen2017]:  
+In this formula, $\gamma$ is a tuning parameter with commonly used values $1, 0.5, \mbox{and } n/2N$. The posterior probabilities $p_1,...,p_K$ are often restricted to $[e,1-e]$ for $0<e<1$. The decision rules of this method include three parts [@Wathen2017]:  
 
-  \quad $1.$  Stop the arm $k$ for futility if $Pr(p_k>p_{control}+\delta|data_{t-1})<0.01$. Recommend choosing $\delta$ by simulations to satisfy the futility stopping criterion, and $\delta$ can take negative values;
+  \quad $1.$  Stop the arm $k$ for futility, if $Pr(p_k>p_{control}+\delta|data_{t-1})<0.01$. Recommend choosing $\delta$ by simulations to satisfy the futility stopping criterion, and $\delta$ can take negative values;
   
-  \quad $2.$  Randomize the remaining participants from time $t$ only to arms that have not been dropped due to futility;  
+  \quad $2.$  Randomize the remaining participants at time $t$ only to arms that have not been dropped due to futility;  
   
   \quad $3.$  Select the effective arm $k$ at the end of the trial if $Pr(p_k>p_{control}+\delta_1|data_{t-1})>a_U$. 
   
@@ -206,12 +206,12 @@ It should be noted
 
 \quad $*$ More than one arm can be selected as effective at the final stage.
 
-\quad $*$ The formula of calculating allocation probability for arm $k$ at time recruitment of participant $t$ is based on p standing for the success probability. If p stands for the failure probability, the formula can be updated to $$p_{k,t}=\frac{Pr(p_k=min\{p_1,...,p_K\}|data_{t-1})^\gamma}{\sum_{i=1}^{K}Pr(p_i=min\{p_1,...,p_K\}|data_{t-1})^\gamma}.$$ Similarly, the formula in decision rules can be update to $Pr(p_{control}>p_k+\delta|data_{t-1})<0.01$ and $Pr(p_{control}>p_k-\delta_1|data_{t-1})>a_U$ respectively. 
+\quad $*$ The formula of calculating allocation probability for arm $k$ at the recruitment of participant $t$ is based on p standing for the success probability. If p stands for the failure probability, the formula can be updated to $$p_{k,t}=\frac{Pr(p_k=min\{p_1,...,p_K\}|data_{t-1})^\gamma}{\sum_{i=1}^{K}Pr(p_i=min\{p_1,...,p_K\}|data_{t-1})^\gamma}.$$ Similarly, the formula in decision rules can be update to $Pr(p_{control}>p_k+\delta|data_{t-1})<0.01$ and $Pr(p_{control}>p_k-\delta_1|data_{t-1})>a_U$ respectively. 
 
-\quad $*$ All these formulas above can be generalized to continuous outcomes with p substituted by 
+\quad $*$ All of those formulas above can be generalized to continuous outcomes with p substituted by 
 $\mu$  (representing the mean value). 
 
-To take the best advantage of Bayesian adaptive randomization, we can evaluate the rule after every participant enrolls. But the decision is made only based on the participants with available data. In this package, the prior distributions for different groups can be specified individually, and the corresponding $\delta$, $\delta_1$ and $a_U$ can be selected for each group to control overall type I error or the nominal alpha at $\alpha/(K-1)$ for each comparison to the control group.
+To take the best advantage of Bayesian adaptive randomization, we can evaluate those rules after every participant enrolls. But the decision is made only based on participants with available data. In this package, the prior distributions for different groups can be specified individually, and the corresponding $\delta$, $\delta_1$ and $a_U$ can be selected for each group to control the one-sided overall type I error or the nominal alpha at $\alpha/(K-1)$ for each comparison to the control group.
 
 
 ## R code 
@@ -258,14 +258,13 @@ for (j in 1:length(armleft)) {
                 beta[armleft[j]]))
   colnames(result[[j]])<-sprintf("r%s",armleft[j])
 }
-#Expect the treatment group to have a larger treatment effect compared to the 
-#control group
+#Expect the treatment group to have a larger treatment effect compared to the control group
 #Combine results into a data frame and select the maximal value of each row
 result1<-as.data.frame(do.call(cbind,result))
 result1$max<-apply(result1, 1, which.is.max)
 #Store results for Pr(p_{control}>p_k+\delta|data_{t-1})
 theta1<-vector("list",armn)
-#Store results for Pr(p_k=max\{p_1,...,p_K\}|data_{t-1})
+#Store results for Pr(p_k=max{p_1,...,p_K}|data_{t-1})
 pi<-vector("list",armn)
 for (j in 1:length(armleft)) {
   theta1[[armleft[j]]]<-sum(result1[,j]>(result1[,1]+0.1))/1000000
@@ -276,14 +275,13 @@ do.call(cbind,theta1)
 do.call(cbind,pi)
 #Return results: 0.018097 0.879338 0.102565
 
-#Expect the treatment group to have a smaller treatment effect compared to the 
-#control group
+#Expect the treatment group to have a smaller treatment effect compared to the control group
 #Combine results into a data frame and select the minimal value of each row
 result1<-as.data.frame(do.call(cbind,result))
 result1$max<-apply(result1, 1, which.is.min)
 #Store results for Pr(p_{control}>p_k+\delta|data_{t-1})
 theta1<-vector("list",armn)
-#Store results for Pr(p_k=min\{p_1,...,p_K\}|data_{t-1})
+#Store results for Pr(p_k=min{p_1,...,p_K}|data_{t-1})
 pi<-vector("list",armn)
 for (j in 1:length(armleft)) {
   theta1[[armleft[j]]]<-sum(result1[,j]<(result1[,1]-0.1))/1000000
@@ -296,9 +294,8 @@ do.call(cbind,pi)
 ```
 
 ```{r}
-#Example: sample code using Integrations
-#Expect the treatment group to have a larger treatment effect compared to the 
-#control group
+#Example: Sample code using Integration
+#Expect the treatment group to have a larger treatment effect compared to the control group
 #Calculate results of Pr(p_{control}>p_k+\delta|data_{t-1})
 pgreater_beta(a1=alpha[1],b1=beta[1],a2=alpha[2], b2=beta[2],delta=0.1,side='upper')
 pgreater_beta(a1=alpha[1],b1=beta[1],a2=alpha[3], b2=beta[3],delta=0.1,side='upper')
@@ -313,8 +310,7 @@ pmax_beta(armn=3,a2=alpha[1],b2=beta[1],a3=alpha[2],b3=beta[2],a1=alpha[3],
      b1=beta[3],side='upper')
 #Return results: 0.01796526  0.8788907  0.1031441
 
-#Expect the treatment group to have a smaller treatment effect compared to the 
-#control group
+#Expect the treatment group to have a smaller treatment effect compared to the control group
 #Calculate results of Pr(p_{control}>p_k+\delta|data_{t-1})
 pgreater_beta(a1=alpha[1],b1=beta[1],a2=alpha[2],b2=beta[2],delta=-0.1,side='lower')
 pgreater_beta(a1=alpha[1],b1=beta[1],a2=alpha[3],b2=beta[3],delta=-0.1,side='lower')
@@ -340,7 +336,7 @@ Suppose the alternative hypothesis is $c(0.2,0.4)$, then the intermediate hypoth
 
 ```{r eval=FALSE}
 set.seed(12345)
-#Example: select au by calling brar_au_binary 2000 times
+#Example: Select a_U by calling brar_au_binary 2000 times
 simnull3<-lapply(1:2000,function(x){
   set.seed(x)
   brar_select_au_binary(Pats=10,nMax=50000,TimeToOutcome=0,enrollrate=0.9,N1=24,armn=2,
@@ -361,15 +357,15 @@ simf<-do.call(rbind,simf)
 
 #Ensure that around 1% of the trials stop for futility
 sum(is.na(simf)) #20
-#Select au to make sure that the overall type I error is around 0.025
+#Select a_U to make sure that the overall type I error is around 0.025
 sum(simf>0.7591,na.rm=T)/2000 #0.025
-#The selected au is 0.7591.
+#The selected a_U is 0.7591.
 ```
 
 For continuous outcomes with known variance $\sigma$, a normal prior for the mean is commonly used, noted as $\theta \sim N(\mu,\sigma/n_0)$, where $n_0$ is the implicit sample size in the prior. This prior conjugates to the likelihood of normal distribution, written as $y \sim N(\theta,\sigma/n_1)$ with $y$ represents the outcomes of observations and $n_1$ stands for the number of observations, resulting in the posterior normal distribution $N(\frac{n_0\mu+n_1y}{n_0+n_1},\frac{\sigma^2}{n_0+n_1})$. An example of a three-armed trial with known variances is given below with some specified prior distributions. Simulations and integration yield similar results, but the latter is quicker.
 
 ```{r }
-#Example: sample code using simulations
+#Example: Sample code using simulations
 options(scipen=999)
 set.seed(12345)
 #Pre-specified means in prior distributions for each treatment group
@@ -386,7 +382,7 @@ n0=1
 n1=90
 n2=86
 n3=93
-#actual variance
+#Actual variance
 sigma1=8
 #Calculate means and variances for posterior distributions
 set.seed(12345)
@@ -414,14 +410,13 @@ for (j in 1:length(armleft)) {
                 sd[armleft[j]]))
   colnames(result[[j]])<-sprintf("r%s",armleft[j])
 }
-#Expect the treatment group to have a smaller treatment effect compared to the 
-#control group
+#Expect the treatment group to have a smaller treatment effect compared to the control group
 #Combine results into a data frame and select the minimal value of each row
 result1<-as.data.frame(do.call(cbind,result))
 result1$max<-apply(result1, 1, which.is.min)
 #Store results for Pr(p_{control}>p_k+\delta|data_{t-1})
 theta1<-vector("list",armn)
-#Store results for Pr(p_k=min\{p_1,...,p_K\}|data_{t-1})
+#Store results for Pr(p_k=min{p_1,...,p_K}|data_{t-1})
 pi<-vector("list",armn)
 for (j in 1:length(armleft)) {
   theta1[[armleft[j]]]<-sum((result1[,1])>result1[,j])/1000000
@@ -432,14 +427,13 @@ do.call(cbind,theta1)
 do.call(cbind,pi)
 #Return results: 0.000178 0.999794 0.000028
 
-#Expect the treatment group to have a larger treatment effect compared to the 
-#control group
+#Expect the treatment group to have a larger treatment effect compared to the control group
 #Combine results into a data frame and select the maximal value of each row
 result1<-as.data.frame(do.call(cbind,result))
 result1$max<-apply(result1, 1, which.is.max)
 #Store results for Pr(p_{control}>p_k+\delta|data_{t-1})
 theta1<-vector("list",armn)
-#Store results for Pr(p_k=max\{p_1,...,p_K\}|data_{t-1})
+#Store results for Pr(p_k=max{p_1,...,p_K}|data_{t-1})
 pi<-vector("list",armn)
 for (j in 1:length(armleft)) {
   theta1[[armleft[j]]]<-sum(result1[,j]>(result1[,1]+2))/1000000
@@ -452,15 +446,14 @@ do.call(cbind,pi)
 ```
 
 ```{r }
-#Example: sample code using Integration
-#Expect the treatment group to have a smaller treatment effect compared to the 
-#control group
+#Example: Sample code using Integration
+#Expect the treatment group to have a smaller treatment effect compared to the control group
 #Calculate results of Pr(p_{control}>p_k+\delta|data_{t-1})
 pnorm(0, mu[1]-mu[2],sqrt(sd[1]^2+sd[2]^2),lower.tail=FALSE)
 pnorm(0, mu[1]-mu[3],sqrt(sd[1]^2+sd[3]^2),lower.tail=FALSE)
 #Return results: 0.9998092 0.3537605
 
-#Calculate Pr(p_k=min\{p_1,...,p_K\}|data_{t-1})
+#Calculate Pr(p_k=min{p_1,...,p_K}|data_{t-1})
 pmax_normal(armn=3,mean1=mu[1],sd1=sd[1],mean2=mu[3],sd2=sd[3],mean3=mu[2],
      sd3=sd[2],side='lower')
 pmax_normal(armn=3,mean1=mu[2],sd1=sd[2],mean2=mu[1],sd2=sd[1],mean3=mu[3],
@@ -489,7 +482,7 @@ pmax_normal(armn=3,mean1=mu[3],sd1=sd[3],mean2=mu[2],sd2=sd[2],mean3=mu[1],
 
 
 ```{r eval=FALSE}
-#Example: select au by calling brar_au_binary 2000 times
+#Example: Select a_U by calling brar_au_binary 2000 times
 set.seed(12345)
 simnull4<-lapply(1:2000,function(x){
   brar_select_au_known_var(Pats=10,nMax=50000,TimeToOutcome=expression(
@@ -526,17 +519,17 @@ simf4b<-do.call(rbind,simf)
 #Ensure that around 1% of the trials stop for futility
 sum(is.na(simf4a)) #20
 sum(is.na(simf4b)) #19
-#Select au to make sure that the overall type I error is around 0.025
+#Select a_U to make sure that the overall type I error is around 0.025
 sum((simf4a[,1]>0.98414| simf4b[,1]>0.9814),na.rm=T )/2000#0.025
-#The selected au is 0.98414.
+#The selected a_U is 0.98414.
 
 
-#After selecting $a_U$, use the code below to simulate trial data sets and obtain results of interest.
+#After selecting a_U, use the code below to simulate trial data sets and obtain results of interest.
 #Example to obtain the power
 sim4<-lapply(1:1000,function(x) {
     sim_brar_known_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
       length(vStartTime ),30, 3)),enrollrate=0.1,N1=192,armn=3,
-            au=c(0.98414,0.98414),N2=1920,tp=1,armlabel=c(1,2,3),blocksize=6,
+            a_U=c(0.98414,0.98414),N2=1920,tp=1,armlabel=c(1,2,3),blocksize=6,
             mean=c(9.1/100,8.92/100,8.92/100),sd=c(0.009,0.009,0.009),
             minstart=192,deltaa=c(-0.00075,-0.00075),tpp=1,deltaa1=c(0,0),
             mean10=0.09,mean20=0.09,mean30=0.09,mean40=0.09,mean50=0.09,
@@ -550,17 +543,17 @@ sum(decision[,2]=='Superiorityfinal')/1000 #0.887
 #The simulated power from 1000 simulations is 0.887.
 ```
 
-For continuous outcomes with unknown variance, a Normal-Inverse-Gamma prior is employed with $\theta \sim N(m_0,V_0\sigma_0^2)$ and $\sigma_0^2 \sim IG(a_0,b_0)$. The prior can be written as $NIG(mean=m_0,variance=V_0,shape=a_0,rate=b_0)$, which conjugates to the likelihood of normal distribution $y \sim N(\theta,\sigma^2)$, resulting in the posterior Normal-Inverse-Gamma distribution $NIG(\mu_n,\sigma_n,a_n,b_n)=NIG((m_0/V_0+\sum_{i=1}^ny_i)V_n,1/(1/V_0+n),a_0+n/2,b_0+[m_0^2/V_0+\sum_{i=1}^ny_i^2-m_n^2/V_n]/2)$ with $y_i$ represents the outcome of each observation and $n$ stands for the number of observations [@Kevin2007]. Following the integration formulas as before, we should use the marginal posterior distribution of $\mu$ which is a t distribution in this case. According to @Kevin2007, we first convert hyper-parameters of Normal-Inverse-Gamma to Normal-Inverse-Chi-Squared distribution. Then, we use the marginal posterior of $\mu$ given in section 5.3.2 of @Kevin2007. An example of a three-armed trial with unknown variances is given below with pre-specified prior distributions. 
+For continuous outcomes with unknown variance, a Normal-Inverse-Gamma prior is employed with $\theta \sim N(m_0,V_0\sigma_0^2)$ and $\sigma_0^2 \sim IG(a_0,b_0)$. The prior can be written as $NIG(mean=m_0,variance=V_0\times\sigma_0^2,shape=a_0,rate=b_0)$, which conjugates to the likelihood of normal distribution $y \sim N(\theta,\sigma^2)$, resulting in the posterior Normal-Inverse-Gamma distribution $NIG(\mu_n,\sigma_n,a_n,b_n)=NIG((m_0/V_0+\sum_{i=1}^ny_i)V_n,1/(1/V_0+n),a_0+n/2,b_0+[m_0^2/V_0+\sum_{i=1}^ny_i^2-m_n^2/V_n]/2)$ with $y_i$ represents the outcome of each observation and $n$ stands for the number of observations [@Kevin2007]. Following the integration formulas as before, we should use the marginal posterior distribution of $\mu$ which is a $T$ distribution in this case. According to @Kevin2007, we first convert hyper-parameters of Normal-Inverse-Gamma to Normal-Inverse-Chi-Squared distribution. Then, we use the marginal posterior of $\mu$ given in section 5.3.2 of @Kevin2007. An example of a three-armed trial with unknown variances is given below with pre-specified prior distributions. 
 
 ```{r }
-#Example: sample code using integration
+#Example: Sample code using integration
 options(scipen=999)
 set.seed(12345)
-#Pre-specified hyperparameters in prior distributions assumed to be the same 
-#across all three groups.
+#Pre-specified hyperparameters in prior distributions assumed to be the same across all 
+#three groups.
 para<-list(V=1/2,a=0.5,m=9.1/100,b=0.00002)
 #Update hyperparameters from the normal inverse-gamma distribution to the
-#normal-inverse-chi-squared distribution.
+#Normal-Inverse-Chi-Squared distribution.
 par<-convert_gamma_to_chisq(para)
 #Update hyperparameters with some data
 set.seed(123451)
@@ -577,7 +570,7 @@ par3<-update_par_nichisq(y3, par)
 pgreater_NIX(par1,par2,side='lower') 
 pgreater_NIX(par1,par3,side='lower') 
 #Return results: 0.1959142  0.8115975
-#Calculate results for Pr(p_k=min\{p_1,...,p_K\}|data_{t-1})
+#Calculate results for Pr(p_k=min{p_1,...,p_K}|data_{t-1})
 pmax_NIX(armn=3,par1=par1,par2=par2,par3=par3,side='lower') 
 pmax_NIX(armn=3,par1=par2,par2=par1,par3=par3,side='lower') 
 pmax_NIX(armn=3,par1=par3,par2=par2,par3=par1,side='lower') 
@@ -662,7 +655,7 @@ mean(dat[,5])
 ```
 
 ```{r eval=FALSE}
-#Example: select au by calling brar_au_binary 2000 times
+#Example: Select a_U by calling brar_au_binary 2000 times
 set.seed(12345)
 simnull5<-lapply(1:2000,function(x){
   brar_select_au_unknown_var(Pats=10,nMax=50000,TimeToOutcome=expression(
@@ -698,15 +691,15 @@ simf5b<-do.call(rbind,simf)
 #Ensure that around 1% of the trials stop for futility
 sum(is.na(simf5a)) #21
 sum(is.na(simf5b)) #22
-#Select au to make sure that the overall type I error is around 0.025
+#Select a_U to make sure that the overall type I error is around 0.025
 sum((simf5a[,1]>0.9836| simf5b[,1]>0.9836),na.rm=T )/2000#0.025
-#The selected au is 0.9836.
+#The selected a_U is 0.9836.
 
 #Example to obtain the power
 sim5<-lapply(1:1000,function(x) {
     sim_brar_unknown_var(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
       length(vStartTime ),30, 3)),enrollrate=0.1,N1=192,armn=3,
-            au=c(0.9836,0.9836),N2=1920,tp=1,armlabel=c(1,2,3),blocksize=6,
+            a_U=c(0.9836,0.9836),N2=1920,tp=1,armlabel=c(1,2,3),blocksize=6,
             mean=c(9.1/100,8.92/100,8.92/100),sd=c(0.009,0.009,0.009),
             minstart=192,deltaa=c(0.00077,0.00077),tpp=1,deltaa1=c(0,0),
             V01=1/2,a01=0.3,m01=9/100,b01=0.00001,side='lower')
@@ -719,15 +712,15 @@ sum(decision[,2]=='Superiorityfinal')/1000 #0.882
 ```
 
 
-It can be observed from the above examples that continuous outcomes with both known and unknown variances produce the similar results.
+It can be observed from the above examples that continuous outcomes with both known and unknown variances produce the similar results of power.
 
 ## Forward-Looking Gittins Index
-In response-adaptive randomisation, there is a trade-off between learning and earning, known as learn-versus-earn trade-off, which involves considering the benefits of participants currently enrolled and those to be enrolled in the future. Learning involves exploring short-term rewards to identify the best investment options, while earning entails exploiting long-term value to obtain sufficient benefits. For historical reason, this problem also called “multi-arm bandit”. The optimal solution to this question is Gittins Index, the basic principle of Gittins Index is to find the balance between the learn-versus-earn trade-off, maximising benefits through Bayesian decision theory. Suppose the $t$-th participant is assigned to treatment $k$ with $k=1,...,K$ and $k=1$ stands for the control group, the mathematical representation of this question is
+In response-adaptive randomisation, there is a trade-off between learning and earning, known as learn-versus-earn trade-off, which involves considering the benefits of participants currently enrolled and those to be enrolled in the future. Learning involves exploring short-term rewards to identify the best investment options, while earning entails exploiting long-term value to obtain sufficient benefits. For historical reason, this problem is also called “multi-arm bandit”. One of the optimal solution to this question is Gittins Index, the basic principle of Gittins Index is to find the balance between the learn-versus-earn trade-off, maximising benefits through Bayesian decision theory. Suppose the $t$-th participant is assigned to treatment $k$ with $k=1,...,K$ and $k=1$ stands for the control group, the mathematical representation of this question is
 $$ V_{D}(\tilde{x}_0)=\max_{\pi\in\Pi} E^\pi[(\sum^{T-1}_{t=0} \sum^{K}_{k=0} d^{t-1} P_m a_{k,t-1})|\tilde{x}_0].$$
-In this formula, $P_m$ is the posterior mean, $$\Pi=\{ a_{k,t-1}| 0\leq k\leq K , \sum_{k=0}^K a_{k,t-1}=1\}$$ is a family of allocation rules, $$\tilde{x}_0=(x_{k,0})^K_{k=0}$$ is the initial state considering the prior information, $d$ is a discount factor and $E^\pi[.]$ is the average responses of participants
+In this formula, $P_m$ is the posterior mean, $$\Pi=\{ a_{k,t-1}| 0\leq k\leq K , \sum_{k=0}^K a_{k,t}=1\}$$ is a family of allocation rules, $$\tilde{x}_0=(x_{k,0})^K_{k=0}$$ is the initial state considering the prior information, $d$ is a discount factor and $E^\pi[.]$ is the average responses of participants
 attained with prior information, and our objective is to maximize this value.
 
-The optimal solution to multi-arm bandit problem is Gittin index given by 
+The optimal solution using Gittin index is given by 
 $$\mathcal{G} (X_{k,t})=\sup_{\tau\geq 1} \frac{E[ ( \sum^{\tau-1}_{i=0}P_md^i)|X_{k,t}]}{E[ ( \sum^{\tau-1}_{i=0} d^i)|X_{k,t}]},$$
 
 where $\tau$ is a stopping time, and this formula wants to maximize the total benefit at stage $t$ based on the choices up to stage $t-1$. 
@@ -751,21 +744,20 @@ The allocation probabilities of participants to treatment $k$ depend on the data
 
 *  \quad  When $j\geq 2$, the allocation for the second to the last participants in block $j$ depend on the posterior distribution of future data given $\tilde{x}_{(j-1)m}$.
 
-
-In forward-looking Gittins index rule, the first treatment group is designed as the control group, as most clinical trials require a control group. To maintain a certain allocation probability to the control group, a slight modification to this rule is introduced with $p_{0,j}=1/K$ and the allocation probabilities of other treatment groups are normalized to sum to 1, a process known as controlled forward-looking Gittins index rule [@Villar2015]. 
+To maintain a certain allocation probability to the control group, a slight modification to this rule is introduced with $p_{0,j}=1/K$ and the allocation probabilities of other treatment groups are normalized to sum to 1, a process known as controlled forward-looking Gittins index rule [@Villar2015]. 
 
 A generalization of binary outcome to the continuous outcomes is provided in @Williamson2019, all the theories and rules remain the same, with some updates to the calculation of Gittins index. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{y}_{k,t},\sigma_k,n_{k,t})=\tilde{y}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{y}_{k,t},\tilde{s}_{k,t},n_{k,t})=\tilde{y}_{k,t}+\tilde{s}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{y}_{k,t}$ and $\tilde{s}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
 
 ## R code
-To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis[@Smith2017].  After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain  type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variance.
+To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis [@Smith2017].  After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain  type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variances.
 
 
 ```{r eval=FALSE}
-#Example: forward-looking Gittins index rule applied in continuous outcomes with 
-#known variance
-#Select cut-off values under null hypothesis for continuous outcomes with known variance.
-#The delayed responses follow a normal distribution with mean of 30 days and 
-#sd of 3 days and enrollment rate of 1. 
+#Example: The forward-looking Gittins index rule applied in continuous outcomes with known 
+#variances
+#Select cut-off values under null hypothesis for continuous outcomes with known variances.
+#The delayed responses follow a normal distribution with a mean of 30 days, sd of 3 days 
+#and enrollment rate of 1. 
 set.seed(123452)
 stopbound7<-lapply(1:1000,function(x){flgi_cut_off_known_var(
 Gittinstype='KV',df=0.995,Pats=10,nMax=50000,TimeToOutcome=0,enrollrate=1,K=3,
@@ -773,7 +765,7 @@ noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(1,3),prior_mean=rep(0,3
 mean=c(-0.05,-0.05,-0.05),sd=c(0.346,0.346,0.346),side='upper')})
 stopbound7a<-do.call(rbind,stopbound7)
 sum(stopbound7a[,1]>2.074 | stopbound7a[,2]> 2.074)/1000 #0.05
-#Selected cut-off value is 2.05 with an overall type I error of 0.05.
+#The selected cut-off value is 2.05 with an overall upper one-sided type I error of 0.05.
 #It is recommended to run more simulations to obtain a more accurate cut-off value.
 
 #Calculate power based on 1000 simulations
