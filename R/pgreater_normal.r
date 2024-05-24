@@ -8,7 +8,6 @@
 #' response-adaptive randomization with a control arm using Thall \eqn{\&} Wathen method, with accumulated results
 #' during the conduct of trials. 
 #' @aliases pgreater_normal
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export pgreater_normal
 #' @param mean1,sd1  mean and sd in \eqn{N(mean,sd)}, current estimated mean and sd for the control group.
 #' @param mean2,sd2  mean and sd in \eqn{N(mean,sd)}, current estimated mean and sd for the treatment group which is compared to the control group.

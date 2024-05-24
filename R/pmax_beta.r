@@ -7,7 +7,6 @@
 #' \code{side} equals to 'lower'. This function returns the probability that the posterior probability of arm
 #' \eqn{k} is maximal or minimal in trials with up to five arms.
 #' @aliases pmax_beta
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export pmax_beta
 #' @param armn number of arms in the trial with values up to 5. When \code{armn}=2,
 #' only \code{a1} to \code{a2} and \code{b1} to \code{b2} need to be specified.

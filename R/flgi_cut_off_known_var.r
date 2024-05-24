@@ -6,8 +6,12 @@
 #' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios to obtain
 #' cut-off values at the final stage, with control of type I error. The user is expected to run this function
 #' multiple times to determine a reasonable cut-off value for statistical inference.
+#' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
+#' \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
+#' \code{TimeToOutcome} (the distribution of delayed response times or a fixed delay time for responses) 
+#' are parameters in the functions adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
+#' Refer to the website for more details.
 #' @aliases flgi_cut_off_known_var
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export flgi_cut_off_known_var
 #' @param Gittinstype type of Gittins indices, should be set to 'KV' in this function.
 #' @param df discount factor which is the multiplier for loss at each additional patient in the future.
@@ -18,16 +22,14 @@
 #' count of individuals who have been affected by the disease during that specific period,
 #' for example, a month or a day. If this number is 10, it represents that
 #' 10 people have got the disease within the specified time frame.
-#' @param nMax the maximal accrued number of patients with the disease, this number
+#' @param nMax the assumed maximum accrued number of patients with the disease in the population, this number
 #' should be chosen carefully to ensure a sufficient number of patients are simulated,
 #' especially when considering the delay mechanism.
-#' @param TimeToOutcome Representation of the time distribution of delayed responses. The accrual times
-#' could be a month, a week or any other time frame. When the unit changes,
+#' @param TimeToOutcome the distribution of delayed response times or a fixed delay time for responses.
+#' The delayed time could be a month, a week or any other time frame. When the unit changes,
 #' the number of TimeToOutcome should also change. It can be in the format
 #' of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
 #' with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-#' These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
-#' Refer to the website for more details.
 #' @param enrollrate probability that patients in the population can enroll in the trial.
 #' This parameter is related to the number of people who have been affected by the disease in the population,
 #' following an exponential distribution.

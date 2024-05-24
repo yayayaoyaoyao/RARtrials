@@ -8,7 +8,6 @@
 #' Those updated parameters can be converted to parameters in a Normal-Inverse-Gamma distribution
 #' for continuous outcomes with unknown variances using \code{convert_chisq_to_gamma}. 
 #' @aliases update_par_nichisq
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export update_par_nichisq
 #' @param y observed data.
 #' @param par a vector of current parameters including mu, kappa, nu, sigsq from a Normal-Inverse-Chi-Squared distribution.

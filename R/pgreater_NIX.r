@@ -1,7 +1,7 @@
-#' @title Calculate the Futility Stopping Probability for Continuous Endpoint with Unknown Variances Using Normal-Inverse-Gamma Distribution
+#' @title Calculate the Futility Stopping Probability for Continuous Endpoint with Unknown Variances Using a Normal-Inverse-Chi-Squared Distribution
 #' @description Calculate the futility stopping probability in Bayesian response-adaptive randomization with
 #' a control group using Thall \eqn{\&} Wathen method for continuous outcomes with unknown variances. The prior distributions
-#' follow Normal-Inverse-Gamma (NIG) (\eqn{NIG(V,m,a,b)}) distributions and can be specified individually for each treatment group.
+#' follow Normal-Inverse-Chi-Squared (NIX) distributions and can be specified individually for each treatment group.
 #' @details This function calculates the results of \eqn{Pr(\mu_k>\mu_{control}+\delta|data)} for \code{side} equals to
 #' 'upper' and the results of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} for \code{side} equals to 'lower'.
 #' The result indicates the posterior probability of stopping a treatment group due to futility around \eqn{1\%} in Bayesian
@@ -11,7 +11,6 @@
 #' (\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)})
 #' distribution using \code{convert_gamma_to_chisq} before applying this function.
 #' @aliases pgreater_NIX
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export pgreater_NIX
 #' @param par1 current parameters including mu, kappa, nu, sigsq of a Normal-Inverse-Chi-Squared distribution from the control group.
 #' @param par2 current parameters including mu, kappa, nu, sigsq of a Normal-Inverse-Chi-Squared distribution from the compared treatment group.

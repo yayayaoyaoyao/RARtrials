@@ -27,17 +27,15 @@ count of individuals who have been affected by the disease during that specific 
 for example, a month or a day. If this number is 10, it represents that
 10 people have got the disease within the specified time frame.}
 
-\item{nMax}{the maximal accrued number of patients with the disease, this number
+\item{nMax}{the assumed maximum accrued number of patients with the disease in the population, this number
 should be chosen carefully to ensure a sufficient number of patients are simulated,
 especially when considering the delay mechanism.}
 
-\item{TimeToOutcome}{Representation of the time distribution of delayed responses. The accrual times
-could be a month, a week or any other time frame. When the unit changes,
+\item{TimeToOutcome}{the distribution of delayed response times or a fixed delay time for responses.
+The delayed time could be a month, a week or any other time frame. When the unit changes,
 the number of TimeToOutcome should also change. It can be in the format
 of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
-with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
-Refer to the website for more details.}
+with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.}
 
 \item{enrollrate}{probability that patients in the population can enroll in the trial.
 This parameter is related to the number of people who have been affected by the disease in the population,
@@ -86,6 +84,11 @@ generalized Neyman allocation with 2-5 arms which is provided in \insertCite{Tym
 generalized RSIHR allocation with 2-3 arms which is provided in \insertCite{Jeon2010}{RARtrials}, with modifications for typos
 in \insertCite{Sabo2016}{RARtrials}. All of those methods are not smoothed. The output of this function is based on Hu \code{\&} Zhang's formula \insertCite{Hu2004}{RARtrials}.
 With more than two armd the one-sided nominal level of each test is \code{alphaa} divided by \code{arm*(arm-1)/2}; a Bonferroni correction.
+Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
+\code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
+\code{TimeToOutcome} (the distribution of delayed response times or a fixed delay time for responses) 
+are parameters in the functions adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
+Refer to the website for more details.
 }
 \examples{
 sim_dabcd_max_power(Pats=10,nMax=50000,TimeToOutcome=expression(rnorm(
@@ -103,7 +106,4 @@ side='upper')
 \insertRef{Tymofyeyev2007}{RARtrials}
 \insertRef{Jeon2010}{RARtrials}
 \insertRef{Sabo2016}{RARtrials}
-}
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
 }

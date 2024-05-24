@@ -63,6 +63,3 @@ sd3=1.8,mean4=8.7,sd4=2,side='lower')
 pmax_normal(armn=3,mean1=80,sd1=20,mean2=50,sd2=10,mean3=80,
 sd3=15,side='upper')
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

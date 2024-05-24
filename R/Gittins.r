@@ -7,7 +7,6 @@
 #' time horizon 100, 100, 100, 1000, 1000 for discount factor 0, 0.5, 0.7, 0.99 and 0.995 respectively.
 #' Gittins indices for continuous outcomes are obtained by linear extrapolation using Table 8.1 and Table 8.3
 #' in \insertCite{Gittins2011}{RARtrials}.
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export Gittins
 #' @importFrom stats approx
 #' @param Gittinstype type of Gittins indices, with choices from 'Binary', 'UNKV' and 'KV'.

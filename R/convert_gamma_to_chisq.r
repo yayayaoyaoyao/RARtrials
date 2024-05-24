@@ -8,7 +8,6 @@
 #' (\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)}) 
 #' distribution.
 #' @aliases convert_gamma_to_chisq
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export convert_gamma_to_chisq
 #' @param gpar a list of parameters including m, V, a, b from a Normal-Inverse-Gamma distribution.
 #' @return a list of parameters including mu, kappa, nu, sigsq from a Normal-Inverse-Chi-Squared distribution.

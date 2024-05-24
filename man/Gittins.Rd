@@ -41,6 +41,3 @@ Gittins(Gittinstype='UNKV',df=0.99)
 \references{
 \insertRef{Gittins2011}{RARtrials}
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

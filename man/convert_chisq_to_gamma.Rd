@@ -30,6 +30,3 @@ convert_chisq_to_gamma(list(mu=0.091,kappa=2,nu=1,sigsq=4e-05))
 \references{
 \insertRef{Kevin2007}{RARtrials}
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

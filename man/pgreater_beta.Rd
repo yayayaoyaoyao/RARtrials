@@ -40,6 +40,3 @@ pgreater_beta(a1=65, b1=79,a2=58, b2=68, delta=0, side='lower')
 \references{
 \insertRef{Wathen2017}{RARtrials}
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

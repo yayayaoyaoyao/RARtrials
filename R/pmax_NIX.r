@@ -1,8 +1,7 @@
-#' @title Posterior Probability that a Particular Arm is the Best for Continuous Endpoint with Unknown Variances
+#' @title Posterior Probability that a Particular Arm is the Best for Continuous Endpoint with Unknown Variances 
 #' @description Calculate posterior probability that a particular arm is the best in a trial using Bayesian response-adaptive randomization with
-#' a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal-Inverse-Gamma (NIG) 
-#' (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) distributions for continuous
-#' outcomes with unknown variance in each arm and can be specified individually. 
+#' a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal-Inverse-Chi-Squared (NIX)
+#' distributions for continuous outcomes with unknown variance in each arm and can be specified individually. 
 #' @details This function calculates the results of formula \eqn{Pr(\mu_k=max\{\mu_1,...,\mu_k\})} for
 #' \code{side} equals to 'upper' and the results of formula \eqn{Pr(\mu_k=min\{\mu_1,...,\mu_k\})} for
 #' \code{side} equals to 'lower'. This function returns the probability that the posterior probability of arm
@@ -12,7 +11,6 @@
 #' (\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)})
 #' distribution using \code{convert_gamma_to_chisq} before applying this function.
 #' @aliases pmax_NIX
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export pmax_NIX
 #' @param armn number of arms in the trial with values up to 5. When \code{armn}=2,
 #' only \code{par1} to \code{par2} need to be specified.

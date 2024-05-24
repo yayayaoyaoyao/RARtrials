@@ -30,6 +30,3 @@ convert_gamma_to_chisq(list(V=1/2,a=0.5,m=9.1/100,b=0.00002))
 \references{
 \insertRef{Kevin2007}{RARtrials}
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

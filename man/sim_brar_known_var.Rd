@@ -47,17 +47,15 @@ count of individuals who have been affected by the disease during that specific 
 for example, a month or a day. If this number is 10, it represents that
 10 people have got the disease within the specified time frame.}
 
-\item{nMax}{the maximal accrued number of patients with the disease, this number
+\item{nMax}{the assumed maximum accrued number of patients with the disease in the population, this number
 should be chosen carefully to ensure a sufficient number of patients are simulated,
 especially when considering the delay mechanism.}
 
-\item{TimeToOutcome}{Representation of the time distribution of delayed responses. The accrual times
-could be a month, a week or any other time frame. When the unit changes,
+\item{TimeToOutcome}{the distribution of delayed response times or a fixed delay time for responses.
+The delayed time could be a month, a week or any other time frame. When the unit changes,
 the number of TimeToOutcome should also change. It can be in the format
 of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
-with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
-Refer to the website for more details.}
+with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.}
 
 \item{enrollrate}{probability that patients in the population can enroll in the trial.
 This parameter is related to the number of people who have been affected by the disease in the population,
@@ -146,6 +144,11 @@ a control group under no delay and delay scenarios for continuous outcomes with 
 \eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^tp}}} with \code{side} equals to 'upper'
 and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^tp}}} 
 with \code{side} equals to 'lower', utilizing available data at each step.
+Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
+\code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
+\code{TimeToOutcome} (the distribution of delayed response times or a fixed delay time for responses) 
+are parameters in the functions adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
+Refer to the website for more details.
 }
 \examples{
 #sim_brar_known_var with delayed responses follow a normal distribution with
@@ -159,7 +162,4 @@ mean10=0.09,mean20=0.09,mean30=0.09,sd10=0.01,sd20=0.01,sd30=0.01,n10=1,n20=1,n3
 }
 \references{
 \insertRef{Wathen2017}{RARtrials}
-}
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
 }

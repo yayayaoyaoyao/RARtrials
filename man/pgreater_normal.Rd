@@ -49,6 +49,3 @@ pgreater_normal(mean1=0.091,sd1=0.09,mean2=0.087,sd2=0.1,delta=0,side='lower')
 \insertRef{Wathen2017}{RARtrials}
 \insertRef{Kevin2007}{RARtrials}
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

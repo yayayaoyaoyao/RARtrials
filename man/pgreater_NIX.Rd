@@ -2,7 +2,7 @@
 % Please edit documentation in R/pgreater_NIX.r
 \name{pgreater_NIX}
 \alias{pgreater_NIX}
-\title{Calculate the Futility Stopping Probability for Continuous Endpoint with Unknown Variances Using Normal-Inverse-Gamma Distribution}
+\title{Calculate the Futility Stopping Probability for Continuous Endpoint with Unknown Variances Using a Normal-Inverse-Chi-Squared Distribution}
 \usage{
 pgreater_NIX(par1, par2, delta = 0, side, ...)
 }
@@ -24,7 +24,7 @@ a posterior probability of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} with \code{
 \description{
 Calculate the futility stopping probability in Bayesian response-adaptive randomization with
 a control group using Thall \eqn{\&} Wathen method for continuous outcomes with unknown variances. The prior distributions
-follow Normal-Inverse-Gamma (NIG) (\eqn{NIG(V,m,a,b)}) distributions and can be specified individually for each treatment group.
+follow Normal-Inverse-Chi-Squared (NIX) distributions and can be specified individually for each treatment group.
 }
 \details{
 This function calculates the results of \eqn{Pr(\mu_k>\mu_{control}+\delta|data)} for \code{side} equals to
@@ -51,7 +51,4 @@ pgreater_NIX(par1=par1,par2=par2, side='lower')
 \references{
 \insertRef{Wathen2017}{RARtrials}
 \insertRef{Kevin2007}{RARtrials}
-}
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
 }

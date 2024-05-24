@@ -8,7 +8,6 @@
 #' response-adaptive randomization with a control arm using Thall \eqn{\&} Wathen method, with accumulated results
 #' during the conduct of trials. 
 #' @aliases pgreater_beta
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export pgreater_beta
 #' @param a1,b1  \eqn{\alpha} and \eqn{\beta} in \eqn{Beta(\alpha,\beta)}, current estimated \eqn{\alpha} for the control group.
 #' @param a2,b2  \eqn{\alpha} and \eqn{\beta} in \eqn{Beta(\alpha,\beta)}, current estimated \eqn{\alpha} for the treatment group which is compared to the control group.

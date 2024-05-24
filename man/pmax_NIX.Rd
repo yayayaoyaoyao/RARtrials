@@ -42,9 +42,8 @@ a probability that a particular arm is the best in trials up to five arms.
 }
 \description{
 Calculate posterior probability that a particular arm is the best in a trial using Bayesian response-adaptive randomization with
-a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal-Inverse-Gamma (NIG) 
-(\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) distributions for continuous
-outcomes with unknown variance in each arm and can be specified individually.
+a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal-Inverse-Chi-Squared (NIX)
+distributions for continuous outcomes with unknown variance in each arm and can be specified individually.
 }
 \details{
 This function calculates the results of formula \eqn{Pr(\mu_k=max\{\mu_1,...,\mu_k\})} for
@@ -86,7 +85,4 @@ y3<-rnorm(110,0.0892,0.009)
 par33<-update_par_nichisq(y3, par)
 pmax_NIX(armn=3,par1=par11,par2=par22,par3=par33,side='upper')
 pmax_NIX(armn=3,par1=par11,par2=par22,par3=par33,side='lower')
-}
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
 }

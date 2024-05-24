@@ -18,11 +18,11 @@
 #' @param BB the minimal allocation probability for each arm, which is within the
 #' range of \eqn{[0,1/armn]}.
 #' @param type allocation type, with choices from 'RSIHR' and 'Neyman'.
-#' @param dabcd an indicator of whether to apply Hu & Zhang's formula (\insertCite{Hu2004}{RARtrials}), with choices from 0 and 1.
-#' 1 represents allocation probabilities calculated using Hu & Zhang's formula;
-#' 0 represents allocation probabilities calculated before applying Hu & Zhang's formula.
-#' Default value is set to 0.
-#' @param gamma tuning parameter in Hu & Zhang's formula (\insertCite{Hu2004}{RARtrials}). When \code{dabcd}=0, this parameter does not need
+#' @param dabcd an indicator of whether to apply Hu & Zhang's formula (\insertCite{Hu2004}{RARtrials}), with choices from FALSE and TRUE.
+#' TRUE represents allocation probabilities calculated using Hu & Zhang's formula;
+#' FALSE represents allocation probabilities calculated before applying Hu & Zhang's formula.
+#' Default value is set to FALSE.
+#' @param gamma tuning parameter in Hu & Zhang's formula (\insertCite{Hu2004}{RARtrials}). When \code{dabcd}=FALSE, this parameter does not need
 #' to be specified. Default value is set to 2.
 #' @return A vector of allocation probabilities to each arm.
 #' @examples
@@ -34,7 +34,7 @@
 #' \insertRef{Jeon2010}{RARtrials}
 #' \insertRef{Sabo2016}{RARtrials}
 
-dabcd_max_power<-function(NN,Ntotal1,armn,BB,type,dabcd=0,gamma=2){
+dabcd_max_power<-function(NN,Ntotal1,armn,BB,type,dabcd=FALSE,gamma=2){
 
   NN<-NN+1
   Ntotal11<-Ntotal1+2
@@ -567,7 +567,7 @@ if (armn==3 & type=='Neyman'){
   }
 
 
-  if (dabcd==1){
+  if (dabcd==TRUE){
     alr<-rep(NA,armn)
     phi<-rep(NA,armn)
     for (k in 1:armn){
@@ -577,7 +577,7 @@ if (armn==3 & type=='Neyman'){
       alr[kk]<-phi[kk]/sum(phi)
     }
     return(alr)
-  }else if (dabcd==0){
+  }else if (dabcd==FALSE){
     return(rho1)
   }
 

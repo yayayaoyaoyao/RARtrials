@@ -62,6 +62,3 @@ pmax_beta(armn=4,a1=56,b1=98,a2=25,b2=70,a3=87,b3=107,
 a4=106, b4=202, side='lower')
 pmax_beta(armn=3,a1=60,b1=46,a2=55,b2=46,a3=35,b3=36,side='upper')
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

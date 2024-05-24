@@ -39,6 +39,3 @@ update_par_nichisq(y2, par)
 \references{
 \insertRef{Kevin2007}{RARtrials}
 }
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
-}

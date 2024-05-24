@@ -39,17 +39,15 @@ count of individuals who have been affected by the disease during that specific 
 for example, a month or a day. If this number is 10, it represents that
 10 people have got the disease within the specified time frame.}
 
-\item{nMax}{the maximal accrued number of patients with the disease, this number
+\item{nMax}{the assumed maximum accrued number of patients with the disease in the population, this number
 should be chosen carefully to ensure a sufficient number of patients are simulated,
 especially when considering the delay mechanism.}
 
-\item{TimeToOutcome}{Representation of the time distribution of delayed responses. The accrual times
-could be a month, a week or any other time frame. When the unit changes,
+\item{TimeToOutcome}{the distribution of delayed response times or a fixed delay time for responses.
+The delayed time could be a month, a week or any other time frame. When the unit changes,
 the number of TimeToOutcome should also change. It can be in the format
 of expression(rnorm( length( vStartTime ),30, 3)), representing delayed responses
-with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.
-These related functions are adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
-Refer to the website for more details.}
+with a normal distribution, where the mean is 30 days and the standard deviation is 3 days.}
 
 \item{enrollrate}{probability that patients in the population can enroll in the trial.
 This parameter is related to the number of people who have been affected by the disease in the population,
@@ -102,6 +100,11 @@ follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each a
 This function simulates a trial using the forward-looking Gittins index or the
 controlled forward-looking Gittins index algorithm under both no delay and delay scenarios.
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_known_var}.
+Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
+\code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
+\code{TimeToOutcome} (the distribution of delayed response times or a fixed delay time for responses) 
+are parameters in the functions adapted from \url{https://github.com/kwathen/IntroBayesianSimulation}.
+Refer to the website for more details.
 }
 \examples{
 #The forward-looking Gittins index rule with delayed responses follow a normal distribution
@@ -125,7 +128,4 @@ sd=c(0.009,0.009,0.009),side='lower')}
 }
 \references{
 \insertRef{Williamson2019}{RARtrials}
-}
-\author{
-Chuyao Xu, Thomas Lumley, Alain Vandal
 }

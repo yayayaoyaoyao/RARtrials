@@ -8,7 +8,6 @@
 #' (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
 #' distribution.
 #' @aliases convert_chisq_to_gamma
-#' @author Chuyao Xu, Thomas Lumley, Alain Vandal
 #' @export convert_chisq_to_gamma
 #' @param cpar a list of parameters including mu, kappa, nu, sigsq from a Normal-Chi-Squared distribution. 
 #' @return a list of parameters including m, V, a, b from a Normal-Inverse-Gamma distribution.
