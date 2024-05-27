@@ -17,7 +17,7 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-RARtrials is designed for simulating some popular response-adaptive randomization methods in the literature with comparisons of each treatment group to a control group under no delay and delayed (between treatment and outcome availability) scenarios. All the designs are based on one-sided tests with a choice from values of 'upper' and 'lower'. The general assumption is that binary outcomes follow Binomial distributions, while continuous outcomes follow normal distributions. Additionally, the number of patients accrued in the population follows a Poisson process and users can specify the enrollment rate of patients enrolled in the trial. The methods included in this R package are as follows:
+RARtrials is designed for simulating some popular response-adaptive randomization methods in the literature with comparisons of each treatment group to a control group under no delay and delayed (time between treatment and outcome availability) scenarios. All the designs are based on one-sided tests with a choice from values of 'upper' and 'lower'. The general assumption is that binary outcomes follow Binomial distributions, while continuous outcomes follow normal distributions. Additionally, the number of patients accrued in the population follows a Poisson process and users can specify the enrollment rate of patients enrolled in the trial. The methods included in this R package are as follows:
 
 * \quad The Randomized Play-the-Winner rule for binary outcomes in two-armed trials [@Wei1978];
 * \quad Doubly adaptive biased coin design targeting Neyman allocation and RSIHR allocation using minimal variance strategy for binary outcomes in trials with up to five arms [@Biswas2004; @Atkinson2013];
@@ -110,14 +110,14 @@ In Hu \& Zhang's formula, $\hat{p}_{k,t-1}^*$ is the optimal allocation ratio of
 #probabilities before applying Hu \& Zhang's formula.
 dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR',
                 dabcd=FALSE,gamma=2)
-#The function call return values:0.2076180 0.2029166 0.1717949 0.2195535 0.1981169
+#The function call return values:0.3014955 0.1942672 0.0960814 0.2887962 0.1193597
 
 #Doubly adaptive biased coin design with five arms targeting RSIHR 
 #allocation using minimal variance strategy with return of allocation 
 #probabilities after applying Hu \& Zhang's formula.
 dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR',
                 dabcd=TRUE,gamma=2)
-#The function call return values:0.3014955 0.1942672 0.0960814 0.2887962 0.1193597
+#The function call return values:0.2076180 0.2029166 0.1717949 0.2195535 0.1981169
 ```
 
 The other method targeting the generalized Neyman and RSIHR allocation are given in @Tymofyeyev2007 and @Jeon2010 with modifications in @Sabo2016 respectively by employing a maximal power strategy, which maximise the marginal power of one selected comparison from all comparisons to the control group. All of those methods are not smoothed compared to the original papers in this package, because the smoothing technique does not function as indicated.
@@ -568,7 +568,7 @@ The allocation probabilities of participants to treatment $k$ depend on the data
 
 To maintain a certain allocation probability to the control group, a slight modification to this rule is introduced with $p_{0,j}=1/K$ and the allocation probabilities of other treatment groups are normalized to sum to 1, a process known as controlled forward-looking Gittins index rule [@Villar2015]. 
 
-A generalization of binary outcome to the continuous outcomes is provided in @Williamson2019, all the theories and rules remain the same, with some updates to the calculation of Gittins index. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{y}_{k,t},\sigma_k,n_{k,t})=\tilde{y}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{y}_{k,t},\tilde{s}_{k,t},n_{k,t})=\tilde{y}_{k,t}+\tilde{s}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{y}_{k,t}$ and $\tilde{s}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
+A generalization of binary outcome to the continuous outcomes is provided in @Williamson2019, all the theories and rules remain the same, with some updates to the calculation of Gittins index. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{m}_{k,t},\sigma_k,n_{k,t})=\tilde{m}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{m}_{k,t},\tilde{s}_{k,t},n_{k,t})=\tilde{m}_{k,t}+\tilde{s}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{m}_{k,t}$ and $\tilde{s}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
 
 ## R code
 To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis by simulation [@Smith2017].  After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain  type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variances.
@@ -587,7 +587,7 @@ noRuns2=100,Tsize=120,block=8,rule='FLGI PM',prior_n=rep(1,3),prior_mean=rep(0,3
 mean=c(-0.05,-0.05,-0.05),sd=c(0.346,0.346,0.346),side='upper')})
 stopbound5a<-do.call(rbind,stopbound5)
 sum(stopbound5a[,1]>2.074 | stopbound5a[,2]> 2.074)/1000 #0.05
-#The selected cut-off value is 2.05 with an overall upper one-sided type I error of 0.05.
+#The selected cut-off value is 2.074 with an overall upper one-sided type I error of 0.05.
 #It is recommended to run more simulations to obtain a more accurate cut-off value.
 
 #Calculate power based on 1000 simulations
