@@ -23,7 +23,7 @@ a posterior probability of \eqn{Pr(p_{control}>p_k+\delta|data)} with \code{side
 }
 \description{
 Calculate the futility stopping probability in Bayesian response-adaptive randomization with
-a control group using Thall \eqn{\&} Wathen method for binary outcomes. The conjugate prior distributions follow
+a control group using the Thall \eqn{\&} Wathen method for binary outcomes. The conjugate prior distributions follow
 Beta (\eqn{Beta(\alpha,\beta)}) distributions and can be specified individually for each treatment group.
 }
 \details{

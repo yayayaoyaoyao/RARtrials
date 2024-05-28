@@ -183,7 +183,7 @@ sum(h1decision[,1]==1|h1decision[,2]==1)/5000
 #Overall power of rejecting H02 or H03 is 0.947
 ```
 
-## Bayesian Response-Adaptive Randomisation with a Control Group
+# Bayesian Response-Adaptive Randomisation with a Control Group
 In this package, Bayesian response-adaptive randomization refers to the Thall & Wathen method with a control group [@Thall2007; @Wathen2017]. This method can be applied not only to two-armed trials but also to multi-armed trials. Suppose the number of treatment groups is $K$ and the posterior probabilities are $p_1,...,p_K$ considering data available after recruitment of participant $t-1$. The generalization formula of allocation probability for arm $k$ at the recruitment of participant $t$ is given as $$p_{k,t}=\frac{Pr(p_k=max\{p_1,...,p_K\}|data_{t-1})^\gamma}{\sum_{i=1}^{K}Pr(p_i=max\{p_1,...,p_K\}|data_{t-1})^\gamma}.$$
 
 In this formula, $\gamma$ is a tuning parameter (high $\gamma$ means adapt more) with commonly used values $1, 0.5, \mbox{and } n/2N$. The posterior probabilities $p_1,...,p_K$ are often restricted to $[e,1-e]$ for $0<e<1$. The decision rules of this method include three parts [@Wathen2017]:  
@@ -367,7 +367,7 @@ sum(simf>0.7591,na.rm=T)/2000 #0.025
 For continuous outcomes with known variance $\sigma$, a normal prior for the mean is commonly used, noted as $\theta \sim N(\mu,\sigma/n_0)$, where $n_0$ is the implicit sample size in the prior. This prior conjugates to the likelihood of normal distribution, written as $y \sim N(\theta,\sigma/n_1)$ with $y$ represents the outcomes of observations and $n_1$ stands for the number of observations, resulting in the posterior normal distribution $N(\frac{n_0\mu+n_1y}{n_0+n_1},\frac{\sigma^2}{n_0+n_1})$. 
 
 
-For continuous outcomes with unknown variance, a Normal-Inverse-Gamma prior is employed with $\theta \sim N(m_0,V_0\sigma_0^2)$ and $\sigma_0^2 \sim IG(a_0,b_0)$. The prior can be written as $NIG(mean=m_0,variance=V_0\times\sigma_0^2,shape=a_0,rate=b_0)$, which conjugates to the likelihood of normal distribution $y \sim N(\theta,\sigma^2)$, resulting in the posterior Normal-Inverse-Gamma distribution $NIG(\mu_n,\sigma_n,a_n,b_n)=NIG((m_0/V_0+\sum_{i=1}^ny_i)V_n,1/(1/V_0+n),a_0+n/2,b_0+[m_0^2/V_0+\sum_{i=1}^ny_i^2-m_n^2/V_n]/2)$ with $y_i$ represents the outcome of each observation and $n$ stands for the number of observations [@Kevin2007]. Following the integration formulas as before, we should use the marginal posterior distribution of $\mu$ which is a $T$ distribution in this case. According to @Kevin2007, we first convert hyper-parameters of Normal-Inverse-Gamma to Normal-Inverse-Chi-Squared distribution. Then, we use the marginal posterior of $\mu$ given in section 5.3.2 of @Kevin2007. An example of a three-armed trial with unknown variances is given below with pre-specified prior distributions. 
+For continuous outcomes with unknown variance, a Normal-Inverse-Gamma prior is employed with $\theta \sim N(m_0,V_0\sigma_0^2)$ and $\sigma_0^2 \sim IG(a_0,b_0)$. The prior distribution can be written as $NIG(mean=m_0,variance=V_0\times\sigma_0^2,shape=a_0,rate=b_0)$, which conjugates to the likelihood of normal distribution $y \sim N(\theta,\sigma^2)$, resulting in the posterior Normal-Inverse-Gamma distribution $NIG(\mu_n,\sigma_n,a_n,b_n)=NIG((m_0/V_0+\sum_{i=1}^ny_i)V_n,1/(1/V_0+n),a_0+n/2,b_0+[m_0^2/V_0+\sum_{i=1}^ny_i^2-m_n^2/V_n]/2)$ with $y_i$ represents the outcome of each observation and $n$ stands for the number of observations [@Kevin2007]. Following the integration formulas as before, we should use the marginal posterior distribution of $\mu$ which is a $T$ distribution in this case. According to @Kevin2007, we first convert hyper-parameters of Normal-Inverse-Gamma to Normal-Inverse-Chi-Squared distribution. Then, we use the marginal posterior of $\mu$ given in section 5.3.2 of @Kevin2007. An example of a three-armed trial with unknown variances is given below with pre-specified prior distributions. 
 
 ```{r }
 #Example: Sample code using integration
@@ -536,7 +536,7 @@ sum(decision[,2]=='Superiorityfinal')/1000 #0.882
 #The simulated power from 1000 simulations is 0.882.
 ```
 
-## Forward-Looking Gittins Index
+# Forward-Looking Gittins Index
 In response-adaptive randomisation, there is a trade-off giving the best treatment to the next participant and to the future participants, known as learn-versus-earn trade-off [@Villar2015], which involves considering the benefits of participants currently enrolled and those to be enrolled in the future. Learning involves exploring short-term rewards to identify the best investment options, while earning entails exploiting long-term value to obtain sufficient benefits. For historical reason, this problem is also called “multi-arm bandit”. One of the optimal solution to this question is Gittins Index, the basic principle of Gittins Index is to find the balance between the learn-versus-earn trade-off, maximising benefits through Bayesian decision theory. Suppose the $t$-th participant is assigned to treatment $k$ with $k=1,...,K$ and $k=1$ stands for the control group, the mathematical representation of this question using a binary endpoint is
 $$ \pi_{\rm opt}(\tilde{x}_0)=\arg {\rm max}_{\pi\in\Pi} E^\pi[(\sum^{T-1}_{t=0} \sum^{K}_{k=1} d^{t} P_m a_{k,t})|\tilde{x}_0].$$
 In this formula, $P_m$ is the posterior mean, $$\Pi=\{ a_{k,t}| 0\leq k\leq K , \sum_{k=0}^K a_{k,t}=1\}$$ is a family of allocation rules, $$\tilde{x}_0=(x_{k,0})^K_{k=1}$$ is the initial state considering the prior information, $d$ is a specified discount factor and $E^\pi[.]$ is the average responses of participants
@@ -550,28 +550,28 @@ The motivation for the Gittins Index comes from clinical trials, and there is mu
 actual implementations (Gittins and Jones, 1979b). @Villar2015 proposed the forward-looking Gittins index algorithm, which allows participants to enroll in trials with block size $m$ over $J$ stages. The allocation probability of each participant in block $j$ being assigned to treatment $k$ is given as:
 
 $$ 
-\pi_{k,j}=\frac{1}{m} \sum_{n=(j-1)m+1}^{jm} \big[\sum_{\tilde{x}_{n-1} \in \Omega_{n-1}} Pr(a_{k,n}^{GI}=1|\tilde{X}_{n-1}=\tilde{x}_{n-1})
+\pi_{k,j}=\frac{1}{m} \sum_{t=(j-1)m+1}^{jm} \big[\sum_{\tilde{x}_{t-1} \in \Omega_{t-1}} Pr(a_{k,t}^{GI}=1|\tilde{X}_{t-1}=\tilde{x}_{t-1})
 \times$$
 $$
-Pr(\tilde{X}_{n-1}=\tilde{x}_{n-1}|\tilde{X}_{(j-1)m}=\tilde{x}_{(j-1)m})\big].
+Pr(\tilde{X}_{t-1}=\tilde{x}_{t-1}|\tilde{X}_{(j-1)m}=\tilde{x}_{(j-1)m})\big].
 $$
 
 
-The allocation probabilities of participants to treatment $k$ depend on the data observed up to the previous block, denoted $\tilde{x}_{(j-1)m}$, and current information at participant $n-1$.
+The allocation probability of participants to treatment $k$ depends on the data observed up to the $(j-1)$ block with $(j-1)\times m$ participants, written as $\tilde{x}_{(j-1)m}$, and the current information at block $j$ with participant $n-1$.
 
 
 *  \quad  When $j=1$ and all treatment groups have the same prior distributions, $p_{k,j}=1/(K+1)$;
 
-*  \quad  When $j\geq 2$, the allocation of the first participant in block $j$ is determined by the highest Gittins indices with information from the $(j-1) \times m$ participants;
+*  \quad  When $j\geq 2$, the allocation of the first participant in block $j$ will be determined by the highest Gittins Index with information from the $(j-1) \times m$ participants;
 
-*  \quad  When $j\geq 2$, the allocation for the second to the last participants in block $j$ depend on the posterior distribution of future data given $\tilde{x}_{(j-1)m}$.
+*  \quad  When $j\geq 2$, the allocation for the second to the last participants in block $j$ will depend on the posterior distribution of future data given $\tilde{x}_{(j-1)m}$.
 
-To maintain a certain allocation probability to the control group, a slight modification to this rule is introduced with $p_{0,j}=1/K$ and the allocation probabilities of other treatment groups are normalized to sum to 1, a process known as controlled forward-looking Gittins index rule [@Villar2015]. 
+To maintain a certain allocation probability to the control group, a slight modification to this rule is introduced with $p_{1,j}=1/K$ and the allocation probabilities to other treatment groups are calculated using their corresponding proportions and normalized to sum to 1, this process is known as the controlled forward-looking Gittins index rule [@Villar2015]. 
 
-A generalization of binary outcome to the continuous outcomes is provided in @Williamson2019, all the theories and rules remain the same, with some updates to the calculation of Gittins index. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{m}_{k,t},\sigma_k,n_{k,t})=\tilde{m}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{m}_{k,t},\tilde{s}_{k,t},n_{k,t})=\tilde{m}_{k,t}+\tilde{s}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{m}_{k,t}$ and $\tilde{s}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
+A generalization of binary outcome to the continuous outcome is provided in @Williamson2019, all the theories and rules remain similar, with some updates to the calculation of Gittins index. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{m}_{k,t},\sigma_k,n_{k,t})=\tilde{m}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{m}_{k,t},\tilde{\sigma}_{k,t},n_{k,t})=\tilde{m}_{k,t}+\tilde{\sigma}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{m}_{k,t}$ and $\tilde{\sigma}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
 
 ## R code
-To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis by simulation [@Smith2017].  After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain  type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variances.
+To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis by simulation [@Smith2017].  After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variances.
 
 
 ```{r eval=FALSE}

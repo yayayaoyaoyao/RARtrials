@@ -1,6 +1,6 @@
 #' @title Calculate the Futility Stopping Probability for Continuous Endpoint with Known Variances Using Normal Distribution
 #' @description Calculate the futility stopping probability in Bayesian response-adaptive randomization with
-#' a control group using Thall \eqn{\&} Wathen method for continuous outcomes with known variances. The conjugate prior distributions
+#' a control group using the Thall \eqn{\&} Wathen method for continuous outcomes with known variances. The conjugate prior distributions
 #' follow Normal (\eqn{N(mean,sd)}) distributions and can be specified individually for each treatment group.
 #' @details This function calculates the results of \eqn{Pr(\mu_k>\mu_{control}+\delta|data)} for \code{side} equals to
 #' 'upper' and the results of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} for \code{side} equals to 'lower'.

@@ -126,8 +126,8 @@ Randomization with a control group for binary outcomes. The conjugate prior dist
 This function generates a designed trial using Bayesian response-adaptive randomization with
 a control group under no delay and delay scenarios for binary outcomes. The function can handle trials with up to
 5 arms. This function uses the formula
-\eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^tp}}} with \code{side} equals to 'upper'
-and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^tp} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\})^tp}}}
+\eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^{tp}}}} with \code{side} equals to 'upper',
+and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\}){tp}}}} 
 with \code{side} equals to 'lower', utilizing available data at each step.
 Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 

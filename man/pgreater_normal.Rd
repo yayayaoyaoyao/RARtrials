@@ -31,7 +31,7 @@ a posterior probability of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} with \code{
 }
 \description{
 Calculate the futility stopping probability in Bayesian response-adaptive randomization with
-a control group using Thall \eqn{\&} Wathen method for continuous outcomes with known variances. The conjugate prior distributions
+a control group using the Thall \eqn{\&} Wathen method for continuous outcomes with known variances. The conjugate prior distributions
 follow Normal (\eqn{N(mean,sd)}) distributions and can be specified individually for each treatment group.
 }
 \details{

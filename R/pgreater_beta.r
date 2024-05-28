@@ -1,6 +1,6 @@
 #' @title Calculate the Futility Stopping Probability for Binary Endpoint with Beta Distribution
 #' @description Calculate the futility stopping probability in Bayesian response-adaptive randomization with
-#' a control group using Thall \eqn{\&} Wathen method for binary outcomes. The conjugate prior distributions follow
+#' a control group using the Thall \eqn{\&} Wathen method for binary outcomes. The conjugate prior distributions follow
 #' Beta (\eqn{Beta(\alpha,\beta)}) distributions and can be specified individually for each treatment group.
 #' @details This function calculates the results of \eqn{Pr(p_k>p_{control}+\delta|data)} for \code{side} equals to
 #' 'upper' and the results of \eqn{Pr(p_{control}>p_k+\delta|data)} for \code{side} equals to 'lower'.
