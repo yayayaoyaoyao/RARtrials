@@ -91,7 +91,7 @@ and the controlled forward-looking Gittins index algorithm for continuous outcom
 }
 \details{
 This function simulates trials using the forward-looking Gittins index and the
-controlled forward-looking Gittins index algorithm under both no delay and delay scenarios to obtain
+controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios to obtain
 cut-off values at the final stage, with control of type I error. The user is expected to run this function
 multiple times to determine a reasonable cut-off value for statistical inference.
 Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),

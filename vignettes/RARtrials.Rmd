@@ -359,7 +359,7 @@ simf<-do.call(rbind,simf)
 
 #Ensure that around 1% of the trials stop for futility
 sum(is.na(simf)) #20
-#Select a_U to make sure that the overall type I error is around 0.025
+#Select a_U to make sure that an overall type I error is around 0.025
 sum(simf>0.7591,na.rm=T)/2000 #0.025
 #The selected a_U is 0.7591.
 ```
@@ -376,7 +376,7 @@ set.seed(12345)
 #Pre-specified hyperparameters in prior distributions assumed to be the same across all 
 #three groups.
 para<-list(V=1/2,a=0.5,m=9.1/100,b=0.00002)
-#Update hyperparameters from the normal inverse-gamma distribution to the
+#Update hyperparameters from the Normal-Inverse-Gamma distribution to the
 #Normal-Inverse-Chi-Squared distribution.
 par<-convert_gamma_to_chisq(para)
 #Update hyperparameters with some data
@@ -413,7 +413,7 @@ pmax_NIX(armn=3,par1=par3,par2=par2,par3=par1,side='upper')
 
 ```{r eval=FALSE}
 #Example: sample code using simulations
-#Convert hyperparameters to normal-inverse-gamma distribution
+#Convert hyperparameters to Normal-Inverse-Gamma distribution
 convert_chisq_to_gamma<-function(cpar){
   list(
     m=cpar$mu,
@@ -537,12 +537,12 @@ sum(decision[,2]=='Superiorityfinal')/1000 #0.882
 ```
 
 # Forward-Looking Gittins Index
-In response-adaptive randomisation, there is a trade-off giving the best treatment to the next participant and to the future participants, known as learn-versus-earn trade-off [@Villar2015], which involves considering the benefits of participants currently enrolled and those to be enrolled in the future. Learning involves exploring short-term rewards to identify the best investment options, while earning entails exploiting long-term value to obtain sufficient benefits. For historical reason, this problem is also called “multi-arm bandit”. One of the optimal solution to this question is Gittins Index, the basic principle of Gittins Index is to find the balance between the learn-versus-earn trade-off, maximising benefits through Bayesian decision theory. Suppose the $t$-th participant is assigned to treatment $k$ with $k=1,...,K$ and $k=1$ stands for the control group, the mathematical representation of this question using a binary endpoint is
+In response-adaptive randomisation, there is a trade-off giving the best treatment to the next participant and to the future participants, known as learn-versus-earn trade-off [@Villar2015], which involves considering the benefits of participants currently enrolled and those to be enrolled in the future. Learning involves exploring short-term rewards to identify the best investment options, while earning entails exploiting long-term value to obtain sufficient benefits. For historical reason, this problem is also called “multi-arm bandit”. One of the optimal solution to this question is Gittins Index, the basic principle of Gittins Index is to find the balance between the learn-versus-earn trade-off, maximizing benefits through Bayesian decision theory. Suppose the $t$-th participant is assigned to treatment $k$ with $k=1,...,K$ and $k=1$ stands for the control group, the mathematical representation of this question using a binary endpoint is
 $$ \pi_{\rm opt}(\tilde{x}_0)=\arg {\rm max}_{\pi\in\Pi} E^\pi[(\sum^{T-1}_{t=0} \sum^{K}_{k=1} d^{t} P_m a_{k,t})|\tilde{x}_0].$$
 In this formula, $P_m$ is the posterior mean, $$\Pi=\{ a_{k,t}| 0\leq k\leq K , \sum_{k=0}^K a_{k,t}=1\}$$ is a family of allocation rules, $$\tilde{x}_0=(x_{k,0})^K_{k=1}$$ is the initial state considering the prior information, $d$ is a specified discount factor and $E^\pi[.]$ is the average responses of participants
 attained with prior information, and our objective is to maximize the expected discounted number of successes with $T$ ranges from $0$ to $T-1$.
 
-Gittins index is the optimal solution to the optimisation question above, given by 
+Gittins index is the optimal solution to the optimization question above, given by 
 $$\mathcal{G} (X_{k,t})=\sup_{\tau\geq 1} \frac{E[ ( \sum^{\tau-1}_{i=0}P_md^i)|X_{k,t}]}{ \sum^{\tau-1}_{i=0} d^i}.$$
 The numerator is the expected total discounted reward from $t$ to $t+\tau-1$, and the denominator is the expected total discounted cost from $t$ to $t+\tau-1$. So $\mathcal{G} (X_{k,t})$ means the maximal total benefits based on the choice of treatment $k$ at stage $t$.
 
@@ -568,10 +568,10 @@ The allocation probability of participants to treatment $k$ depends on the data 
 
 To maintain a certain allocation probability to the control group, a slight modification to this rule is introduced with $p_{1,j}=1/K$ and the allocation probabilities to other treatment groups are calculated using their corresponding proportions and normalized to sum to 1, this process is known as the controlled forward-looking Gittins index rule [@Villar2015]. 
 
-A generalization of binary outcome to the continuous outcome is provided in @Williamson2019, all the theories and rules remain similar, with some updates to the calculation of Gittins index. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{m}_{k,t},\sigma_k,n_{k,t})=\tilde{m}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{m}_{k,t},\tilde{\sigma}_{k,t},n_{k,t})=\tilde{m}_{k,t}+\tilde{\sigma}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{m}_{k,t}$ and $\tilde{\sigma}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
+A generalization of binary outcome to the continuous outcome is provided in @Williamson2019, all the theories and rules remain similar, with some updates to the calculation of Gittins indices. For continuous outcomes with known variances and normal priors, the Gittin index can be calculated by $$G(\tilde{m}_{k,t},\sigma_k,n_{k,t})=\tilde{m}_{k,t}+\sigma_kG(0,1,{n_k}^0+n_{k,t},d);$$ For continuous outcomes with unknown variances and Normal-Inverse-Gamma priors, the Gittins index can be calculated by $$G(\tilde{m}_{k,t},\tilde{\sigma}_{k,t},n_{k,t})=\tilde{m}_{k,t}+\tilde{\sigma}_{k,t}G(0,1,{n_k}^0+n_{k,t},d),$$ where $\tilde{m}_{k,t}$ and $\tilde{\sigma}_{k,t}$ are the posterior mean and posterior standard deviation of treatment group $k$ at time $t$ [@Gittins2011]. 
 
 ## R code
-To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis by simulation [@Smith2017].  After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variances.
+To avoid the inflation of type I error, it is necessary to select the critical cut-off value under the null hypothesis by simulation [@Smith2017]. After the cut-off value is selected, call `sim_flgi_binary()`, `sim_flgi_known_var()` or `sim_flgi_unknown_var()` multiple times to simulate trials and obtain results of interest. This packages is built to obtain type I error and power based on the frequentist Z test statistics and T test statistics. Due to the heavy computation involved with large sample sizes, it is recommended to run the code on high-performance platforms. An example is provided below for continuous outcomes with known variances.
 
 
 ```{r eval=FALSE}

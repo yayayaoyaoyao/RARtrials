@@ -1,6 +1,6 @@
 Package: RARtrials
 Type: Package
-Title: Response-Adaptive Randomisation in Clinical Trials
+Title: Response-Adaptive Randomization in Clinical Trials
 Version: 0.0.1
 Authors@R: c(person(given="Chuyao",
                     family="Xu",
@@ -24,8 +24,8 @@ Authors@R: c(person(given="Chuyao",
                     email="kylewathen@gmail.com")        
  )
 Maintainer: Chuyao Xu  <cxu870@aucklanduni.ac.nz>
-Description: Some response-adaptive randomisation methods commonly found in literature are included in this package.
-             These methods include the randomized play-the-winner rule, doubly adaptive biased coin design with minimal variance strategy and
+Description: Some response-adaptive randomization methods commonly found in literature are included in this package.
+             These methods include the randomized play-the-winner rule, the doubly adaptive biased coin design with minimal variance strategy and
              maximal power strategy targeting 'Neyman' allocation and 'RSIHR' allocation, Bayesian response-adaptive randomization with 
              a control group using 'Thall' \& 'Wathen' method and the forward-looking 'Gittins' index rule.
 Encoding: UTF-8

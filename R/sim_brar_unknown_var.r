@@ -4,7 +4,7 @@
 #' follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
 #' distributions and can be specified individually for each arm.
 #' @details This function generates a designed trial using Bayesian response-adaptive randomization with
-#' a control group under no delay and delay scenarios for continuous outcomes with unknown variances. 
+#' a control group under no delay and delayed scenarios for continuous outcomes with unknown variances. 
 #' The function can handle trials with up to 5 arms. This function uses the formula
 #' \eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^{tp}} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^{tp}}}} with \code{side} equals to 'upper',
 #' and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^{tp}} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\}){tp}}}} 

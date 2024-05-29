@@ -1,7 +1,7 @@
 #' @title Simulate a Trial Using Randomized Play-the-Winner Rule for Binary Endpoint
 #' @description Simulate randomized play-the-winner rule in a two-armed trial with binary endpoint.
 #' @details This function simulates trials using the randomized play-the-winner
-#' rule under both no delay and delay scenarios. This method is a type of urn design 
+#' rule under both no delay and delayed scenarios. This method is a type of urn design 
 #' with the motivation to allocate more participants to the better treatment group.
 #' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 #' \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 

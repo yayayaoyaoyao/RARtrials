@@ -85,7 +85,7 @@ a treatment group, respectively.}
 for both groups. Another example is c(0.64,0.4) where 0.64 and 0.4 stand for the standard deviation for the control and
 a treatment group, respectively.}
 
-\item{side}{direction of one-sided test with the values of 'upper' or 'lower'.}
+\item{side}{direction of a one-sided test, with values 'upper' or 'lower'.}
 }
 \value{
 \code{sim_flgi_unknown_var} returns an object of class "flgi". An object of class "flgi" is a list containing 
@@ -102,7 +102,7 @@ distributions and should be the same for each arm.
 }
 \details{
 This function simulates a trial using the forward-looking Gittins index or the
-controlled forward-looking Gittins index algorithm under both no delay and delay scenarios.
+controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios.
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_unk_var}.
 Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 

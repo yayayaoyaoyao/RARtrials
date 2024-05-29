@@ -119,7 +119,7 @@ and can be specified individually for each arm.
 }
 \details{
 This function generates a data set or a value in one iteration for selecting the appropriate au using Bayesian
-response-adaptive randomization with a control group under null hypotheses with no delay and delay scenarios.
+response-adaptive randomization with a control group under null hypotheses with no delay and delayed scenarios.
 The function can handle trials with up to 5 arms for binary outcomes. This function uses the formula
 \eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^{tp}}}} with \code{side} equals to 'upper',
 and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\}){tp}}}} 

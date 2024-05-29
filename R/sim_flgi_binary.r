@@ -3,7 +3,7 @@
 #' Gittins index algorithm for binary outcomes in trials with 2-5 arms. The conjugate prior distributions
 #' follow Beta (\eqn{Beta(\alpha,\beta)}) distributions and should be the same for each arm.
 #' @details This function simulates a trial using the forward-looking Gittins index or the
-#' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios.
+#' controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios.
 #' The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_binary}.
 #' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 #' \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
@@ -52,7 +52,7 @@
 #' 'CFLGI' stands for controlled forward-looking Gittins index.
 #' @param ztype Z test statistics, with choice of values from 'pooled' and 'unpooled'.
 #' @param stopbound the cut-off value for Z test statistics, which is simulated under the null hypothesis.
-#' @param side direction of one-sided test with the values of 'upper' or 'lower'.
+#' @param side direction of a one-sided test, with values 'upper' or 'lower'.
 #' @return \code{sim_flgi_binary} returns an object of class "flgi". An object of class "flgi" is a list containing 
 #' final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
 #' the maximal Gittins index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 

@@ -4,7 +4,7 @@
 \name{RARtrials-package}
 \alias{RARtrials}
 \alias{RARtrials-package}
-\title{RARtrials: Response-Adaptive Randomisation in Clinical Trials}
+\title{RARtrials: Response-Adaptive Randomization in Clinical Trials}
 \description{
 RAR package is designed for simulating most popular response-adaptive randomization 
 methods in the literature with comparisons of each treatment group to a control 
@@ -14,6 +14,13 @@ that binary outcomes follow a Binomial distribution, while continuous outcomes f
 a normal distribution. Additionally, the number of patients accrued in the population 
 follows a Poisson distribution and users can specify the enrollment rate of patients 
 enrolled in the trial.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/yayayaoyaoyao/RARtrials}
+}
+
 }
 \author{
 \strong{Maintainer}: Chuyao Xu \email{cxu870@aucklanduni.ac.nz}

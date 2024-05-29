@@ -4,7 +4,7 @@
 #' follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
 #' distributions and should be the same for each arm.
 #' @details This function simulates a trial using the forward-looking Gittins index or the
-#' controlled forward-looking Gittins index algorithm under both no delay and delay scenarios.
+#' controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios.
 #' The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_unk_var}.
 #' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 #' \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
@@ -53,7 +53,7 @@
 #' @param sd a vector of standard deviation hypotheses, for example, as c(0.64,0.64) where 0.64 stands for the standard deviation
 #' for both groups. Another example is c(0.64,0.4) where 0.64 and 0.4 stand for the standard deviation for the control and
 #' a treatment group, respectively.
-#' @param side direction of one-sided test with the values of 'upper' or 'lower'.
+#' @param side direction of a one-sided test, with values 'upper' or 'lower'.
 #' @return \code{sim_flgi_unknown_var} returns an object of class "flgi". An object of class "flgi" is a list containing 
 #' final decision based on the T test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
 #' the maximal Gittins index value at the final stage, T test statistics, the simulated data set and participants accrued for each arm 

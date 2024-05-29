@@ -3,7 +3,7 @@
 #' Randomization with a control group for binary outcomes. The conjugate prior distributions follow Beta
 #' (\eqn{Beta(\alpha,\beta)}) distributions and can be specified individually for each arm.
 #' @details This function generates a designed trial using Bayesian response-adaptive randomization with
-#' a control group under no delay and delay scenarios for binary outcomes. The function can handle trials with up to
+#' a control group under no delay and delayed scenarios for binary outcomes. The function can handle trials with up to
 #' 5 arms. This function uses the formula
 #' \eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^{tp}}}} with \code{side} equals to 'upper',
 #' and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\}){tp}}}} 
