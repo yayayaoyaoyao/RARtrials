@@ -65,7 +65,7 @@ set to 100, which is recommended in \insertCite{Villar2015}{RARtrials}.}
 \item{rule}{rules can be used in this function, with values 'FLGI PM', 'FLGI PD' or 'CFLGI'.
 'FLGI PM' stands for making decision based on posterior mean;
 'FLGI PD' stands for making decision based on posterior distribution;
-'CFLGI' stands for controlled forward-looking Gittins index.}
+'CFLGI' stands for controlled forward-looking Gittins Index.}
 
 \item{prior_n}{a vector representing the number of observations assumed in prior distributions, eg: c(1,1) for a two-armed trial.}
 
@@ -87,18 +87,18 @@ a treatment group, respectively.}
 \value{
 \code{sim_flgi_known_var} returns an object of class "flgi". An object of class "flgi" is a list containing 
 final decision based on the Z test statistics with 1 stands for selected and 0 stands for not selected, final decision based on 
-the maximal Gittins index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 
+the maximal Gittins Index value at the final stage, Z test statistics, the simulated data set and participants accrued for each arm 
 at the time of termination of that group in one trial. The simulated data set includes 5 columns: participant ID number, enrollment time, 
 observed time of results, allocated arm, and participants' result.
 }
 \description{
-Function for simulating a trial using the forward-looking Gittins index and the controlled forward-looking
-Gittins index algorithm for continuous outcomes with known variances in trials with 2-5 arms. The conjugate prior distributions
+Function for simulating a trial using the forward-looking Gittins Index rule and the controlled forward-looking
+Gittins Index rule for continuous outcomes with known variances in trials with 2-5 arms. The conjugate prior distributions
 follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each arm.
 }
 \details{
-This function simulates a trial using the forward-looking Gittins index or the
-controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios.
+This function simulates a trial using the forward-looking Gittins Index rule or the
+controlled forward-looking Gittins Index rule under both no delay and delayed scenarios.
 The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_known_var}.
 Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
@@ -107,7 +107,7 @@ are parameters in the functions adapted from \url{https://github.com/kwathen/Int
 Refer to the website for more details.
 }
 \examples{
-#The forward-looking Gittins index rule with delayed responses follow a normal distribution
+#The forward-looking Gittins Index rule with delayed responses follow a normal distribution
 #with a mean of 30 days and a standard deviation of 3 days
 \donttest{
 sim_flgi_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,
@@ -116,7 +116,7 @@ K=3,noRuns2=100,Tsize=852,block=20,rule='FLGI PM',prior_n=rep(1,3),
 prior_mean=rep(9/100,3),stopbound=(-2.1725),mean=c(9.1/100,8.83/100,8.83/100),
 sd=c(0.009,0.009,0.009),side='lower')}
 
-#The controlled forward-looking Gittins index rule with delayed responses follow a 
+#The controlled forward-looking Gittins Index rule with delayed responses follow a 
 #normal distribution with a mean of 30 days and a standard deviation of 3 days
 \donttest{
 sim_flgi_known_var(Gittinstype='KV',df=0.995,Pats=10,nMax=50000,

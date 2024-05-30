@@ -2,7 +2,7 @@
 % Please edit documentation in R/Gittins.r
 \name{Gittins}
 \alias{Gittins}
-\title{Gittins indices}
+\title{Gittins Indices}
 \usage{
 Gittins(Gittinstype, df)
 }

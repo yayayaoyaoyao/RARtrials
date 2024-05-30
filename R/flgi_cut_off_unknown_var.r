@@ -1,10 +1,10 @@
-#' @title Cut-off Value of Forward-looking Gittins index rule in Continuous Endpoint with Unknown Variances
-#' @description Function for simulating cut-off values at the final stage using the forward-looking Gittins index
-#' and the controlled forward-looking Gittins index algorithm for continuous outcomes with known variance in trials with
+#' @title Cut-off Value of the Forward-looking Gittins Index rule in Continuous Endpoint with Unknown Variances
+#' @description Function for simulating cut-off values at the final stage using the forward-looking Gittins Index rule
+#' and the controlled forward-looking Gittins Index rule for continuous outcomes with known variance in trials with
 #' 2-5 arms. The prior distributions follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})
 #' distributions and should be the same for each arm.
-#' @details This function simulates trials using the forward-looking Gittins index and the
-#' controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios to obtain
+#' @details This function simulates trials using the forward-looking Gittins Index rule and the
+#' controlled forward-looking Gittins Index rule under both no delay and delayed scenarios to obtain
 #' cut-off values at the final stage, with control of type I error. The user is expected to run this function
 #' multiple times to determine a reasonable cut-off value for statistical inference.
 #' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
@@ -42,7 +42,7 @@
 #' @param rule rules can be used in this function, with values 'FLGI PM', 'FLGI PD' or 'CFLGI'.
 #' 'FLGI PM' stands for making decision based on posterior mean;
 #' 'FLGI PD' stands for making decision based on posterior distribution;
-#' 'CFLGI' stands for controlled forward-looking Gittins index.
+#' 'CFLGI' stands for controlled forward-looking Gittins Index.
 #' @param prior_n a vector representing the number of observations assumed in prior distribution, eg: c(1,1) for a two-armed trial.
 #' @param prior_mean1 a vector representing mean of observations assumed in prior distributions, eg: c(0,0,0) for a three-armed trial,
 #' rep(0,K) can be used to simplify the process. If a negative effect is expected, adjust the mean to a negative value.
@@ -56,7 +56,7 @@
 #' @param side direction of one-sided test with the values of 'upper' or 'lower'.
 #' @return Value of T test statistics for one trial.
 #' @examples
-#' #The forward-looking Gittins index rule with delayed responses follow a normal 
+#' #The forward-looking Gittins Index rule with delayed responses follow a normal 
 #' #distribution with a mean of 60 days and a standard deviation of 3 days
 #' #One can run the following command 20000 times to obtain the selected cut-off 
 #' #value around -1.9298 with an overall lower one-sided type I error 0.025

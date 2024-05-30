@@ -1,4 +1,4 @@
-#' @title Gittins indices
+#' @title Gittins Indices
 #' @description \code{Gittins} can provide Gittins indices for binary reward processes
 #' and normal reward processes with known and unknown variance for certain discount factors.
 #' Binary reward process can handle scenarios with up to 2000 participants in a trial, while

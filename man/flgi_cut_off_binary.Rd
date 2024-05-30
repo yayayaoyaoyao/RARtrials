@@ -2,7 +2,7 @@
 % Please edit documentation in R/flgi_cut_off_binary.r
 \name{flgi_cut_off_binary}
 \alias{flgi_cut_off_binary}
-\title{Cut-off Value of Forward-looking Gittins index rule in Binary Endpoint}
+\title{Cut-off Value of the Forward-looking Gittins Index Rule in Binary Endpoint}
 \usage{
 flgi_cut_off_binary(
   Gittinstype,
@@ -73,7 +73,7 @@ the treatment group, respectively.}
 \item{rule}{rules can be used in this function, with values 'FLGI PM', 'FLGI PD' or 'CFLGI'.
 'FLGI PM' stands for making decision based on posterior mean;
 'FLGI PD' stands for making decision based on posterior distribution;
-'CFLGI' stands for controlled forward-looking Gittins index.}
+'CFLGI' stands for controlled forward-looking Gittins Index.}
 
 \item{ztype}{Z test statistics, with choice of values from 'pooled' and 'unpooled'.}
 }
@@ -81,14 +81,14 @@ the treatment group, respectively.}
 Value of Z test statistics for one trial.
 }
 \description{
-Function for simulating cut-off values at the final stage using the forward-looking Gittins index
-and the controlled forward-looking Gittins index algorithm for binary outcomes in trials with 2-5 arms.
+Function for simulating cut-off values at the final stage using the forward-looking Gittins Index rule
+and the controlled forward-looking Gittins Index rule for binary outcomes in trials with 2-5 arms.
 The conjugate prior distributions follow Beta (\eqn{Beta(\alpha,\beta)}) distributions and should be the same for each
 arm.
 }
 \details{
-This function simulates trials using the forward-looking Gittins index and the
-controlled forward-looking Gittins index algorithm under both no delay and delayed scenarios to obtain
+This function simulates trials using the forward-looking Gittins Index rule and the
+controlled forward-looking Gittins Index rule under both no delay and delayed scenarios to obtain
 cut-off values at the final stage, with control of type I error. The user is expected to run this function
 multiple times to determine a reasonable cut-off value for statistical inference.
 Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
@@ -98,7 +98,7 @@ are parameters in the functions adapted from \url{https://github.com/kwathen/Int
 Refer to the website for more details.
 }
 \examples{
-#The forward-looking Gittins index rule with delayed responses follow a normal distribution
+#The forward-looking Gittins Index rule with delayed responses follow a normal distribution
 #with a mean of 60 days and a standard deviation of 3 days
 #One can run the following command 20000 times to obtain the selected cut-off value around 1.9991
 #with an upper one-sided type I error 0.025
