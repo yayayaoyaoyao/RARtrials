@@ -190,7 +190,7 @@ Gittins<-function(Gittinstype,df){
   }
 
   if (Gittinstype=='Binary'){
-    board<-pins::board_url('https://raw.githubusercontent.com/yayayaoyaoyao/RARtrials/main/R/pins-board/_pins.yaml')
+    board<-pins::board_url('https://raw.githubusercontent.com/yayayaoyaoyao/GI/main/pins-board/_pins.yaml')
      
     if (df==0){
       GI<-pin_read(board,'Gittins0')

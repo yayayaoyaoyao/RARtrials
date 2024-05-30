@@ -26,7 +26,7 @@ power strategy for binary outcomes in trials with up to five arms and up to thre
 [@Tymofyeyev2007; @Jeon2010; @Sabo2016];
 * \quad Neyman allocation ($A_a$-optimal allocation and $A$-optimal allocation) and generalised RSIHR
 allocation subject to constraints for continuous outcomes with known and unknown variances in
-trials with up to five arms [@Oleksandr2013];
+trials with up to five arms [@Oleksandr2013; @Biswas2004; @Atkinson2013];
 * \quad Bayesian response-adaptive randomization using the Thall & Wathen method for binary outcomes and
 continuous outcomes with known and unknown variances in trials with up to five arms [@Thall2007];
 * \quad Forward-looking Gittins Index and controlled forward-looking Gittins Index for binary outcomes and
@@ -156,7 +156,7 @@ of arms and $C$ is some fixed value. The optimal allocation probabilities are gi
 $$\rho_1=\frac{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}}{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}+w_2+...+w_k},$$
 
 $$\rho_k=\frac{w_k}{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}+w_2+...+w_k}\mbox{, with }  k=2,...,K.$$
-This package is built on $\Psi_i=P(X_i\leq c)=\Phi[(\mu_A-c)/\sigma_A]$ and $w_k=\sigma_k$ [@Atkinson2013]. All of those methods can be applied to scenarios with either known and unknown variances. In cases where variances are unknown, the unknown parameters are estimated from the available data.
+This package is built on $\Psi_i=P(X_i\leq c)=\Phi[(\mu_A-c)/\sigma_A]$ and $w_k=\sigma_k$ [@Atkinson2013; @Biswas2011]. All of those methods can be applied to scenarios with either known and unknown variances. In cases where variances are unknown, the unknown parameters are estimated from the available data.
 
 ```{r eval=FALSE}
 #Example: Generalized RSIHR optimal allocation with unknown variances in three-armed trials
