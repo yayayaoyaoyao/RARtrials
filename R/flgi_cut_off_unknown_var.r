@@ -60,7 +60,7 @@
 #' #distribution with a mean of 60 days and a standard deviation of 3 days
 #' #One can run the following command 20000 times to obtain the selected cut-off 
 #' #value around -1.9298 with an overall lower one-sided type I error 0.025
-#' \dontrun{
+#' \donttest{
 #' stopbound1<-lapply(1:20000,function(x){ 
 #' flgi_cut_off_unknown_var(Gittinstype='UNKV',df=0.5,Pats=10,nMax=50000,
 #' TimeToOutcome=expression(rnorm( length( vStartTime ),60, 3)),enrollrate=0.9,

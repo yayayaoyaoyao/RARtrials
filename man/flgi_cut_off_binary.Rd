@@ -102,7 +102,7 @@ Refer to the website for more details.
 #with a mean of 60 days and a standard deviation of 3 days
 #One can run the following command 20000 times to obtain the selected cut-off value around 1.9991
 #with an upper one-sided type I error 0.025
-\dontrun{
+\donttest{
 stopbound1<-lapply(1:20000,function(x){ flgi_cut_off_binary(Gittinstype='Binary',df=0.5,Pats=10,
 nMax=50000,TimeToOutcome=expression(rnorm( length( vStartTime ),60, 3)),
 enrollrate=0.9,I0= matrix(1,nrow=2,ncol=2),K=2,Tsize=992,ptrue=c(0.6,0.6),block=20,
