@@ -225,9 +225,7 @@ $$P(X\leq Y)=\int_0^1 P(X\leq y)\,dF_Y(y)= \int_0^1 F_{X_1}(y)
 F_{X_2}(y)...F_{X_K}(y)f_Y(y)\,dy.$$
 
 An example of a three-armed trial is given below with some pre-specified parameters from the Beta distribution. Both methods yield similar results, but the latter is quicker.
-```{r}
-on.exit(options(options(no.readonly=TRUE)))
-```
+
 
 ```{r}
 #### which.is.max is adapt from 'nnet' package
@@ -244,7 +242,9 @@ which.is.min <- function(x)
   if(length(y) > 1L) sample(y, 1L) else y
 }
 #Example: sample code using simulations
-options(scipen=999)
+#nosciprintfun<-function(x){
+# op<- options(scipen=999)
+# on.exit(options(options(op)),add=TRUE)
 set.seed(12345)
 #Pre-specified parameters from the Beta distribution for each arm
 alpha=c(30,41,35)
@@ -297,6 +297,7 @@ do.call(cbind,pi)
 ```
 
 ```{r}
+
 #Example: Sample code using Integration
 #Expect the treatment group to have a larger treatment effect compared to the control group
 #Calculate results of Pr(p_k>p_{control}+\delta|data_{t-1})
@@ -372,7 +373,6 @@ For continuous outcomes with unknown variance, a Normal-Inverse-Gamma prior is e
 
 ```{r }
 #Example: Sample code using integration
-options(scipen=999)
 set.seed(12345)
 #Pre-specified hyper-parameters in prior distributions assumed to be the same across all 
 #three groups.
@@ -429,25 +429,25 @@ rnigamma<-function(nsim,par){
   cbind(mu,sigma2)
 }
 set.seed(12341)
-NIG_par1<-rnigamma(1e5,convert_chisq_to_gamma(par1))
+NIG_par1<-rnigamma(10000,convert_chisq_to_gamma(par1))
 set.seed(12342)
-NIG_par2<-rnigamma(1e5,convert_chisq_to_gamma(par2))
+NIG_par2<-rnigamma(10000,convert_chisq_to_gamma(par2))
 set.seed(12343)
-NIG_par3<-rnigamma(1e5,convert_chisq_to_gamma(par3))
+NIG_par3<-rnigamma(10000,convert_chisq_to_gamma(par3))
 
 #Calculate results of Pr(p_{control}>p_k+\delta|data_{t-1}) with delta=0
 #Calculate results for Pr(p_k=min{p_1,...,p_K}|data_{t-1})
-dat<-matrix(NA,1e5,5)
-for (i in 1:1e5){
-  dat1<-rnorm(1e5,NIG_par1[i,1],NIG_par1[i,2])
-  dat2<-rnorm(1e5,NIG_par2[i,1],NIG_par2[i,2])
-  dat3<-rnorm(1e5,NIG_par3[i,1],NIG_par3[i,2])
-  dat[i,1]<-sum(dat1>dat2)/1e5
-  dat[i,2]<-sum(dat1>dat3)/1e5
+dat<-matrix(NA,10000,5)
+for (i in 1:10000){
+  dat1<-rnorm(10000,NIG_par1[i,1],NIG_par1[i,2])
+  dat2<-rnorm(10000,NIG_par2[i,1],NIG_par2[i,2])
+  dat3<-rnorm(10000,NIG_par3[i,1],NIG_par3[i,2])
+  dat[i,1]<-sum(dat1>dat2)/10000
+  dat[i,2]<-sum(dat1>dat3)/10000
   minimal<-base::pmin(dat1,dat2,dat3)
-  dat[i,3]<-sum(minimal==dat1)/1e5
-  dat[i,4]<-sum(minimal==dat2)/1e5
-  dat[i,5]<-sum(minimal==dat3)/1e5
+  dat[i,3]<-sum(minimal==dat1)/10000
+  dat[i,4]<-sum(minimal==dat2)/10000
+  dat[i,5]<-sum(minimal==dat3)/10000
 }
 mean(dat[,1]) 
 mean(dat[,2])
@@ -459,17 +459,17 @@ mean(dat[,5])
 
 #Calculate results of Pr(p_k>p_{control}+\delta|data_{t-1}) with delta=0
 #Calculate results for Pr(p_k=max{p_1,...,p_K}|data_{t-1})
-dat<-matrix(NA,1e5,5)
-for (i in 1:1e5){
-  dat1<-rnorm(1e5,NIG_par1[i,1],NIG_par1[i,2])
-  dat2<-rnorm(1e5,NIG_par2[i,1],NIG_par2[i,2])
-  dat3<-rnorm(1e5,NIG_par3[i,1],NIG_par3[i,2])
-  dat[i,1]<-sum(dat1<dat2)/1e5
-  dat[i,2]<-sum(dat1<dat3)/1e5
+dat<-matrix(NA,10000,5)
+for (i in 1:10000){
+  dat1<-rnorm(10000,NIG_par1[i,1],NIG_par1[i,2])
+  dat2<-rnorm(10000,NIG_par2[i,1],NIG_par2[i,2])
+  dat3<-rnorm(10000,NIG_par3[i,1],NIG_par3[i,2])
+  dat[i,1]<-sum(dat1<dat2)/10000
+  dat[i,2]<-sum(dat1<dat3)/10000
   maximal<-base::pmax(dat1,dat2,dat3)
-  dat[i,3]<-sum(maximal==dat1)/1e5
-  dat[i,4]<-sum(maximal==dat2)/1e5
-  dat[i,5]<-sum(maximal==dat3)/1e5
+  dat[i,3]<-sum(maximal==dat1)/10000
+  dat[i,4]<-sum(maximal==dat2)/10000
+  dat[i,5]<-sum(maximal==dat3)/10000
 }
 mean(dat[,1]) 
 mean(dat[,2]) 
