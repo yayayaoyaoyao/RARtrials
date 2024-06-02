@@ -242,9 +242,6 @@ which.is.min <- function(x)
   if(length(y) > 1L) sample(y, 1L) else y
 }
 #Example: sample code using simulations
-#nosciprintfun<-function(x){
-# op<- options(scipen=999)
-# on.exit(options(options(op)),add=TRUE)
 set.seed(12345)
 #Pre-specified parameters from the Beta distribution for each arm
 alpha=c(30,41,35)
