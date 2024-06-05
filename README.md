@@ -3,13 +3,13 @@ RARtrials: Response Adaptive Randomization in Clinical Trials
 
 **RARtrials** is designed for simulating some popular response-adaptive randomization methods in the literature with comparisons of each treatment group to a control group under no delay and delayed (time between treatment and outcome availability) scenarios. All the designs are based on one-sided tests with a choice from values of 'upper' and 'lower'. The general assumption is that binary outcomes follow Binomial distributions, while continuous outcomes follow normal distributions. Additionally, the number of patients accrued in the population follows a Poisson process and users can specify the enrollment rate of patients enrolled in the trial. 
 
-Install RAR from CRAN with:
+Install RARtrials from CRAN with:
 
 ```r
-install.packages('RAR')
+install.packages('RARtrials')
 ```
 
-Alternatively, install the RAR package from github with:
+Alternatively, install the RARtrials package from github with:
 
 
 ```r
