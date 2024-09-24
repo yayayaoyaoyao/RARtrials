@@ -125,14 +125,14 @@ The other methods targeting generalized Neyman and RSIHR allocations are given i
 
 ```{r }
 #Example: Doubly adaptive biased coin design with three arms targeting 
-#RSIHR allocation using maximal power strategy with return of allocation
+#Neyman allocation using maximal power strategy with return of allocation
 #probabilities before applying Hu \& Zhang's formula.
 dabcd_max_power(NN=c(20,60,60),Ntotal1=c(86,90,90),armn=3,BB=0.1, type='Neyman',dabcd=FALSE)
 #The function call return values:0.4741802 0.2629099 0.2629099
 dabcd_max_power(NN=c(20,33,34),Ntotal1=c(86,78,90),armn=3,BB=0.1, type='Neyman',dabcd=FALSE)
 #The function call return values:0.4433424 0.4566576 0.1000000
 
-#Doubly adaptive biased coin design with three arms targeting RSIHR 
+#Doubly adaptive biased coin design with three arms targeting Neyman 
 #allocation using maximal power strategy with return of allocation
 #probabilities after applying Hu \& Zhang's formula.
 dabcd_max_power(NN=c(20,60,60),Ntotal1=c(86,90,90),armn=3,BB=0.1, type='Neyman',dabcd=TRUE)
@@ -159,7 +159,7 @@ $$\rho_k=\frac{w_k}{\sqrt{\frac{w_1}{\Psi_1}}\sqrt{\sum_{i=2}^{k}{\Psi_i}{w_i}}+
 This package is built on $\Psi_i=P(X_i\leq c)=\Phi[(\mu_A-c)/\sigma_A]$ and $w_k=\sigma_k$ [@Atkinson2013; @Biswas2011]. All of those methods can be applied to scenarios with either known and unknown variances. In cases where variances are unknown, the unknown parameters are estimated from the available data.
 
 ```{r eval=FALSE}
-#Example: Generalized RSIHR optimal allocation with unknown variances in three-armed trials
+#Example: Generalized RSIHR optimal allocation with known variances in three-armed trials
 set.seed(12345)
 #Under the null hypothesis
 sim2a<-lapply(1:5000,function(x){sim_RSIHR_optimal_known_var(Pats=10,nMax=50000,
