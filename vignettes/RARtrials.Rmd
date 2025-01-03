@@ -84,9 +84,9 @@ sim1<-lapply(1:5000, function(x){
   sim_RPTW(Pats=10,nMax=50000,TimeToOutcome=0,enrollrate=1,na0=1,nb0=1,na1=1,nb1=1,
       h=c(0.5,0.7),N2=192,side='upper')})
 sum(sapply(sim1, "[[", 1)==1)/5000
-#Using standard Z test statistics from normal distribution, we obtain power of 0.8038
+#Using Z test statistics from normal distribution, we obtain power of 0.8038
 ```
-# Doubly Adaptive Biased Coin Design for Binary Outcomes
+# The doubly Adaptive Biased Coin Design for Binary Outcomes
 The doubly adaptive biased coin design is a parametric response-adaptive randomization method from a frequentist perspective [@Rosenberger2015], which can attain any desired allocation ratio $R^*$. @Hu2004 proposed the formula below with a tuning parameter $\gamma>0$ (with a larger $\gamma$ reducing the adaptiveness) to calculate allocation probabilities in two-armed trials, in which $\rho(\hat p_{A,t-1},\hat p_{B,t-1})$ is the probabilty of allocation to arm A at time $t$ given the estimated probabilities of success in each arm at time $t-1$:
 
 $$ f\left(0,\rho(\hat{p}_{A,t-1},\hat{p}_{B,t-1})\right)=1,$$
@@ -106,14 +106,14 @@ In Hu \& Zhang's formula, $\hat{\rho}_{k,t-1}^*$ is the optimal allocation ratio
 first character of the names of the individuals who first proposed this rule.] allocation to minimize the expected number of failures given as $\sqrt{p_k}/\sum_{i=1}^{K}\sqrt{p_i}$ [@Rosenberger2015]. Those formulas can be generalized to $K$-armed trials from two-armed trials by employing a minimization variance strategy, which aims to minimize the sum of the variances of the test statistics for all comparisons to the control group. This package contains functions that return the allocation probabilities given data accumulated at each specified time point, as well as functions to simulate an actual trial data set.
 
 ```{r}
-#Example: Doubly adaptive biased coin design with five arms targeting 
+#Example: The doubly adaptive biased coin design with five arms targeting 
 #RSIHR allocation using minimal variance strategy with return of allocation 
 #probabilities before applying Hu \& Zhang's formula.
 dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR',
                 dabcd=FALSE,gamma=2)
 #The function call return values:0.3014955 0.1942672 0.0960814 0.2887962 0.1193597
 
-#Doubly adaptive biased coin design with five arms targeting RSIHR 
+#The doubly adaptive biased coin design with five arms targeting RSIHR 
 #allocation using minimal variance strategy with return of allocation 
 #probabilities after applying Hu \& Zhang's formula.
 dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR',
@@ -124,7 +124,7 @@ dabcd_min_var(NN=c(20,23,18,25,27),Ntotal1=c(54,65,72,60,80),armn=5,type='RSIHR'
 The other methods targeting generalized Neyman and RSIHR allocations are given in @Tymofyeyev2007 and @Jeon2010, with modifications in @Sabo2016, employing a maximal power strategy, which maximizes the marginal power of a single comparison selected from amongst all comparisons to the control group. All those methods are implemented without smoothing, contrary to the original papers referenced in this package, because the smoothing technique does not function as indicated.
 
 ```{r }
-#Example: Doubly adaptive biased coin design with three arms targeting 
+#Example: The doubly adaptive biased coin design with three arms targeting 
 #Neyman allocation using maximal power strategy with return of allocation
 #probabilities before applying Hu \& Zhang's formula.
 dabcd_max_power(NN=c(20,60,60),Ntotal1=c(86,90,90),armn=3,BB=0.1, type='Neyman',dabcd=FALSE)
@@ -132,7 +132,7 @@ dabcd_max_power(NN=c(20,60,60),Ntotal1=c(86,90,90),armn=3,BB=0.1, type='Neyman',
 dabcd_max_power(NN=c(20,33,34),Ntotal1=c(86,78,90),armn=3,BB=0.1, type='Neyman',dabcd=FALSE)
 #The function call return values:0.4433424 0.4566576 0.1000000
 
-#Doubly adaptive biased coin design with three arms targeting Neyman 
+#The doubly adaptive biased coin design with three arms targeting Neyman 
 #allocation using maximal power strategy with return of allocation
 #probabilities after applying Hu \& Zhang's formula.
 dabcd_max_power(NN=c(20,60,60),Ntotal1=c(86,90,90),armn=3,BB=0.1, type='Neyman',dabcd=TRUE)
@@ -363,7 +363,7 @@ sum(simf>0.7591,na.rm=T)/2000 #0.025
 #The selected a_U is 0.7591.
 ```
 
-For continuous outcomes with known variance $\sigma$, a normal prior for the mean is commonly used, noted as $\theta \sim N(\mu,\sigma/n_0)$, where $n_0$ is the implicit sample size in the prior. This prior conjugates to the likelihood of normal distribution, written as $y \sim N(\theta,\sigma/n_1)$ with $y$ represents the outcomes of observations and $n_1$ stands for the number of observations, resulting in the posterior normal distribution $N(\frac{n_0\mu+n_1y}{n_0+n_1},\frac{\sigma^2}{n_0+n_1})$. 
+For continuous outcomes with known variance $\sigma^2$, a normal prior for the mean is commonly used, noted as $\theta \sim N(\mu,\sigma^2/n_0)$, where $n_0$ is the implicit sample size in the prior. This prior conjugates to the likelihood of normal distribution, written as $y \sim N(\theta,\sigma^2/n_1)$ with $y$ represents the outcomes of observations and $n_1$ stands for the number of observations, resulting in the posterior normal distribution $N(\frac{n_0\mu+n_1y}{n_0+n_1},\frac{\sigma^2}{n_0+n_1})$. 
 
 
 For continuous outcomes with unknown variance, a Normal-Inverse-Gamma prior is employed with $\theta \sim N(m_0,V_0\sigma_0^2)$ and $\sigma_0^2 \sim IG(a_0,b_0)$. The prior distribution can be written as $NIG(mean=m_0,variance=V_0\times\sigma_0^2,shape=a_0,rate=b_0)$, which conjugates to the likelihood of normal distribution $y \sim N(\theta,\sigma^2)$, resulting in the posterior Normal-Inverse-Gamma distribution $NIG(\mu_n,\sigma_n,a_n,b_n)=NIG((m_0/V_0+\sum_{i=1}^ny_i)V_n,1/(1/V_0+n),a_0+n/2,b_0+[m_0^2/V_0+\sum_{i=1}^ny_i^2-m_n^2/V_n]/2)$ with $y_i$ represents the outcome of each observation and $n$ stands for the number of observations [@Kevin2007]. Following the integration formulas as before, we should use the marginal posterior distribution of $\mu$ which is a $t$ distribution in this case. According to @Kevin2007, we first convert hyper-parameters of Normal-Inverse-Gamma to Normal-Inverse-Chi-Squared distribution. Then, we use the marginal posterior of $\mu$ given in section 5.3.2 of @Kevin2007. An example of a three-armed trial with unknown variances is given below with pre-specified prior distributions. 
