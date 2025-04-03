@@ -2,8 +2,8 @@
 #' @description Calculate posterior probability that a particular arm is the best in a trial using Bayesian response-adaptive randomization with
 #' a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Beta (\eqn{Beta(\alpha,\beta)}) distributions
 #' for binary outcomes in each arm and can be specified individually.
-#' @details This function calculates the results of formula \eqn{Pr(p_k=max\{p_1,...,p_K\})} for
-#' \code{side} equals to 'upper' and the results of formula \eqn{Pr(p_k=min\{p_1,...,p_K\})} for
+#' @details This function calculates the results of formula \eqn{Pr(p_k={\sf max}\{p_1,...,p_K\})} for
+#' \code{side} equals to 'upper' and the results of formula \eqn{Pr(p_k={\sf min}\{p_1,...,p_K\})} for
 #' \code{side} equals to 'lower'. This function returns the probability that the posterior probability of arm
 #' \eqn{k} is maximal or minimal in trials with up to five arms.
 #' @aliases pmax_beta

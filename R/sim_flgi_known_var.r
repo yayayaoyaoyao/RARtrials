@@ -1,7 +1,7 @@
 #' @title Simulate a Trial Using Forward-Looking Gittins Index for Continuous Endpoint with Known Variances
 #' @description Function for simulating a trial using the forward-looking Gittins Index rule and the controlled forward-looking
 #' Gittins Index rule for continuous outcomes with known variances in trials with 2-5 arms. The conjugate prior distributions
-#' follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each arm.
+#' follow Normal (\eqn{N({\sf mean},{\sf sd})}) distributions and should be the same for each arm.
 #' @details This function simulates a trial using the forward-looking Gittins Index rule or the
 #' controlled forward-looking Gittins Index rule under both no delay and delayed scenarios.
 #' The cut-off value used for \code{stopbound} is obtained by simulations using \code{flgi_stop_bound_flgi_known_var}.

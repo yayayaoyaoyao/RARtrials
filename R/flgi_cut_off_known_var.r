@@ -1,7 +1,7 @@
 #' @title Cut-off Value of the Forward-looking Gittins Index Rule in Continuous Endpoint with Known Variances
 #' @description Function for simulating cut-off values at the final stage using the forward-looking Gittins Index rule
 #' and the controlled forward-looking Gittins Index rule for continuous outcomes with known variance in trials with
-#' 2-5 arms. The conjugate prior distributions follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each arm.
+#' 2-5 arms. The conjugate prior distributions follow Normal (\eqn{N({\sf mean},{\sf sd})}) distributions and should be the same for each arm.
 #' @details This function simulates trials using the forward-looking Gittins Index rule and the
 #' controlled forward-looking Gittins Index rule under both no delay and delayed scenarios to obtain
 #' cut-off values at the final stage, with control of type I error. The user is expected to run this function

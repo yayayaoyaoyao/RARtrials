@@ -5,8 +5,8 @@
 #' @details This function generates a data set or a value in one iteration for selecting the appropriate au using Bayesian
 #' response-adaptive randomization with a control group under null hypotheses with no delay and delayed scenarios.
 #' The function can handle trials with up to 5 arms for continuous outcomes with known variances. This function uses the formula
-#' \eqn{\frac{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^{tp}} {\sum_{k=1}^{K}{Pr(\mu_k=max\{\mu_1,...,\mu_K\})^{tp}}}} with \code{side} equals to 'upper',
-#' and \eqn{\frac{Pr(\mu_k=min\{\mu_1,...,\mu_K\})^{tp}} {\sum_{k=1}^{K}{Pr(\mu_k=min\{\mu_1,...,\mu_K\}){tp}}}} 
+#' \eqn{\frac{Pr(\mu_k={\sf max}\{\mu_1,...,\mu_K\})^{tp}} {\sum_{k=1}^{K}{Pr(\mu_k={\sf max}\{\mu_1,...,\mu_K\})^{tp}}}} with \code{side} equals to 'upper',
+#' and \eqn{\frac{Pr(\mu_k={\sf min}\{\mu_1,...,\mu_K\})^{tp}} {\sum_{k=1}^{K}{Pr(\mu_k={\sf min}\{\mu_1,...,\mu_K\}){tp}}}} 
 #' with \code{side} equals to 'lower', utilizing available data at each step.
 #' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 #' \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 

@@ -2,9 +2,9 @@
 #' @description Update parameters of a Normal-Inverse-Chi-Squared distribution
 #  with available data.
 #' @details This function updates parameters of a Normal-Inverse-Chi-Squared 
-#' (\eqn{(\mu,\sigma^2) \sim NIX( mean=\mu, effective sample size=\kappa, degrees of freedom=\nu, variance=\sigma^2/\kappa)}) 
+#' (\eqn{(\mu,\sigma^2) \sim NIX( {\sf mean}=\mu, {\sf effective sample size}=\kappa, {\sf degrees of freedom}=\nu, {\sf variance}=\sigma^2/\kappa)}) 
 #' distribution with available data to parameters of a posterior Normal-Inverse-Gamma 
-#' (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})distribution.
+#' (\eqn{(\mu,\sigma^2) \sim NIG({\sf mean}=m,{\sf variance}=V \times \sigma^2,{\sf shape}=a,{\sf rate}=b)})distribution.
 #' Those updated parameters can be converted to parameters in a Normal-Inverse-Gamma distribution
 #' for continuous outcomes with unknown variances using \code{convert_chisq_to_gamma}. 
 #' @aliases update_par_nichisq

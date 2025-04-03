@@ -2,13 +2,13 @@
 #' @description Calculate posterior probability that a particular arm is the best in a trial using Bayesian response-adaptive randomization with
 #' a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal-Inverse-Chi-Squared (NIX)
 #' distributions for continuous outcomes with unknown variance in each arm and can be specified individually. 
-#' @details This function calculates the results of formula \eqn{Pr(\mu_k=max\{\mu_1,...,\mu_k\})} for
-#' \code{side} equals to 'upper' and the results of formula \eqn{Pr(\mu_k=min\{\mu_1,...,\mu_k\})} for
+#' @details This function calculates the results of formula \eqn{Pr(\mu_k={\sf max}\{\mu_1,...,\mu_k\})} for
+#' \code{side} equals to 'upper' and the results of formula \eqn{Pr(\mu_k={\sf min}\{\mu_1,...,\mu_k\})} for
 #' \code{side} equals to 'lower'. This function returns the probability that the posterior probability of arm
 #' \eqn{k} is maximal or minimal in trials with up to five arms. Parameters used in a Normal-Inverse-Gamma 
-#' (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})
+#' (\eqn{(\mu,\sigma^2) \sim NIG({\sf mean}=m,{\sf variance}=V \times \sigma^2,{\sf shape}=a,{\sf rate}=b)})
 #' distribution should be converted to parameters equivalent in a Normal-Inverse-Chi-Squared
-#' (\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)})
+#' (\eqn{(\mu,\sigma^2) \sim NIX({\sf mean}=\mu,{\sf effective sample size}=\kappa,{\sf degrees of freedom}=\nu,{\sf variance}=\sigma^2/\kappa)})
 #' distribution using \code{convert_gamma_to_chisq} before applying this function.
 #' @aliases pmax_NIX
 #' @export pmax_NIX
