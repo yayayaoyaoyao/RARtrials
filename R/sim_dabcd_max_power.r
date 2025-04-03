@@ -63,8 +63,11 @@
 #'
 #' @references 
 #' \insertRef{Hu2004}{RARtrials}
+#' 
 #' \insertRef{Tymofyeyev2007}{RARtrials}
+#' 
 #' \insertRef{Jeon2010}{RARtrials}
+#' 
 #' \insertRef{Sabo2016}{RARtrials}
 
 sim_dabcd_max_power<-function(Pats,nMax,TimeToOutcome,enrollrate,N1,N2,

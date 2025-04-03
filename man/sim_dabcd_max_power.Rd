@@ -103,7 +103,10 @@ side='upper')
 }
 \references{
 \insertRef{Hu2004}{RARtrials}
+
 \insertRef{Tymofyeyev2007}{RARtrials}
+
 \insertRef{Jeon2010}{RARtrials}
+
 \insertRef{Sabo2016}{RARtrials}
 }

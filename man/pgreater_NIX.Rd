@@ -50,5 +50,6 @@ pgreater_NIX(par1=par1,par2=par2, side='lower')
 }
 \references{
 \insertRef{Wathen2017}{RARtrials}
+
 \insertRef{Kevin2007}{RARtrials}
 }

@@ -115,5 +115,6 @@ sum(stopbound1a>(1.9991) )/20000
 }
 \references{
 \insertRef{Gittins2011}{RARtrials}
+
 \insertRef{Villar2015}{RARtrials}
 }

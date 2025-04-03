@@ -72,6 +72,7 @@
 #' }
 #' @references
 #' \insertRef{Gittins2011}{RARtrials}
+#' 
 #' \insertRef{Villar2015}{RARtrials}
 
 flgi_cut_off_binary<-function(Gittinstype,df,gittins=NULL,Pats,nMax,TimeToOutcome,enrollrate,I0,K,noRuns2=100,Tsize,ptrue,block,rule,ztype){

@@ -30,9 +30,13 @@
 #' dabcd_max_power(NN=c(54,67,85,63),Ntotal1=c(100,88,90,94),armn=4,BB=0.2, type='Neyman')
 #' @references 
 #' \insertRef{Hu2004}{RARtrials}
+#' 
 #' \insertRef{Tymofyeyev2007}{RARtrials}
+#' 
 #' \insertRef{Jeon2010}{RARtrials}
+#' 
 #' \insertRef{Sabo2016}{RARtrials}
+#' 
 
 dabcd_max_power<-function(NN,Ntotal1,armn,BB,type,dabcd=FALSE,gamma=2){
 

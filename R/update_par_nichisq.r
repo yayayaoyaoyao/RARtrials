@@ -2,16 +2,16 @@
 #' @description Update parameters of a Normal-Inverse-Chi-Squared distribution
 #  with available data.
 #' @details This function updates parameters of a Normal-Inverse-Chi-Squared 
-#' (\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)}) 
+#' (\eqn{(\mu,\sigma^2) \sim NIX({\Sf mean}=\mu,{\Sf effective sample size}=\kappa,{\Sf degrees of freedom}=\nu,{\Sf variance}=\sigma^2/\kappa)}) 
 #' distribution with available data to parameters of a posterior Normal-Inverse-Gamma 
-#' (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})distribution.
+#' (\eqn{(\mu,\sigma^2) \sim NIG({\Sf mean}=m,{\Sf variance}=V \times \sigma^2,{\Sf shape}=a,{\Sf rate}=b)})distribution.
 #' Those updated parameters can be converted to parameters in a Normal-Inverse-Gamma distribution
 #' for continuous outcomes with unknown variances using \code{convert_chisq_to_gamma}. 
 #' @aliases update_par_nichisq
 #' @export update_par_nichisq
 #' @param y observed data.
 #' @param par a vector of current parameters including mu, kappa, nu, sigsq from a Normal-Inverse-Chi-Squared distribution.
-#' @return a list of parameters including mu, kappa, nu, sigsq for a posterior Normal-Inverse-Chi-Squared distribution 
+#' @return A list of parameters including mu, kappa, nu, sigsq for a posterior Normal-Inverse-Chi-Squared distribution 
 #' incorporating available data.
 #' @examples
 #' para<-list(V=1/2,a=0.5,m=9.1/100,b=0.00002)

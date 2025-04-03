@@ -5,8 +5,8 @@
 #' @details This function generates a data set or a value in one iteration for selecting the appropriate au using Bayesian
 #' response-adaptive randomization with a control group under null hypotheses with no delay and delayed scenarios.
 #' The function can handle trials with up to 5 arms for binary outcomes. This function uses the formula
-#' \eqn{\frac{Pr(p_k=max\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=max\{p_1,...,p_K\})^{tp}}}} with \code{side} equals to 'upper',
-#' and \eqn{\frac{Pr(p_k=min\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k=min\{p_1,...,p_K\}){tp}}}} 
+#' \eqn{\frac{Pr(p_k={\sf max}\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k={\sf max}\{p_1,...,p_K\})^{tp}}}} with \code{side} equals to 'upper',
+#' and \eqn{\frac{Pr(p_k={\sf min}\{p_1,...,p_K\})^{tp}} {\sum_{k=1}^{K}{Pr(p_k={\sf min}\{p_1,...,p_K\}){tp}}}} 
 #' with \code{side} equals to 'lower', utilizing available data at each step.
 #' Considering the delay mechanism, \code{Pats} (the number of patients accrued within a certain time frame),
 #' \code{nMax} (the assumed maximum accrued number of patients with the disease in the population) and 
@@ -63,7 +63,7 @@
 #' the entire data set used to select the stopping boundary for each iteration. If the user specifies 'B', the function
 #' only returns the selected stopping boundary for each iteration.
 #' @param ... additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.
-#' @return A list of results generated from formula \eqn{Pr(p_k>p_{control}+\delta|data_{t-1})} at each step.
+#' @return A list of results generated from formula \eqn{Pr(p_k>p_{{\sf control}}+\delta|data_{t-1})} at each step.
 #' Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 #' calculated from \code{deltaa1} at the final stage.
 #' @importFrom Rdpack reprompt
