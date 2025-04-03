@@ -90,7 +90,7 @@ Value of T test statistics for one trial.
 \description{
 Function for simulating cut-off values at the final stage using the forward-looking Gittins Index rule
 and the controlled forward-looking Gittins Index rule for continuous outcomes with known variance in trials with
-2-5 arms. The prior distributions follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})
+2-5 arms. The prior distributions follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG({\sf mean}=m,{\sf variance}=V \times \sigma^2,{\sf shape}=a,{\sf rate}=b)})
 distributions and should be the same for each arm.
 }
 \details{

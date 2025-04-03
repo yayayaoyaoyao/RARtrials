@@ -94,7 +94,7 @@ observed time of results, allocated arm, and participants' result.
 \description{
 Function for simulating a trial using the forward-looking Gittins Index rule and the controlled forward-looking
 Gittins Index rule for continuous outcomes with known variances in trials with 2-5 arms. The conjugate prior distributions
-follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each arm.
+follow Normal (\eqn{N({\sf mean},{\sf sd})}) distributions and should be the same for each arm.
 }
 \details{
 This function simulates a trial using the forward-looking Gittins Index rule or the

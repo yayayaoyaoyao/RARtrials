@@ -11,7 +11,7 @@ convert_gamma_to_chisq(gpar)
 \item{gpar}{a list of parameters including m, V, a, b from a Normal-Inverse-Gamma distribution.}
 }
 \value{
-a list of parameters including mu, kappa, nu, sigsq from a Normal-Inverse-Chi-Squared distribution.
+A list of parameters including mu, kappa, nu, sigsq from a Normal-Inverse-Chi-Squared distribution.
 }
 \description{
 Convert parameters from a Normal-Inverse-Gamma distribution to a
@@ -19,9 +19,9 @@ Normal-Inverse-Chi-Squared distribution.
 }
 \details{
 This function convert parameters from a Normal-Inverse-Gamma 
-(\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
+(\eqn{(\mu,\sigma^2) \sim NIG({\sf mean}=m,{\sf variance}=V \times \sigma^2,{\sf shape}=a,{\sf rate}=b)}) 
 distribution to a Normal-Inverse-Chi-Squared 
-(\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)}) 
+(\eqn{(\mu,\sigma^2) \sim NIX({\sf mean}=\mu,{\sf effective sample size}=\kappa,{\sf degrees of freedom}=\nu,{\sf variance}=\sigma^2/\kappa)}) 
 distribution.
 }
 \examples{

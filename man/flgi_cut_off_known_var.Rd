@@ -87,7 +87,7 @@ Value of Z test statistics for one trial.
 \description{
 Function for simulating cut-off values at the final stage using the forward-looking Gittins Index rule
 and the controlled forward-looking Gittins Index rule for continuous outcomes with known variance in trials with
-2-5 arms. The conjugate prior distributions follow Normal (\eqn{N(mean,sd)}) distributions and should be the same for each arm.
+2-5 arms. The conjugate prior distributions follow Normal (\eqn{N({\sf mean},{\sf sd})}) distributions and should be the same for each arm.
 }
 \details{
 This function simulates trials using the forward-looking Gittins Index rule and the

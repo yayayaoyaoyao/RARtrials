@@ -46,12 +46,12 @@ a probability that a particular arm is the best in trials up to five arms.
 }
 \description{
 Calculate posterior probability that a particular arm is the best in a trial using Bayesian response-adaptive randomization with
-a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal (\eqn{N(mean,sd)}) distributions for 
+a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distributions follow Normal (\eqn{N({\sf mean},{\sf sd})}) distributions for 
 continuous outcomes with known variance in each arm and can be specified individually.
 }
 \details{
-This function calculates the results of formula \eqn{Pr(\mu_k=max\{\mu_1,...,\mu_K\})} for
-\code{side} equals to 'upper' and the results of formula \eqn{Pr(\mu_k=min\{\mu_1,...,\mu_K\})} for
+This function calculates the results of formula \eqn{Pr(\mu_k={\sf max}\{\mu_1,...,\mu_K\})} for
+\code{side} equals to 'upper' and the results of formula \eqn{Pr(\mu_k={\sf min}\{\mu_1,...,\mu_K\})} for
 \code{side} equals to 'lower'. This function returns the probability that the posterior probability of arm
 \eqn{k} is maximal or minimal in trials with up to five arms.
 }

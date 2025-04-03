@@ -15,9 +15,9 @@ pgreater_normal(
 )
 }
 \arguments{
-\item{mean1, sd1}{mean and sd in \eqn{N(mean,sd)}, current estimated mean and sd for the control group.}
+\item{mean1, sd1}{mean and sd in \eqn{N({\sf mean},{\sf sd})}, current estimated mean and sd for the control group.}
 
-\item{mean2, sd2}{mean and sd in \eqn{N(mean,sd)}, current estimated mean and sd for the treatment group which is compared to the control group.}
+\item{mean2, sd2}{mean and sd in \eqn{N({\sf mean},{\sf sd})}, current estimated mean and sd for the treatment group which is compared to the control group.}
 
 \item{delta}{pre-specified minimal effect size expected to be observed between the control group and the compared treatment group.}
 
@@ -26,8 +26,8 @@ pgreater_normal(
 \item{...}{additional arguments to be passed to stats::integrate() (such as rel.tol) from this function.}
 }
 \value{
-a posterior probability of \eqn{Pr(\mu_k>\mu_{control}+\delta|data)} with \code{side} equals to 'upper';
-a posterior probability of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} with \code{side} equals to 'lower'.
+a posterior probability of \eqn{Pr(\mu_k>\mu_{{\sf control}}+\delta|{\sf data})} with \code{side} equals to 'upper';
+a posterior probability of \eqn{Pr(\mu_{{\sf control}}>\mu_k+\delta|{\sf data})} with \code{side} equals to 'lower'.
 }
 \description{
 Calculate the futility stopping probability in Bayesian response-adaptive randomization with
@@ -35,8 +35,8 @@ a control group using the Thall \eqn{\&} Wathen method for continuous outcomes w
 follow Normal (\eqn{N(mean,sd)}) distributions and can be specified individually for each treatment group.
 }
 \details{
-This function calculates the results of \eqn{Pr(\mu_k>\mu_{control}+\delta|data)} for \code{side} equals to
-'upper' and the results of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} for \code{side} equals to 'lower'.
+This function calculates the results of \eqn{Pr(\mu_k>\mu_{{\sf control}}+\delta|{\sf data})} for \code{side} equals to
+'upper' and the results of \eqn{Pr(\mu_{{\sf control}}>\mu_k+\delta|{\sf data})} for \code{side} equals to 'lower'.
 The result indicates the posterior probability of stopping a treatment group due to futility around \eqn{1\%} in Bayesian
 response-adaptive randomization with a control arm using Thall \eqn{\&} Wathen method, with accumulated results
 during the conduct of trials.

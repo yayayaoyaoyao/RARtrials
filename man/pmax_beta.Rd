@@ -50,8 +50,8 @@ a control group (the Thall \eqn{\&} Wathen method). The conjugate prior distribu
 for binary outcomes in each arm and can be specified individually.
 }
 \details{
-This function calculates the results of formula \eqn{Pr(p_k=max\{p_1,...,p_K\})} for
-\code{side} equals to 'upper' and the results of formula \eqn{Pr(p_k=min\{p_1,...,p_K\})} for
+This function calculates the results of formula \eqn{Pr(p_k={\sf max}\{p_1,...,p_K\})} for
+\code{side} equals to 'upper' and the results of formula \eqn{Pr(p_k={\sf min}\{p_1,...,p_K\})} for
 \code{side} equals to 'lower'. This function returns the probability that the posterior probability of arm
 \eqn{k} is maximal or minimal in trials with up to five arms.
 }

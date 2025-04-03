@@ -97,7 +97,7 @@ observed time of results, allocated arm, and participants' result.
 \description{
 Function for simulating a trial using the forward-looking Gittins Index rule and the controlled forward-looking
 Gittins Index rule for continuous outcomes with unknown variances in trials with 2-5 arms. The prior distributions
-follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)}) 
+follow Normal-Inverse-Gamma (NIG) (\eqn{(\mu,\sigma^2) \sim NIG({\sf mean}=m,{\sf variance}=V \times \sigma^2,{\sf shape}=a,{\sf rate}=b)}) 
 distributions and should be the same for each arm.
 }
 \details{

@@ -27,13 +27,13 @@ a control group using the Thall \eqn{\&} Wathen method for continuous outcomes w
 follow Normal-Inverse-Chi-Squared (NIX) distributions and can be specified individually for each treatment group.
 }
 \details{
-This function calculates the results of \eqn{Pr(\mu_k>\mu_{control}+\delta|data)} for \code{side} equals to
-'upper' and the results of \eqn{Pr(\mu_{control}>\mu_k+\delta|data)} for \code{side} equals to 'lower'.
+This function calculates the results of \eqn{Pr(\mu_k>\mu_{{\sf control}}+\delta|{\sf data})} for \code{side} equals to
+'upper' and the results of \eqn{Pr(\mu_{{\sf control}}>\mu_k+\delta|{\sf data})} for \code{side} equals to 'lower'.
 The result indicates the posterior probability of stopping a treatment group due to futility around \eqn{1\%} in Bayesian
 response-adaptive randomization with a control arm using Thall \eqn{\&} Wathen method, with accumulated results
-during the conduct of trials. Parameters used in a Normal-Inverse-Gamma (\eqn{(\mu,\sigma^2) \sim NIG(mean=m,variance=V \times \sigma^2,shape=a,rate=b)})
+during the conduct of trials. Parameters used in a Normal-Inverse-Gamma (\eqn{(\mu,\sigma^2) \sim NIG({\sf mean}=m,{\sf variance}=V \times \sigma^2,{\sf shape}=a,{\sf rate}=b)})
 distribution should be converted to parameters equivalent in a Normal-Inverse-Chi-Squared
-(\eqn{(\mu,\sigma^2) \sim NIX(mean=\mu,effective sample size=\kappa,degrees of freedom=\nu,variance=\sigma^2/\kappa)})
+(\eqn{(\mu,\sigma^2) \sim NIX({\sf mean}=\mu,{\sf effective sample size}=\kappa,{\sf degrees of freedom}=\nu,{\sf variance}=\sigma^2/\kappa)})
 distribution using \code{convert_gamma_to_chisq} before applying this function.
 }
 \examples{
