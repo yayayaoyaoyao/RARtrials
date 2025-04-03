@@ -63,7 +63,7 @@
 #' the entire data set used to select the stopping boundary for each iteration. If the user specifies 'B', the function
 #' only returns the selected stopping boundary for each iteration.
 #' @param ... additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.
-#' @return A list of results generated from formula \eqn{Pr(p_k>p_{{\sf control}}+\delta|data_{t-1})} at each step.
+#' @return A list of results generated from formula \eqn{Pr(p_k>p_{{\sf control}}+\delta|{\sf data}_{t-1})} at each step.
 #' Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 #' calculated from \code{deltaa1} at the final stage.
 #' @importFrom Rdpack reprompt

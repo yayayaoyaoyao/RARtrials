@@ -108,7 +108,7 @@ only returns the selected stopping boundary for each iteration.}
 \item{...}{additional arguments to be passed to \code{\link[stats]{integrate}} (such as rel.tol) from this function.}
 }
 \value{
-A list of results generated from formula \eqn{Pr(p_k>p_{{\sf control}}+\delta|data_{t-1})} at each step.
+A list of results generated from formula \eqn{Pr(p_k>p_{{\sf control}}+\delta|{\sf data}_{t-1})} at each step.
 Note that before final stage of the trial, test statistics is calculated from \code{deltaa}, and test statistics is
 calculated from \code{deltaa1} at the final stage.
 }
